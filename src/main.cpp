@@ -1,6 +1,6 @@
 #include	"../headers/ISnake.hh"
 #include	"../headers/Head.hh"
-#include	"../headers/FoodFactory.hh"
+#include	"../headers/FoodFact.hh"
 
 int	main()
 {
