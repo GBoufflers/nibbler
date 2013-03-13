@@ -1,5 +1,5 @@
-#ifndef		__FOODFACTORY_HH__
-#define		__FOODFACTORY_HH__
+#ifndef		__FOODFACT_HH__
+#define		__FOODFACT_HH__
 
 #include	"IFood.hh"
 
