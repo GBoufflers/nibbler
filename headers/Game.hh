@@ -7,7 +7,8 @@ private:
   std::list<ISnake *>		_Slist;
   std::list<IFood *>		_Flist;  
 public:
-  
+  Game();
+  ~Game();
 };
 
 
