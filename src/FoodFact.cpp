@@ -1,11 +1,13 @@
 #include	"../headers/FoodFact.hh"
+#include	"../headers/IFood.hh"
 #include	"../headers/Food.hh"
+#include	"../headers/Cake.hh"
 #include	"../headers/Poison.hh"
 #include	"../headers/Power.hh"
 
 FoodFact::FoodFact()
 {
-
+  initTab();
 }
 
 
@@ -14,19 +16,41 @@ FoodFact::~FoodFact()
 
 }
 
-
-IFood	*FoodFact::newFood()
+void	FoodFact::initTab()
 {
-  return (new Food());
+  this->creation[0] = &FoodFact::newCake;
+  this->creation[1] = &FoodFact::newPoison;
+  this->creation[2] = &FoodFact::newPower;
+}
+
+IFood	*FoodFact::newCake()
+{
+  IFood		*member;
+
+  member = new Cake;
+  return (member);
 }
 
 
 IFood	*FoodFact::newPoison()
 {
-  return (new Poison());
+  IFood		*member;
+
+  member = new Poison;
+  return (member);
 }
 
 IFood	*FoodFact::newPower()
 {
-  return (new Power());
+  IFood		*member;
+
+  member = new Power;
+  return (member);
+}
+
+IFood	*FoodFact::create(IFoodType type)
+{
+  if (type >= 0 && type <= 2)
+    return ((this->*creation[type])());
+  return NULL;
 }

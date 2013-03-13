@@ -5,7 +5,7 @@
 
 SnakeFact::SnakeFact()
 {
-
+  initTab();
 }
 
 SnakeFact::~SnakeFact()
@@ -13,22 +13,40 @@ SnakeFact::~SnakeFact()
 
 }
 
+void	SnakeFact::initTab()
+{
+  this->creation[0] = &SnakeFact::newHead;
+  this->creation[1] = &SnakeFact::newBody;
+  this->creation[2] = &SnakeFact::newTail;
+}
+
 ISnake	*SnakeFact::newHead()
 {
-  return (new Head());
+  ISnake	*member;
+
+  member = new Head();
+  return (member);
 }
 
 ISnake	*SnakeFact::newBody()
 {
-  return (new Body());
+  ISnake	*member;
+
+  member = new Body();
+  return (member);
 }
 
 ISnake	*SnakeFact::newTail()
+{
+  ISnake	*member;
 
-{  return (new Tail());
+  member = new Body();
+  return (member);
 }
 
-ISnake	*SnakeFact::create(std::string &name)
+ISnake	*SnakeFact::create(ISnakeType type)
 {
-  return (new Head());
+  if (type >= 0 && type <= 2)
+    return ((this->*creation[type])());
+  return NULL;
 }

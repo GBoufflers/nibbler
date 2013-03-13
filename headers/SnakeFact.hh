@@ -6,14 +6,16 @@
 class		SnakeFact
 {
 private:
-
-public:
-  SnakeFact();
-  ~SnakeFact();
-  ISnake	*create(std::string &name);
   ISnake	*newHead();
   ISnake	*newBody();
   ISnake	*newTail();
+  ISnake	*(SnakeFact::*creation[3])();
+public:
+  SnakeFact();
+  ~SnakeFact();
+  ISnake	*create(ISnakeType type);
+  void		initTab();
+
 };
 
 #endif

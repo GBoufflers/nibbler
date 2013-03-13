@@ -6,14 +6,15 @@
 class		FoodFact
 {
 private:
-
+  IFood		*newCake();
+  IFood		*newPoison();
+  IFood		*newPower();
+  IFood		*(FoodFact::*creation[3])();
 public:
   FoodFact();
   ~FoodFact();
-  IFood		*create(std::string &name);
-  IFood		*newFood();
-  IFood		*newPoison();
-  IFood		*newPower();
+  IFood		*create(IFoodType type);
+  void		initTab();
 };
 
 #endif
