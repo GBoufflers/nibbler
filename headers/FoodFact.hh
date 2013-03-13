@@ -10,7 +10,10 @@ private:
 public:
   FoodFact();
   ~FoodFact();
-  IFood		*create();
+  IFood		*create(std::string &name);
+  IFood		*newFood();
+  IFood		*newPoison();
+  IFood		*newPower();
 };
 
 #endif
