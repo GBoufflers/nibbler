@@ -14,8 +14,8 @@ OBJ=	src/main.o\
 	src/Cake.o\
 	src/Food.o\
 	src/Collision.o\
-	src/SnakeFact.o
-
+	src/SnakeFact.o \
+	src/FoodFact.o
 
 all:	$(NAME)
 
