@@ -1,8 +1,8 @@
-#include	"../headers/ISnake.hh"
-#include	"../headers/Head.hh"
-#include	"../headers/FoodFact.hh"
+#include	"../headers/Game.hh"
 
-int	main()
+int	main(int ac, char **av)
 {
+  Game		*game = new Game();
+
   return (0);
 }

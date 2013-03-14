@@ -16,7 +16,8 @@ OBJ=	src/main.o\
 	src/Collision.o\
 	src/SnakeFact.o\
 	src/FoodFact.o\
-	src/Game.o
+	src/Game.o\
+	src/Strategie.o
 
 all:	$(NAME)
 
