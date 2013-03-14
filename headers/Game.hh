@@ -20,7 +20,6 @@ private:
   IStrategie			*_strategie;
   int				_len;
   int				_width;
-  char				_isWorking;
 public:
   Game(int len, int width);
   ~Game();
@@ -29,7 +28,6 @@ public:
   int				getSpeed() const;
   int				getLen() const;
   int				getWidth() const;
-  char				getIsWorking() const;
   void				setLen(int len);
   void				setWidth(int width);
 };

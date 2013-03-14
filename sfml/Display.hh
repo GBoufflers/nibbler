@@ -8,10 +8,15 @@
 
 class Display
 {
+private:
+  sf::RenderWindow	_app;
 public:
+  Display();
+  ~Display();
   virtual void Dinit();
+  virtual bool Window();
 };
 
-typedef Display *(*make_graph)();
+typedef Display *(*maker_Display)();
 
 #endif

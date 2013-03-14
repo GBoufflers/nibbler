@@ -12,7 +12,6 @@ Game::~Game()
 
 void		Game::Init(int len, int width)
 {
-  this->_isWorking = 1;
   this->_len = len;
   this->_width = width;
   this->_snake = new Snake();
@@ -28,11 +27,6 @@ void		Game::Init(int len, int width)
 int		Game::snakeSize() const
 {
   return (_sList.size());
-}
-
-char		Game::getIsWorking() const
-{
-  return (this->_isWorking);
 }
 
 int		Game::getSpeed() const
