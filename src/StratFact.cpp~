@@ -1,0 +1,40 @@
+#include	"../headers/StratFact.hh"
+
+StratFact::StratFact()
+{
+  initTab();
+}
+
+StratFact::~StratFact()
+{
+
+}
+
+void	StratFact::initTab()
+{
+  this->creation[0] = &StratFact::newEasu;
+  this->creation[1] = &StratFact::newMedium;
+  this->creation[2] = &StratFact::newHard;
+}
+
+IStrategie	*StratFact::newEasy()
+{
+  return (new Strategie::Easy());
+}
+
+IStrategie	*StratFact::newMedium()
+{
+  return (new  Strategie::Medium);
+}
+
+IStrategie	*SnakeFact::newTail()
+{
+  return (new  Strategie::Hard);
+}
+
+IStrategie	*SnakeFact::create(IStrategieType type)
+{
+  if (type >= 0 && type <= 2)
+    return ((this->*creation[type])());
+  return NULL;
+}

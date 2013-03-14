@@ -12,11 +12,10 @@ Game::~Game()
 
 void		Game::Init()
 {
-  this->_foodFact = new FoodFact();
-  this->_snakeFact = new SnakeFact();
   this->_snake = new Snake();
   this->_food = new Food();
-  this->_strategie = new Strategie::Easy();  
+  this->_stratFact = new StratFact();
+  this->_strategie = this->_stratFact->create(EASY);  
 }
 
 int		Game::getSpeed() const

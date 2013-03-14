@@ -5,19 +5,17 @@
 #include	<list>
 #include	"Snake.hh"
 #include	"Food.hh"
-#include	"FoodFact.hh"
-#include	"SnakeFact.hh"
 #include	"Strategie.hh"
+#include	"StratFact.hh"
 
 class		Game
 {
 private:
   std::list<ISnake *>		_sList;
   std::list<IFood *>		_fList;
-  FoodFact			*_foodFact;
-  SnakeFact			*_snakeFact;
   ISnake			*_snake;
   IFood				*_food;
+  StratFact			*_stratFact;
   IStrategie			*_strategie;
   int				_len;
   int				_width;

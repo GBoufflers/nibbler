@@ -5,19 +5,12 @@ CXX=	g++ -g -Wall -Wextra -W
 CC=	$(CXX)
 
 OBJ=	src/main.o\
-	src/Head.o\
-	src/Body.o\
-	src/Tail.o\
 	src/Snake.o\
-	src/Power.o\
-	src/Poison.o\
-	src/Cake.o\
 	src/Food.o\
 	src/Collision.o\
-	src/SnakeFact.o\
-	src/FoodFact.o\
 	src/Game.o\
-	src/Strategie.o
+	src/Strategie.o\
+	src/StratFact.o\
 
 all:	$(NAME)
 
