@@ -1,0 +1,15 @@
+#include	"Display.hh"
+
+extern "C"
+{
+  Display	*make()
+  {
+    return new	Display();
+  }
+
+  void		Display::init()
+  {
+
+  }
+
+}

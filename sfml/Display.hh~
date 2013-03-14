@@ -1,0 +1,14 @@
+#ifndef __DISPLAY_HH__
+#define __DISPLAY_HH__
+
+#include <iostream>
+
+class Display
+{
+public:
+  virtual void Dinit();
+};
+
+typedef Display *(*make_graph)();
+
+#endif

@@ -18,7 +18,16 @@ void		Game::Init(int len, int width)
   this->_snake = new Snake();
   this->_food = new Food();
   this->_stratFact = new StratFact();
-  this->_strategie = this->_stratFact->create(EASY);  
+  this->_strategie = this->_stratFact->create(EASY);
+  this->_sList = this->_snake->addElem(this->_sList, TAIL);
+  this->_sList = this->_snake->addElem(this->_sList, BODY);
+  this->_sList = this->_snake->addElem(this->_sList, BODY);
+  this->_sList = this->_snake->addElem(this->_sList, HEAD);
+}
+
+int		Game::snakeSize() const
+{
+  return (_sList.size());
 }
 
 char		Game::getIsWorking() const

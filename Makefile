@@ -1,6 +1,6 @@
 NAME=	nibbler
 
-CXX=	g++ -g -Wall -Wextra -W
+CXX=	g++ -g -Wall -Wextra -W -ldl
 
 CC=	$(CXX)
 
@@ -16,11 +16,13 @@ all:	$(NAME)
 
 $(NAME): $(OBJ)
 	 $(CXX) $^ -o $@
+	g++ -shared -lsfml-graphics -lsfml-window -lsfml-system -o lib_nibbler_sfml.so ./sfml/Display.cpp -fPIC
 
 clean:
 	$(RM) $(OBJ)
 
 fclean: clean
 	$(RM) $(NAME)
+	rm -f lib_nibbler_sfml.so
 
 re:	fclean all

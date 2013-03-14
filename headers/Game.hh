@@ -3,6 +3,7 @@
 
 #include	<iostream>
 #include	<list>
+#include	<dlfcn.h>
 #include	"Snake.hh"
 #include	"Food.hh"
 #include	"Strategie.hh"
@@ -24,6 +25,7 @@ public:
   Game(int len, int width);
   ~Game();
   void				Init(int len, int width);
+  int				snakeSize() const;
   int				getSpeed() const;
   int				getLen() const;
   int				getWidth() const;
