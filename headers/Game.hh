@@ -19,13 +19,15 @@ private:
   IStrategie			*_strategie;
   int				_len;
   int				_width;
+  char				_isWorking;
 public:
-  Game();
+  Game(int len, int width);
   ~Game();
-  void				Init();
+  void				Init(int len, int width);
   int				getSpeed() const;
   int				getLen() const;
   int				getWidth() const;
+  char				getIsWorking() const;
   void				setLen(int len);
   void				setWidth(int width);
 };

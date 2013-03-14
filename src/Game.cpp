@@ -1,8 +1,8 @@
 #include		"../headers/Game.hh"
 
-Game::Game()
+Game::Game(int len, int width)
 {
-  this->Init();
+  this->Init(len, width);
 }
 
 Game::~Game()
@@ -10,12 +10,20 @@ Game::~Game()
 
 }
 
-void		Game::Init()
+void		Game::Init(int len, int width)
 {
+  this->_isWorking = 1;
+  this->_len = len;
+  this->_width = width;
   this->_snake = new Snake();
   this->_food = new Food();
   this->_stratFact = new StratFact();
   this->_strategie = this->_stratFact->create(EASY);  
+}
+
+char		Game::getIsWorking() const
+{
+  return (this->_isWorking);
 }
 
 int		Game::getSpeed() const

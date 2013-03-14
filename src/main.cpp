@@ -2,8 +2,15 @@
 
 int	main(int ac, char **av)
 {
-  Game		*game = new Game();
+  if (ac == 3)
+    {
+      Game		*game = new Game(atoi(av[1]), atoi(av[2]));
+      while (game->getIsWorking() == 1)
+	{
 
-  std::cout << game->getSpeed() << std::endl;
+	}
+    }
+  else
+    std::cout << "Usage : ./nibbler LEN WIDTH LIB" << std::endl;
   return (0);
 }
