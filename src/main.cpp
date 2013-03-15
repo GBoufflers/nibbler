@@ -1,4 +1,4 @@
-#include	"../sfml/Display.hh"
+#include	"../sfml/headers/Display.hh"
 #include	"../headers/Game.hh"
 
 int	main(int ac, char **av)
@@ -10,14 +10,14 @@ int	main(int ac, char **av)
       void		*hndl;
       void		*mkr;
 
-      hndl = dlopen("./lib_nibbler_sfml.so", RTLD_LAZY);
+      hndl = dlopen(av[3], RTLD_LAZY);
       mkr = dlsym(hndl, "make_display");
       pMaker = (maker_Display)mkr;
       Display *my_graph = pMaker();
-      my_graph->Dinit();
       while (my_graph->Window() == true)
 	{
-
+	  my_graph->Play(game->getSList(), game->getFList());
+	  usleep(game->getSpeed());
 	}
       dlclose(hndl);
     }

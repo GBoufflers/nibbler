@@ -4,6 +4,7 @@
 #include	<iostream>
 #include	<list>
 #include	<dlfcn.h>
+#include	<cstring>
 #include	"Snake.hh"
 #include	"Food.hh"
 #include	"Strategie.hh"
@@ -30,6 +31,8 @@ public:
   int				getWidth() const;
   void				setLen(int len);
   void				setWidth(int width);
+  std::list<ISnake *>		getSList() const;
+  std::list<IFood *>		getFList() const;
 };
 
 #endif

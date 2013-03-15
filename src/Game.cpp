@@ -18,10 +18,10 @@ void		Game::Init(int len, int width)
   this->_food = new Food();
   this->_stratFact = new StratFact();
   this->_strategie = this->_stratFact->create(EASY);
-  this->_sList = this->_snake->addElem(this->_sList, TAIL);
-  this->_sList = this->_snake->addElem(this->_sList, BODY);
-  this->_sList = this->_snake->addElem(this->_sList, BODY);
-  this->_sList = this->_snake->addElem(this->_sList, HEAD);
+  this->_sList = this->_snake->addElem(this->_sList, TAIL, 400, 300);
+  this->_sList = this->_snake->addElem(this->_sList, BODY, 380, 300);
+  this->_sList = this->_snake->addElem(this->_sList, BODY, 360, 300);
+  this->_sList = this->_snake->addElem(this->_sList, HEAD, 340, 300);
 }
 
 int		Game::snakeSize() const
@@ -37,6 +37,16 @@ int		Game::getSpeed() const
 int		Game::getLen() const
 {
   return (this->_len);
+}
+
+std::list<ISnake *>		Game::getSList() const
+{
+  return (this->_sList);
+}
+
+std::list<IFood *>		Game::getFList() const
+{
+  return (this->_fList);
 }
 
 int		Game::getWidth() const

@@ -22,16 +22,6 @@ void				Snake::setY(int y)
   this->_y = y;
 }
 
-void				Snake::setOldX(int x)
-{
-  this->_oldX = x;
-}
-
-void				Snake::setOldY(int y)
-{
-  this->_oldY = y;
-}
-
 void				Snake::setType(ISnakeType type)
 {
   this->_type = type;
@@ -54,24 +44,16 @@ int				Snake::getY() const
   return (this->_y);
 }
 
-int				Snake::getOldX() const
-{
-  return (this->_oldX);
-}
-
-int				Snake::getOldY() const
-{
-  return (this->_oldY);
-}
-
 /**********************************************/
 
-std::list<ISnake *>		Snake::addElem(std::list<ISnake *> list, ISnakeType type)
+std::list<ISnake *>		Snake::addElem(std::list<ISnake *> list, ISnakeType type, int x, int y)
 {
   ISnake	*member;
 
   member = new Snake;
   member->setType(type);
+  member->setX(x);
+  member->setY(y);
   list.push_front(member);
   return (list);
 }
