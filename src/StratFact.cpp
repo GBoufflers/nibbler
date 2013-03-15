@@ -1,8 +1,8 @@
 #include	"../headers/StratFact.hh"
 
 StratFact::StratFact()
-{
-  initTab();
+
+{  initTab();
 }
 
 StratFact::~StratFact()

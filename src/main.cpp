@@ -1,5 +1,4 @@
 #include	"../sfml/headers/Display.hh"
-#include	"../headers/Game.hh"
 
 int	main(int ac, char **av)
 {
@@ -9,7 +8,7 @@ int	main(int ac, char **av)
       maker_Display	pMaker;
       void		*hndl;
       void		*mkr;
-
+      
       hndl = dlopen(av[3], RTLD_LAZY);
       mkr = dlsym(hndl, "make_display");
       pMaker = (maker_Display)mkr;
@@ -22,6 +21,6 @@ int	main(int ac, char **av)
       dlclose(hndl);
     }
   else
-    std::cout << "Usage : ./nibbler LEN WIDTH LIB" << std::endl;
+    std::cout << "Usage : ./nibbler LEN WIDTH LIB" << std::endl ;
   return (0);
 }
