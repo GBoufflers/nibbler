@@ -23,8 +23,8 @@ void			Display::Up()
 
   newSprite = this->_SnakeSpriteList.back();
   this->_SnakeSpriteList.pop_back();
-  x = newSprite.GetPosition().x;
-  y = newSprite.GetPosition().y;
+  x = this->_SnakeSpriteList.front().GetPosition().x;
+  y = this->_SnakeSpriteList.front().GetPosition().y;
   y -= 20;
   newSprite.SetPosition(x, y);
   this->_SnakeSpriteList.push_front(newSprite);
@@ -39,8 +39,8 @@ void			Display::Down()
 
   newSprite = this->_SnakeSpriteList.back();
   this->_SnakeSpriteList.pop_back();
-  x = newSprite.GetPosition().x;
-  y = newSprite.GetPosition().y;
+  x = this->_SnakeSpriteList.front().GetPosition().x;
+  y = this->_SnakeSpriteList.front().GetPosition().y;
   y += 20;
   newSprite.SetPosition(x, y);
   this->_SnakeSpriteList.push_front(newSprite);
@@ -55,8 +55,8 @@ void			Display::Left()
 
   newSprite = this->_SnakeSpriteList.back();
   this->_SnakeSpriteList.pop_back();
-  x = newSprite.GetPosition().x;
-  y = newSprite.GetPosition().y;
+  x = this->_SnakeSpriteList.front().GetPosition().x;
+  y = this->_SnakeSpriteList.front().GetPosition().y;
   x -= 20;
   newSprite.SetPosition(x, y);
   this->_SnakeSpriteList.push_front(newSprite);
@@ -71,8 +71,8 @@ void			Display::Right()
 
   newSprite = this->_SnakeSpriteList.back();
   this->_SnakeSpriteList.pop_back();
-  x = newSprite.GetPosition().x;
-  y = newSprite.GetPosition().y;
+  x = this->_SnakeSpriteList.front().GetPosition().x;
+  y = this->_SnakeSpriteList.front().GetPosition().y;
   x += 20;
   newSprite.SetPosition(x, y);
   this->_SnakeSpriteList.push_front(newSprite);
@@ -99,7 +99,7 @@ void			Display::DisplayGame()
 {
   for (std::list<sf::Sprite>::const_iterator it = this->_SnakeSpriteList.begin(); it != this->_SnakeSpriteList.end(); ++it)
     this->_app.Draw(*it);
-  this->_app.Display();  
+  this->_app.Display();
 }
 
 void			Display::Dinit(std::list<ISnake *> sList, std::list<IFood *> fList)

@@ -3,7 +3,7 @@
 Strategie::Easy::Easy()
 {
   this->_type = EASY;
-  this->_speed = 70000;
+  this->_speed = 55000;
 }
 
 Strategie::Easy::~Easy()
