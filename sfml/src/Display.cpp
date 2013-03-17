@@ -8,6 +8,7 @@ Display::Display() : _app(sf::VideoMode(LWINDOW, HWINDOW, PIX), "nibbler")
   this->creation[1] = &Display::Down;
   this->creation[2] = &Display::Left;
   this->creation[3] = &Display::Right;
+  //  this->_sound.InitSound("track1.mp3");
 }
 
 Display::~Display()
@@ -28,7 +29,6 @@ void			Display::Up()
   y -= 20;
   newSprite.SetPosition(x, y);
   this->_SnakeSpriteList.push_front(newSprite);
-  // a finir
 }
 
 void			Display::Down()
@@ -44,7 +44,6 @@ void			Display::Down()
   y += 20;
   newSprite.SetPosition(x, y);
   this->_SnakeSpriteList.push_front(newSprite);
-  // a finir
 }
 
 void			Display::Left()
@@ -60,7 +59,6 @@ void			Display::Left()
   x -= 20;
   newSprite.SetPosition(x, y);
   this->_SnakeSpriteList.push_front(newSprite);
-  // a finir
 }
 
 void			Display::Right()
@@ -76,7 +74,6 @@ void			Display::Right()
   x += 20;
   newSprite.SetPosition(x, y);
   this->_SnakeSpriteList.push_front(newSprite);
-  // a finir
 }
 
 void			Display::addElem(int x, int y, std::string name)

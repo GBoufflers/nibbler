@@ -18,20 +18,10 @@ void		Game::Init(int len, int width)
   this->_food = new Food();
   this->_stratFact = new StratFact();
   this->_strategie = this->_stratFact->create(EASY);
-  this->_sList = this->_snake->addElem(this->_sList, TAIL, 400, 300);
+  this->_sList = this->_snake->addElem(this->_sList, HEAD, 400, 300);
   this->_sList = this->_snake->addElem(this->_sList, BODY, 380, 300);
   this->_sList = this->_snake->addElem(this->_sList, BODY, 360, 300);
-  //Test
-  this->_sList = this->_snake->addElem(this->_sList, BODY, 340, 300);
-  this->_sList = this->_snake->addElem(this->_sList, BODY, 320, 300);
-  this->_sList = this->_snake->addElem(this->_sList, BODY, 300, 300);
-  this->_sList = this->_snake->addElem(this->_sList, BODY, 280, 300);
-  this->_sList = this->_snake->addElem(this->_sList, BODY, 260, 300);
-  this->_sList = this->_snake->addElem(this->_sList, BODY, 240, 300);
-  //
-  this->_sList = this->_snake->addElem(this->_sList, BODY, 220, 300);
-  this->_sList = this->_snake->addElem(this->_sList, BODY, 200, 300);
-  this->_sList = this->_snake->addElem(this->_sList, HEAD, 180, 300);
+  this->_sList = this->_snake->addElem(this->_sList, TAIL, 340, 300);
 }
 
 int		Game::snakeSize() const

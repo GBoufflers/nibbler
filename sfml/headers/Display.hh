@@ -7,6 +7,7 @@
 #include        <SFML/Graphics.hpp>
 #include	<iostream>
 #include	"../../headers/Game.hh"
+#include	"Sound.hh"
 
 const int	LARGEUR  = 20;
 const int	HAUTEUR  = 20;
@@ -17,6 +18,7 @@ const int	PIX	 = 32;
 class		Display
 {
 private:
+  //  MSound				_sound;
   sf::RenderWindow			_app;
   sf::Event				_event;
   bool					_isInit;

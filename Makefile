@@ -16,7 +16,7 @@ all:	$(NAME)
 
 $(NAME): $(OBJ)
 	 $(CXX) $^ -o $@
-	g++ -shared -lsfml-graphics -lsfml-window -lsfml-system -o lib_nibbler_sfml.so ./sfml/src/Display.cpp -fPIC
+	g++ -shared -lsfml-graphics -lsfml-window -lsfml-system -o lib_nibbler_sfml.so ./sfml/src/Display.cpp ./sfml/src/Sound.cpp -fPIC
 
 clean:
 	$(RM) $(OBJ)
