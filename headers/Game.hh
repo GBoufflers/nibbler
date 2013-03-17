@@ -25,7 +25,8 @@ public:
   Game(int len, int width);
   ~Game();
   void				Init(int len, int width);
-  int				snakeSize() const;
+  ISnake			*getSnakeI() const;
+  IFood				*getFoodI() const;
   int				getSpeed() const;
   int				getLen() const;
   int				getWidth() const;

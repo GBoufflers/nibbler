@@ -16,6 +16,7 @@ class		ISnake
 {
 public:
   virtual std::list<ISnake *>				addElem(std::list<ISnake *> list, ISnakeType type, int x, int y) = 0;
+  virtual int						snakeSize(std::list<ISnake *> list) const = 0;
   /****************/
   virtual ISnakeType					getType() const = 0;
   virtual int						getX() const = 0;

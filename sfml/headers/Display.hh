@@ -18,20 +18,23 @@ const int	PIX	 = 32;
 class		Display
 {
 private:
-  //  MSound				_sound;
   sf::RenderWindow			_app;
   sf::Event				_event;
   bool					_isInit;
   std::list<sf::Sprite>			_SnakeSpriteList;
   std::list<sf::Sprite>			_FoodSpriteList;
   char					_numFunc;
+  int					_snakeSize;
   void					(Display::*creation[4])();
 public:
   Display();
   ~Display();
   virtual void	Dinit(std::list<ISnake *> sList, std::list<IFood *> fList);
   virtual bool	Window() const;
-  virtual void	Play(std::list<ISnake *> sList, std::list<IFood *> fList);
+  virtual void	Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake *s, IFood *f);
+  void		addSnakeSprite(std::list<ISnake *> sList);
+  void		ProcessMove(sf::Sprite *newSprite, int *x, int *y);
+  void		FinishMove(sf::Sprite newSprite, int x, int y);
   void		addElem(int x, int y, std::string name);
   void		DisplayGame();
   void		Up();

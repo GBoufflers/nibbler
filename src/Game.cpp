@@ -24,11 +24,6 @@ void		Game::Init(int len, int width)
   this->_sList = this->_snake->addElem(this->_sList, TAIL, 340, 300);
 }
 
-int		Game::snakeSize() const
-{
-  return (_sList.size());
-}
-
 int		Game::getSpeed() const
 {
   return (this->_strategie->getSpeed());
@@ -62,4 +57,14 @@ void		Game::setLen(int len)
 void		Game::setWidth(int width)
 {
   this->_width = width;
+}
+
+ISnake		*Game::getSnakeI() const
+{
+  return (this->_snake);
+}
+
+IFood		*Game::getFoodI() const
+{
+  return (this->_food);
 }

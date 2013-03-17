@@ -15,7 +15,7 @@ int	main(int ac, char **av)
       Display *my_graph = pMaker();
       while (my_graph->Window() == true)
 	{
-	  my_graph->Play(game->getSList(), game->getFList());
+	  my_graph->Play(game->getSList(), game->getFList(), game->getSnakeI(), game->getFoodI());
 	  usleep(game->getSpeed());
 	}
       dlclose(hndl);

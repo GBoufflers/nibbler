@@ -1,19 +1,34 @@
 #include	"../headers/Display.hh"
+#include	"../../headers/Game.hh"
 
 Display::Display() : _app(sf::VideoMode(LWINDOW, HWINDOW, PIX), "nibbler")
 {
   this->_isInit = false;
   this->_numFunc = 3;
+  this->_snakeSize = 4;
   this->creation[0] = &Display::Up;
   this->creation[1] = &Display::Down;
   this->creation[2] = &Display::Left;
   this->creation[3] = &Display::Right;
-  //  this->_sound.InitSound("track1.mp3");
 }
 
 Display::~Display()
 {
   
+}
+
+void			Display::ProcessMove(sf::Sprite *newSprite, int *x, int *y)
+{
+  (*newSprite) = this->_SnakeSpriteList.back();
+  this->_SnakeSpriteList.pop_back();
+  (*x) = this->_SnakeSpriteList.front().GetPosition().x;
+  (*y) = this->_SnakeSpriteList.front().GetPosition().y;
+}
+
+void			Display::FinishMove(sf::Sprite newSprite, int x, int y)
+{
+  newSprite.SetPosition(x, y);
+  this->_SnakeSpriteList.push_front(newSprite);
 }
 
 void			Display::Up()
@@ -22,13 +37,9 @@ void			Display::Up()
   int			x;
   int			y;
 
-  newSprite = this->_SnakeSpriteList.back();
-  this->_SnakeSpriteList.pop_back();
-  x = this->_SnakeSpriteList.front().GetPosition().x;
-  y = this->_SnakeSpriteList.front().GetPosition().y;
+  this->ProcessMove(&newSprite, &x, &y);
   y -= 20;
-  newSprite.SetPosition(x, y);
-  this->_SnakeSpriteList.push_front(newSprite);
+  this->FinishMove(newSprite, x, y);
 }
 
 void			Display::Down()
@@ -37,13 +48,9 @@ void			Display::Down()
   int			x;
   int			y;
 
-  newSprite = this->_SnakeSpriteList.back();
-  this->_SnakeSpriteList.pop_back();
-  x = this->_SnakeSpriteList.front().GetPosition().x;
-  y = this->_SnakeSpriteList.front().GetPosition().y;
+  this->ProcessMove(&newSprite, &x, &y);
   y += 20;
-  newSprite.SetPosition(x, y);
-  this->_SnakeSpriteList.push_front(newSprite);
+  this->FinishMove(newSprite, x, y);
 }
 
 void			Display::Left()
@@ -52,13 +59,9 @@ void			Display::Left()
   int			x;
   int			y;
 
-  newSprite = this->_SnakeSpriteList.back();
-  this->_SnakeSpriteList.pop_back();
-  x = this->_SnakeSpriteList.front().GetPosition().x;
-  y = this->_SnakeSpriteList.front().GetPosition().y;
+  this->ProcessMove(&newSprite, &x, &y);
   x -= 20;
-  newSprite.SetPosition(x, y);
-  this->_SnakeSpriteList.push_front(newSprite);
+  this->FinishMove(newSprite, x, y);
 }
 
 void			Display::Right()
@@ -67,13 +70,9 @@ void			Display::Right()
   int			x;
   int			y;
 
-  newSprite = this->_SnakeSpriteList.back();
-  this->_SnakeSpriteList.pop_back();
-  x = this->_SnakeSpriteList.front().GetPosition().x;
-  y = this->_SnakeSpriteList.front().GetPosition().y;
+  this->ProcessMove(&newSprite, &x, &y);
   x += 20;
-  newSprite.SetPosition(x, y);
-  this->_SnakeSpriteList.push_front(newSprite);
+  this->FinishMove(newSprite, x, y);
 }
 
 void			Display::addElem(int x, int y, std::string name)
@@ -133,10 +132,17 @@ void			Display::manageEvent()
     }
 }
 
-void			Display::Play(std::list<ISnake *> sList, std::list<IFood *> fList)
+void			Display::addSnakeSprite(std::list<ISnake *> sList)
+{
+
+}
+
+void			Display::Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake *s, IFood *f)
 {
   if (this->_isInit == false)
     this->Dinit(sList, fList);
+  if (s->snakeSize(sList) != this->_snakeSize)
+    this->addSnakeSprite(sList);
   this->manageEvent();
   (this->*creation[this->_numFunc])();
   this->_app.Clear();

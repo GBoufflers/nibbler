@@ -12,15 +12,16 @@ private:
 public: 
   Snake();
   virtual ~Snake();
-  virtual std::list<ISnake *>				addElem(std::list<ISnake *> list, ISnakeType type, int x, int y);
+  virtual std::list<ISnake *>		addElem(std::list<ISnake *> list, ISnakeType type, int x, int y);
+  virtual int				snakeSize(std::list<ISnake *> list) const;
   /******************/
-  virtual ISnakeType					getType() const;
-  virtual int						getX() const;
-  virtual int						getY() const;
+  virtual ISnakeType			getType() const;
+  virtual int				getX() const;
+  virtual int				getY() const;
   /******************/
-  virtual void						setX(int x);
-  virtual void						setY(int y);
-  virtual void						setType(ISnakeType type);
+  virtual void				setX(int x);
+  virtual void			        setY(int y);
+  virtual void				setType(ISnakeType type);
 };
 
 #endif

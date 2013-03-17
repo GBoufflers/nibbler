@@ -57,3 +57,8 @@ std::list<ISnake *>		Snake::addElem(std::list<ISnake *> list, ISnakeType type, i
   list.push_front(member);
   return (list);
 }
+
+int				Snake::snakeSize(std::list<ISnake *> list) const
+{
+  return (list.size());
+}
