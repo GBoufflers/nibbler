@@ -95,6 +95,8 @@ void			Display::DisplayGame()
 {
   for (std::list<sf::Sprite>::const_iterator it = this->_SnakeSpriteList.begin(); it != this->_SnakeSpriteList.end(); ++it)
     this->_app.Draw(*it);
+  for (std::list<sf::Sprite>::const_iterator it = this->_FoodSpriteList.begin(); it != this->_FoodSpriteList.end(); ++it)
+    this->_app.Draw(*it);
   this->_app.Display();
 }
 
@@ -137,12 +139,29 @@ void			Display::addSnakeSprite(std::list<ISnake *> sList)
 
 }
 
+void			Display::setFood(std::list<IFood *> list, IFood *food)
+{
+  std::string		SpriteLocation;
+  sf::Sprite		sprite;
+  sf::Image		image;
+
+  SpriteLocation = "/home/guillaume/Git/nibbler/sprite/boule.png";
+  if (!image.LoadFromFile(SpriteLocation))
+    std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
+  sprite.SetImage(image);
+  sprite.Resize(LARGEUR, HAUTEUR);
+  food = list.front();
+  sprite.SetPosition(food->getX(), food->getY());
+  this->_FoodSpriteList.push_back(sprite);
+}
+
 void			Display::Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake *s, IFood *f)
 {
   if (this->_isInit == false)
     this->Dinit(sList, fList);
   if (s->snakeSize(sList) != this->_snakeSize)
     this->addSnakeSprite(sList);
+  this->setFood(fList, f);
   this->manageEvent();
   (this->*creation[this->_numFunc])();
   this->_app.Clear();
