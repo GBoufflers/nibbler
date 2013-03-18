@@ -16,7 +16,7 @@ int	main(int ac, char **av)
       while (my_graph->Window() == true)
 	{
 	  game->setSList(my_graph->Play(game->getSList(), game->getFList(), game->getSnakeI(), game->getFoodI()));
-	  //game->checkCollision(game->getSList(), game->getFList());
+	  game->checkCollision(game->getSList(), game->getFList());
 	  usleep(game->getSpeed());
 	}
       dlclose(hndl);

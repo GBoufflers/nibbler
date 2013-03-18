@@ -32,17 +32,18 @@ public:
   virtual void	Dinit(std::list<ISnake *> sList, std::list<IFood *> fList);
   virtual bool	Window() const;
   virtual std::list<ISnake *>	Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake *s, IFood *f);
-  void		setFood(std::list<IFood *> list, IFood *food);
-  void		addSnakeSprite(std::list<ISnake *> sList);
-  void		ProcessMove(sf::Sprite *newSprite, int *x, int *y);
-  void		FinishMove(sf::Sprite newSprite, int x, int y);
-  void		addElem(int x, int y, std::string name);
-  void		DisplayGame();
+  void				setFood(std::list<IFood *> list, IFood *food);
+  void				addSnakeSprite(std::list<ISnake *> sList);
+  void				ProcessMove(sf::Sprite *newSprite, int *x, int *y);
+  void				FinishMove(sf::Sprite newSprite, int x, int y);
+  void				addElem(int x, int y, std::string name);
+  void				DisplayGame();
   std::list<ISnake *>		Up(std::list<ISnake *> list);
   std::list<ISnake *>		Down(std::list<ISnake *> list);
   std::list<ISnake *>		Left(std::list<ISnake *> list);
   std::list<ISnake *>		Right(std::list<ISnake *> list);
-  void		manageEvent();
+  std::list<ISnake *>		onOriginalList(std::list<ISnake *> list, char func);
+  void				manageEvent();
 };
 
   typedef Display *(*maker_Display)();

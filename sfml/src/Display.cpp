@@ -31,6 +31,33 @@ void			Display::FinishMove(sf::Sprite newSprite, int x, int y)
   this->_SnakeSpriteList.push_front(newSprite);
 }
 
+std::list<ISnake *>		Display::onOriginalList(std::list<ISnake *> list, char func)
+{
+  /*
+    ISnake	*tmp;
+    int		x;
+    int		y;
+
+    std::cout << "jsuis rentre !!" << std::endl;
+    tmp = (*game)->_sList.back();
+    (*game)->_sList.pop_back();
+    x = (*game)->_sList.front()->getX();
+    y = (*game)->_sList.front()->getY();
+    if (func == 1)
+    y -= 20;
+    if (func == 2)
+    y += 20;
+    if (func == 3)
+    x -= 20;
+    if (func == 4)
+    x += 20;
+    tmp->setX(x);
+    tmp->setY(y);
+    (*game)->_sList.push_front(tmp);
+  */
+}
+
+
 std::list<ISnake *>			Display::Up(std::list<ISnake *> list)
 {
   sf::Sprite		newSprite;
