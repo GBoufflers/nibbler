@@ -8,7 +8,7 @@
 #include	<iostream>
 #include	"../../headers/Game.hh"
 #include	"Sound.hh"
-#include	"/home/guillaume/Git/nibbler/ILib.hh"
+#include	"../../ILib.hh"
 
 const int	LARGEUR  = 20;
 const int	HAUTEUR  = 20;

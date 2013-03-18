@@ -11,7 +11,7 @@ public:
   ~Collision();
   bool		checkSAndS();
   bool		checkSAndF(std::list<ISnake *> slist, std::list<IFood *> flist) const;
-  bool		checkSAndW();
+  bool		checkSAndW(std::list<ISnake *>);
 };
 
 #endif

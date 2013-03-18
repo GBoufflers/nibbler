@@ -29,7 +29,12 @@ bool		Collision::checkSAndF(std::list<ISnake *> slist, std::list<IFood *> flist)
   return (false);
 }
 
-bool		Collision::checkSAndW()
+bool		Collision::checkSAndW(std::list<ISnake *> list)
 {
-  return (false);
+  ISnake	*head;
+
+  head = list.front();
+  if ((head->getX() > 0 && head->getX() < 800) && (head->getY() > 0 && head->getY() < 600))
+    return (false);
+  return (true);
 }

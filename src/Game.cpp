@@ -82,7 +82,7 @@ int			Game::checkCollision(std::list<ISnake *> slist, std::list<IFood *> flist) 
     return (1);
   if (this->_collision->checkSAndS() == true)
     return (-1);
-  if (this->_collision->checkSAndW() == true)
+  if (this->_collision->checkSAndW(slist) == true)
     return (-1);
   return (0);
 }
