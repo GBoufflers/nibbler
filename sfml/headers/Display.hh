@@ -8,6 +8,7 @@
 #include	<iostream>
 #include	"../../headers/Game.hh"
 #include	"Sound.hh"
+#include	"/home/guillaume/Git/nibbler/ILib.hh"
 
 const int	LARGEUR  = 20;
 const int	HAUTEUR  = 20;
@@ -15,7 +16,7 @@ const int	LWINDOW  = 800;
 const int	HWINDOW  = 600;
 const int	PIX	 = 32;
 
-class		Display
+class		Display : public ILib
 {
 private:
   sf::RenderWindow			_app;

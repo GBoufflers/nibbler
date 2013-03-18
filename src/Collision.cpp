@@ -12,6 +12,7 @@ Collision::~Collision()
 
 bool		Collision::checkSAndS()
 {
+
   return (false);
 }
 

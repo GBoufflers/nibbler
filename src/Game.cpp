@@ -10,7 +10,7 @@ Game::~Game()
 
 }
 
-void		Game::Init(int len, int width)
+void			Game::Init(int len, int width)
 {
   this->_len = len;
   this->_width = width;
@@ -26,57 +26,57 @@ void		Game::Init(int len, int width)
   this->_fList = this->_food->addElem(this->_fList);
 }
 
-int		Game::getSpeed() const
+int			Game::getSpeed() const
 {
   return (this->_strategie->getSpeed());
 }
 
-int		Game::getLen() const
+int			Game::getLen() const
 {
   return (this->_len);
 }
 
-std::list<ISnake *>		Game::getSList() const
+std::list<ISnake *>	Game::getSList() const
 {
   return (this->_sList);
 }
 
-std::list<IFood *>		Game::getFList() const
+std::list<IFood *>	Game::getFList() const
 {
   return (this->_fList);
 }
 
-int		Game::getWidth() const
+int			Game::getWidth() const
 {
   return (this->_width);
 }
 
-void		Game::setLen(int len)
+void			Game::setLen(int len)
 {
   this->_len = len;
 }
 
-void		Game::setWidth(int width)
+void			Game::setWidth(int width)
 {
   this->_width = width;
 }
 
-ISnake		*Game::getSnakeI() const
+ISnake			*Game::getSnakeI() const
 {
   return (this->_snake);
 }
 
-IFood		*Game::getFoodI() const
+IFood			*Game::getFoodI() const
 {
   return (this->_food);
 }
 
-Collision	*Game::getCollision() const
+Collision		*Game::getCollision() const
 {
   return (this->_collision);
 }
 
-int		Game::checkCollision(std::list<ISnake *> slist, std::list<IFood *> flist) const
+int			Game::checkCollision(std::list<ISnake *> slist, std::list<IFood *> flist) const
 {
   if (this->_collision->checkSAndF(slist, flist) == true)
     return (1);
@@ -88,7 +88,7 @@ int		Game::checkCollision(std::list<ISnake *> slist, std::list<IFood *> flist) c
 }
 
 
-void		Game::setSList(std::list<ISnake *> list)
+void			Game::setSList(std::list<ISnake *> list)
 {
   this->_sList = list;
 }
@@ -104,7 +104,7 @@ std::list<ISnake *>	Game::updateSList(std::list<ISnake *> list)
   return (list);
 }
 
-void		Game::setFList(std::list<IFood *> list)
+void			Game::setFList(std::list<IFood *> list)
 {
   this->_fList = list;
 }

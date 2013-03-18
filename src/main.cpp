@@ -14,7 +14,8 @@ int	main(int ac, char **av)
       mkr = dlsym(hndl, "make_display");
       pMaker = (maker_Display)mkr;
       Display *my_graph = pMaker();
-      while (my_graph->Window() == true)
+      ret = 0;
+      while (my_graph->Window() == true && ret != -1)
 	{
 	  game->setSList(my_graph->Play(game->getSList(), game->getFList(), game->getSnakeI(), game->getFoodI()));
 	  ret = game->checkCollision(game->getSList(), game->getFList());

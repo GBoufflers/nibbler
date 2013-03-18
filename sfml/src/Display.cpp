@@ -181,12 +181,21 @@ void			Display::setFood(std::list<IFood *> list, IFood *food)
   sf::Sprite		sprite;
   sf::Image		image;
 
-  SpriteLocation = "/home/guillaume/Git/nibbler/sprite/boule.png";
-  if (!image.LoadFromFile(SpriteLocation))
-    std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
-  sprite.SetImage(image);
-  sprite.Resize(LARGEUR, HAUTEUR);
-  food = list.front();
+  if (this->_FoodSpriteList.size() != 0)
+    {      
+      food = list.front();
+      sprite = this->_FoodSpriteList.front();
+      this->_FoodSpriteList.pop_front();
+    }
+  else
+    {
+      SpriteLocation = "/home/guillaume/Git/nibbler/sprite/boule.png";
+      if (!image.LoadFromFile(SpriteLocation))
+	std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
+      sprite.SetImage(image);
+      sprite.Resize(LARGEUR, HAUTEUR);
+      food = list.front();
+    }
   sprite.SetPosition(food->getX(), food->getY());
   this->_FoodSpriteList.push_back(sprite);
 }
@@ -198,7 +207,7 @@ std::list<ISnake *>			Display::Play(std::list<ISnake *> sList, std::list<IFood *
   if (sList.size() != this->_snakeSize)
     {
       this->addSnakeSprite(sList);
-      std::cout << fList.size() << std::endl;
+      this->setFood(fList, f);
     }
   this->setFood(fList, f);
   this->manageEvent();
