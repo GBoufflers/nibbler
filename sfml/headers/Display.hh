@@ -29,7 +29,7 @@ private:
 public:
   Display();
   ~Display();
-  virtual void	Dinit(std::list<ISnake *> sList, std::list<IFood *> fList);
+  void	Dinit(std::list<ISnake *> sList, std::list<IFood *> fList);
   virtual bool	Window() const;
   virtual std::list<ISnake *>	Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake *s, IFood *f);
   void				setFood(std::list<IFood *> list, IFood *food);
