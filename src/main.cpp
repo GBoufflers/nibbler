@@ -21,6 +21,7 @@ int	main(int ac, char **av)
 	  if (ret == 1)
 	    {
 	      game->setSList(game->updateSList(game->getSList()));
+	      game->setFList(game->updateFList(game->getFList()));
 	    }
 	  usleep(game->getSpeed());
 	}

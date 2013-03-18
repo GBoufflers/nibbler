@@ -15,6 +15,7 @@ enum		IFoodType
 class		IFood
 {
 public:
+  virtual std::list<IFood *>		DeleteElem(std::list<IFood *> food) = 0;
   virtual std::list<IFood *>		addElem(std::list<IFood *> list) = 0;
   virtual IFoodType			getType() const = 0;
   virtual void				setType(IFoodType type) = 0;

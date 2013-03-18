@@ -23,6 +23,7 @@ public:
   virtual void				setType(IFoodType type);
   virtual void				setX(int x);
   virtual void				setY(int y);
+  virtual std::list<IFood *>		DeleteElem(std::list<IFood *> food);
 };
 
 #endif

@@ -40,6 +40,8 @@ public:
   int				checkCollision(std::list<ISnake *> slist, std::list<IFood *> flist) const;
   std::list<ISnake *>		updateSList(std::list<ISnake *> list);
   void				setSList(std::list<ISnake *> list);
+  void				setFList(std::list<IFood *> list);
+  std::list<IFood *>		updateFList(std::list<IFood *> list);
 };
 
 #endif

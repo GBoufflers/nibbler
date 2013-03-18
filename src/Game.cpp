@@ -103,3 +103,14 @@ std::list<ISnake *>	Game::updateSList(std::list<ISnake *> list)
   list.push_back(back);
   return (list);
 }
+
+void		Game::setFList(std::list<IFood *> list)
+{
+  this->_fList = list;
+}
+
+std::list<IFood *>	Game::updateFList(std::list<IFood *> list)
+{
+  list = this->_food->addElem(list);
+  return (list);
+}

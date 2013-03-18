@@ -46,6 +46,12 @@ void				Food::setY(int y)
   this->_y = y;
 }
 
+std::list<IFood *>		Food::DeleteElem(std::list<IFood *> food)
+{
+  food.pop_back();
+  return (food);
+}
+
 std::list<IFood *>		Food::addElem(std::list<IFood *> list)
 {
   IFood		*member;
