@@ -11,6 +11,11 @@
 #include	"Strategie.hh"
 #include	"StratFact.hh"
 
+const int	SIDE     = 20;
+const int	LWINDOW  = 800;
+const int	HWINDOW  = 600;
+const int	PIX	 = 32;
+
 class		Game
 {
 private:

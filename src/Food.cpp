@@ -1,4 +1,4 @@
-#include		"../headers/Food.hh"
+#include		"../headers/Game.hh"
 
 Food::Food()
 {
@@ -59,13 +59,13 @@ std::list<IFood *>		Food::addElem(std::list<IFood *> list)
   int		y;
 
   member = new Food();
-  x = rand() % 800;
-  while (x % 20 != 0)
-    x = rand() % 800;
+  x = rand() % LWINDOW;
+  while (x % SIDE != 0)
+    x = rand() % LWINDOW;
   member->setX(x);
-  y = rand() % 600;
-  while (y % 20 != 0)
-    y = rand() % 600;
+  y = rand() % HWINDOW;
+  while (y % SIDE != 0)
+    y = rand() % HWINDOW;
   member->setY(y);
   list.push_front(member);
   return (list);

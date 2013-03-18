@@ -10,9 +10,8 @@ Collision::~Collision()
 
 }
 
-bool		Collision::checkSAndS()
+bool		Collision::checkSAndS(std::list<ISnake *> list)
 {
-
   return (false);
 }
 
@@ -34,7 +33,7 @@ bool		Collision::checkSAndW(std::list<ISnake *> list)
   ISnake	*head;
 
   head = list.front();
-  if ((head->getX() > 0 && head->getX() < 800) && (head->getY() > 0 && head->getY() < 600))
+  if ((head->getX() > 0 && head->getX() < LWINDOW) && (head->getY() > 0 && head->getY() < HWINDOW))
     return (false);
   return (true);
 }

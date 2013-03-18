@@ -17,21 +17,21 @@ Display::~Display()
   
 }
 
-void			Display::ProcessMove(sf::Sprite *newSprite, int *x, int *y)
+void			Display::ProcessMove(sf::Sprite &newSprite, int *x, int *y)
 {
-  (*newSprite) = this->_SnakeSpriteList.back();
+  newSprite = this->_SnakeSpriteList.back();
   this->_SnakeSpriteList.pop_back();
   (*x) = this->_SnakeSpriteList.front().GetPosition().x;
   (*y) = this->_SnakeSpriteList.front().GetPosition().y;
 }
 
-void			Display::FinishMove(sf::Sprite newSprite, int x, int y)
+void			Display::FinishMove(sf::Sprite &newSprite, int x, int y)
 {
   newSprite.SetPosition(x, y);
   this->_SnakeSpriteList.push_front(newSprite);
 }
 
-std::list<ISnake *>		Display::onOriginalList(std::list<ISnake *> list, char func)
+std::list<ISnake *>	Display::onOriginalList(std::list<ISnake *> &list, char func)
 {
   ISnake	*tmp;
   int		x;
@@ -56,52 +56,52 @@ std::list<ISnake *>		Display::onOriginalList(std::list<ISnake *> list, char func
 }
 
 
-std::list<ISnake *>			Display::Up(std::list<ISnake *> list)
+std::list<ISnake *>	Display::Up(std::list<ISnake *> &list)
 {
   sf::Sprite		newSprite;
   int			x;
   int			y;
 
-  this->ProcessMove(&newSprite, &x, &y);
+  this->ProcessMove(newSprite, &x, &y);
   y -= 20;
   this->FinishMove(newSprite, x, y);
   list = this->onOriginalList(list, 1);
   return (list);
 }
 
-std::list<ISnake *>			Display::Down(std::list<ISnake *> list)
+std::list<ISnake *>	Display::Down(std::list<ISnake *> &list)
 {
   sf::Sprite		newSprite;
   int			x;
   int			y;
 
-  this->ProcessMove(&newSprite, &x, &y);
+  this->ProcessMove(newSprite, &x, &y);
   y += 20;
   this->FinishMove(newSprite, x, y);
   list = this->onOriginalList(list, 2);
   return (list);
 }
 
-std::list<ISnake *>			Display::Left(std::list<ISnake *> list)
+std::list<ISnake *>	Display::Left(std::list<ISnake *> &list)
 {
   sf::Sprite		newSprite;
   int			x;
   int			y;
 
-  this->ProcessMove(&newSprite, &x, &y);
+  this->ProcessMove(newSprite, &x, &y);
   x -= 20;
   this->FinishMove(newSprite, x, y);
   list = this->onOriginalList(list, 3);
   return (list);
 }
 
-std::list<ISnake *>			Display::Right(std::list<ISnake *> list)
+std::list<ISnake *>	Display::Right(std::list<ISnake *> &list)
 {
   sf::Sprite		newSprite;
   int			x;
   int			y;
 
-  this->ProcessMove(&newSprite, &x, &y);
+  this->ProcessMove(newSprite, &x, &y);
   x += 20;
   this->FinishMove(newSprite, x, y);
   list = this->onOriginalList(list, 4);
@@ -119,7 +119,7 @@ void			Display::addElem(int x, int y, std::string name)
   if (!image.LoadFromFile(SpriteLocation))
     std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
   sprite.SetImage(image);
-  sprite.Resize(LARGEUR, HAUTEUR);
+  sprite.Resize(SIDE, SIDE);
   sprite.SetPosition(x, y);
   this->_SnakeSpriteList.push_back(sprite);
 }
@@ -193,14 +193,14 @@ void			Display::setFood(std::list<IFood *> list, IFood *food)
       if (!image.LoadFromFile(SpriteLocation))
 	std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
       sprite.SetImage(image);
-      sprite.Resize(LARGEUR, HAUTEUR);
+      sprite.Resize(SIDE, SIDE);
       food = list.front();
     }
   sprite.SetPosition(food->getX(), food->getY());
   this->_FoodSpriteList.push_back(sprite);
 }
 
-std::list<ISnake *>			Display::Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake *s, IFood *f)
+std::list<ISnake *>	Display::Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake *s, IFood *f)
 {
   if (this->_isInit == false)
     this->Dinit(sList, fList);

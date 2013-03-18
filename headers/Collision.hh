@@ -9,8 +9,8 @@ class		Collision
 public:
   Collision();
   ~Collision();
-  bool		checkSAndS();
-  bool		checkSAndF(std::list<ISnake *> slist, std::list<IFood *> flist) const;
+  bool		checkSAndS(std::list<ISnake *>);
+  bool		checkSAndF(std::list<ISnake *>, std::list<IFood *>) const;
   bool		checkSAndW(std::list<ISnake *>);
 };
 

@@ -80,7 +80,7 @@ int			Game::checkCollision(std::list<ISnake *> slist, std::list<IFood *> flist) 
 {
   if (this->_collision->checkSAndF(slist, flist) == true)
     return (1);
-  if (this->_collision->checkSAndS() == true)
+  if (this->_collision->checkSAndS(slist) == true)
     return (-1);
   if (this->_collision->checkSAndW(slist) == true)
     return (-1);
@@ -98,7 +98,7 @@ std::list<ISnake *>	Game::updateSList(std::list<ISnake *> list)
   ISnake	*back;
 
   back = list.back();
-  back->setX(back->getX() - 20);
+  back->setX(back->getX() - SIDE);
   back->setY(back->getY());
   list.push_back(back);
   return (list);
