@@ -31,7 +31,7 @@ void			Display::FinishMove(sf::Sprite newSprite, int x, int y)
   this->_SnakeSpriteList.push_front(newSprite);
 }
 
-void			Display::Up(std::list<ISnake *> list)
+std::list<ISnake *>			Display::Up(std::list<ISnake *> list)
 {
   sf::Sprite		newSprite;
   int			x;
@@ -41,9 +41,10 @@ void			Display::Up(std::list<ISnake *> list)
   y -= 20;
   this->FinishMove(newSprite, x, y);
   // this->onOriginalList(1);
+  return (list);
 }
 
-void			Display::Down(std::list<ISnake *> list)
+std::list<ISnake *>			Display::Down(std::list<ISnake *> list)
 {
   sf::Sprite		newSprite;
   int			x;
@@ -53,9 +54,10 @@ void			Display::Down(std::list<ISnake *> list)
   y += 20;
   this->FinishMove(newSprite, x, y);
   //  this->onOriginalList(game, 2);
+  return (list);
 }
 
-void			Display::Left(std::list<ISnake *> list)
+std::list<ISnake *>			Display::Left(std::list<ISnake *> list)
 {
   sf::Sprite		newSprite;
   int			x;
@@ -65,9 +67,10 @@ void			Display::Left(std::list<ISnake *> list)
   x -= 20;
   this->FinishMove(newSprite, x, y);
   //  this->onOriginalList(game, 3);
+  return (list);
 }
 
-void			Display::Right(std::list<ISnake *> list)
+std::list<ISnake *>			Display::Right(std::list<ISnake *> list)
 {
   sf::Sprite		newSprite;
   int			x;
@@ -77,6 +80,7 @@ void			Display::Right(std::list<ISnake *> list)
   x += 20;
   this->FinishMove(newSprite, x, y);
   //  this->onOriginalList(game, 4);
+  return (list);
 }
 
 void			Display::addElem(int x, int y, std::string name)
@@ -167,7 +171,7 @@ std::list<ISnake *>			Display::Play(std::list<ISnake *> sList, std::list<IFood *
     this->addSnakeSprite(sList);
   this->setFood(fList, f);
   this->manageEvent();
-  (this->*creation[this->_numFunc])(sList);
+  sList = (this->*creation[this->_numFunc])(sList);
   this->_app.Clear();
   this->DisplayGame();
   return (sList);

@@ -25,7 +25,7 @@ private:
   std::list<sf::Sprite>			_FoodSpriteList;
   char					_numFunc;
   int					_snakeSize;
-  void					(Display::*creation[4])(std::list<ISnake *>);
+  std::list<ISnake *>	       		(Display::*creation[4])(std::list<ISnake *>);
 public:
   Display();
   ~Display();
@@ -38,10 +38,10 @@ public:
   void		FinishMove(sf::Sprite newSprite, int x, int y);
   void		addElem(int x, int y, std::string name);
   void		DisplayGame();
-  void		Up(std::list<ISnake *> list);
-  void		Down(std::list<ISnake *> list);
-  void		Left(std::list<ISnake *> list);
-  void		Right(std::list<ISnake *> list);
+  std::list<ISnake *>		Up(std::list<ISnake *> list);
+  std::list<ISnake *>		Down(std::list<ISnake *> list);
+  std::list<ISnake *>		Left(std::list<ISnake *> list);
+  std::list<ISnake *>		Right(std::list<ISnake *> list);
   void		manageEvent();
 };
 
