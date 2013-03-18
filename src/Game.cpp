@@ -76,15 +76,30 @@ Collision	*Game::getCollision() const
   return (this->_collision);
 }
 
-bool		Game::checkCollision(std::list<ISnake *> slist, std::list<IFood *> flist) const
+int		Game::checkCollision(std::list<ISnake *> slist, std::list<IFood *> flist) const
 {
   if (this->_collision->checkSAndF(slist, flist) == true)
-    std::cout << "Ca match !!"<< std::endl;
-  return (false);
+    return (1);
+  if (this->_collision->checkSAndS() == true)
+    return (-1);
+  if (this->_collision->checkSAndW() == true)
+    return (-1);
+  return (0);
 }
 
 
 void		Game::setSList(std::list<ISnake *> list)
 {
   this->_sList = list;
+}
+
+std::list<ISnake *>	Game::updateSList(std::list<ISnake *> list)
+{
+  ISnake	*back;
+
+  back = list.back();
+  back->setX(back->getX() - 20);
+  back->setY(back->getY());
+  list.push_back(back);
+  return (list);
 }

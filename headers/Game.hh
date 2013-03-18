@@ -37,7 +37,8 @@ public:
   std::list<ISnake *>		getSList() const;
   std::list<IFood *>		getFList() const;
   Collision			*getCollision() const;
-  bool				checkCollision(std::list<ISnake *> slist, std::list<IFood *> flist) const;
+  int				checkCollision(std::list<ISnake *> slist, std::list<IFood *> flist) const;
+  std::list<ISnake *>		updateSList(std::list<ISnake *> list);
   void				setSList(std::list<ISnake *> list);
 };
 

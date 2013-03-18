@@ -169,7 +169,8 @@ void			Display::manageEvent()
 
 void			Display::addSnakeSprite(std::list<ISnake *> sList)
 {
-
+  std::cout << "jajoute un sprite !!" << std::endl;
+  this->_snakeSize += 1;
 }
 
 void			Display::setFood(std::list<IFood *> list, IFood *food)
@@ -192,7 +193,7 @@ std::list<ISnake *>			Display::Play(std::list<ISnake *> sList, std::list<IFood *
 {
   if (this->_isInit == false)
     this->Dinit(sList, fList);
-  if (s->snakeSize(sList) != this->_snakeSize)
+  if (sList.size() != this->_snakeSize)
     this->addSnakeSprite(sList);
   this->setFood(fList, f);
   this->manageEvent();
