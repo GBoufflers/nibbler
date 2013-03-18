@@ -31,7 +31,7 @@ void			Display::FinishMove(sf::Sprite newSprite, int x, int y)
   this->_SnakeSpriteList.push_front(newSprite);
 }
 
-void			Display::Up()
+void			Display::Up(std::list<ISnake *> list)
 {
   sf::Sprite		newSprite;
   int			x;
@@ -40,9 +40,10 @@ void			Display::Up()
   this->ProcessMove(&newSprite, &x, &y);
   y -= 20;
   this->FinishMove(newSprite, x, y);
+  // this->onOriginalList(1);
 }
 
-void			Display::Down()
+void			Display::Down(std::list<ISnake *> list)
 {
   sf::Sprite		newSprite;
   int			x;
@@ -51,9 +52,10 @@ void			Display::Down()
   this->ProcessMove(&newSprite, &x, &y);
   y += 20;
   this->FinishMove(newSprite, x, y);
+  //  this->onOriginalList(game, 2);
 }
 
-void			Display::Left()
+void			Display::Left(std::list<ISnake *> list)
 {
   sf::Sprite		newSprite;
   int			x;
@@ -62,9 +64,10 @@ void			Display::Left()
   this->ProcessMove(&newSprite, &x, &y);
   x -= 20;
   this->FinishMove(newSprite, x, y);
+  //  this->onOriginalList(game, 3);
 }
 
-void			Display::Right()
+void			Display::Right(std::list<ISnake *> list)
 {
   sf::Sprite		newSprite;
   int			x;
@@ -73,6 +76,7 @@ void			Display::Right()
   this->ProcessMove(&newSprite, &x, &y);
   x += 20;
   this->FinishMove(newSprite, x, y);
+  //  this->onOriginalList(game, 4);
 }
 
 void			Display::addElem(int x, int y, std::string name)
@@ -155,7 +159,7 @@ void			Display::setFood(std::list<IFood *> list, IFood *food)
   this->_FoodSpriteList.push_back(sprite);
 }
 
-void			Display::Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake *s, IFood *f)
+std::list<ISnake *>			Display::Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake *s, IFood *f)
 {
   if (this->_isInit == false)
     this->Dinit(sList, fList);
@@ -163,9 +167,10 @@ void			Display::Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake
     this->addSnakeSprite(sList);
   this->setFood(fList, f);
   this->manageEvent();
-  (this->*creation[this->_numFunc])();
+  (this->*creation[this->_numFunc])(sList);
   this->_app.Clear();
   this->DisplayGame();
+  return (sList);
 }
 
 extern "C"

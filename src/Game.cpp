@@ -15,6 +15,7 @@ void		Game::Init(int len, int width)
   this->_len = len;
   this->_width = width;
   this->_snake = new Snake();
+  this->_collision = new Collision();
   this->_food = new Food();
   this->_stratFact = new StratFact();
   this->_strategie = this->_stratFact->create(EASY);
@@ -68,4 +69,47 @@ ISnake		*Game::getSnakeI() const
 IFood		*Game::getFoodI() const
 {
   return (this->_food);
+}
+
+Collision	*Game::getCollision() const
+{
+  return (this->_collision);
+}
+
+bool		Game::checkCollision(std::list<ISnake *> slist, std::list<IFood *> flist) const
+{
+  if (this->_collision->checkSAndF(slist, flist) == true)
+    std::cout << "Ca match !!"<< std::endl;
+  return (false);
+}
+
+void		Game::onOriginalList(char func)
+{
+  /*
+    ISnake	*tmp;
+    int		x;
+    int		y;
+
+    std::cout << "jsuis rentre !!" << std::endl;
+    tmp = (*game)->_sList.back();
+    (*game)->_sList.pop_back();
+    x = (*game)->_sList.front()->getX();
+    y = (*game)->_sList.front()->getY();
+    if (func == 1)
+    y -= 20;
+    if (func == 2)
+    y += 20;
+    if (func == 3)
+    x -= 20;
+    if (func == 4)
+    x += 20;
+    tmp->setX(x);
+    tmp->setY(y);
+    (*game)->_sList.push_front(tmp);
+  */
+}
+
+void		Game::setSList(std::list<ISnake *> list)
+{
+  this->_sList = list;
 }

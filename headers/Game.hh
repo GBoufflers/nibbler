@@ -7,6 +7,7 @@
 #include	<cstring>
 #include	"Snake.hh"
 #include	"Food.hh"
+#include	"Collision.hh"
 #include	"Strategie.hh"
 #include	"StratFact.hh"
 
@@ -19,6 +20,7 @@ private:
   IFood				*_food;
   StratFact			*_stratFact;
   IStrategie			*_strategie;
+  Collision			*_collision;
   int				_len;
   int				_width;
 public:
@@ -34,6 +36,10 @@ public:
   void				setWidth(int width);
   std::list<ISnake *>		getSList() const;
   std::list<IFood *>		getFList() const;
+  Collision			*getCollision() const;
+  bool				checkCollision(std::list<ISnake *> slist, std::list<IFood *> flist) const;
+  void				onOriginalList(char func);
+  void				setSList(std::list<ISnake *> list);
 };
 
 #endif

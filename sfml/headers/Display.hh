@@ -25,26 +25,26 @@ private:
   std::list<sf::Sprite>			_FoodSpriteList;
   char					_numFunc;
   int					_snakeSize;
-  void					(Display::*creation[4])();
+  void					(Display::*creation[4])(std::list<ISnake *>);
 public:
   Display();
   ~Display();
   virtual void	Dinit(std::list<ISnake *> sList, std::list<IFood *> fList);
   virtual bool	Window() const;
-  virtual void	Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake *s, IFood *f);
+  virtual std::list<ISnake *>	Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake *s, IFood *f);
   void		setFood(std::list<IFood *> list, IFood *food);
   void		addSnakeSprite(std::list<ISnake *> sList);
   void		ProcessMove(sf::Sprite *newSprite, int *x, int *y);
   void		FinishMove(sf::Sprite newSprite, int x, int y);
   void		addElem(int x, int y, std::string name);
   void		DisplayGame();
-  void		Up();
-  void		Down();
-  void		Left();
-  void		Right();
+  void		Up(std::list<ISnake *> list);
+  void		Down(std::list<ISnake *> list);
+  void		Left(std::list<ISnake *> list);
+  void		Right(std::list<ISnake *> list);
   void		manageEvent();
 };
 
-typedef Display *(*maker_Display)();
+  typedef Display *(*maker_Display)();
 
 #endif

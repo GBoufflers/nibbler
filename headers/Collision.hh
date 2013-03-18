@@ -10,7 +10,7 @@ public:
   Collision();
   ~Collision();
   bool		checkSAndS();
-  bool		checkSAndF();
+  bool		checkSAndF(std::list<ISnake *> slist, std::list<IFood *> flist) const;
   bool		checkSAndM();
 };
 
