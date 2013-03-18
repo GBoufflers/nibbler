@@ -33,28 +33,26 @@ void			Display::FinishMove(sf::Sprite newSprite, int x, int y)
 
 std::list<ISnake *>		Display::onOriginalList(std::list<ISnake *> list, char func)
 {
-  /*
-    ISnake	*tmp;
-    int		x;
-    int		y;
+  ISnake	*tmp;
+  int		x;
+  int		y;
 
-    std::cout << "jsuis rentre !!" << std::endl;
-    tmp = (*game)->_sList.back();
-    (*game)->_sList.pop_back();
-    x = (*game)->_sList.front()->getX();
-    y = (*game)->_sList.front()->getY();
-    if (func == 1)
+  tmp = list.back();
+  list.pop_back();
+  x = list.front()->getX();
+  y = list.front()->getY();
+  if (func == 1)
     y -= 20;
-    if (func == 2)
+  if (func == 2)
     y += 20;
-    if (func == 3)
+  if (func == 3)
     x -= 20;
-    if (func == 4)
+  if (func == 4)
     x += 20;
-    tmp->setX(x);
-    tmp->setY(y);
-    (*game)->_sList.push_front(tmp);
-  */
+  tmp->setX(x);
+  tmp->setY(y);
+  list.push_front(tmp);
+  return (list);
 }
 
 
@@ -67,7 +65,7 @@ std::list<ISnake *>			Display::Up(std::list<ISnake *> list)
   this->ProcessMove(&newSprite, &x, &y);
   y -= 20;
   this->FinishMove(newSprite, x, y);
-  // this->onOriginalList(1);
+  list = this->onOriginalList(list, 1);
   return (list);
 }
 
@@ -80,7 +78,7 @@ std::list<ISnake *>			Display::Down(std::list<ISnake *> list)
   this->ProcessMove(&newSprite, &x, &y);
   y += 20;
   this->FinishMove(newSprite, x, y);
-  //  this->onOriginalList(game, 2);
+  list = this->onOriginalList(list, 2);
   return (list);
 }
 
@@ -93,7 +91,7 @@ std::list<ISnake *>			Display::Left(std::list<ISnake *> list)
   this->ProcessMove(&newSprite, &x, &y);
   x -= 20;
   this->FinishMove(newSprite, x, y);
-  //  this->onOriginalList(game, 3);
+  list = this->onOriginalList(list, 3);
   return (list);
 }
 
@@ -106,7 +104,7 @@ std::list<ISnake *>			Display::Right(std::list<ISnake *> list)
   this->ProcessMove(&newSprite, &x, &y);
   x += 20;
   this->FinishMove(newSprite, x, y);
-  //  this->onOriginalList(game, 4);
+  list = this->onOriginalList(list, 4);
   return (list);
 }
 
