@@ -5,6 +5,7 @@ int	main(int ac, char **av)
   if (ac == 4)
     {
       Game			*game = new Game(atoi(av[1]), atoi(av[2]));
+      //      std::list<ISnake *>	tmp;
       int			ret;
       maker_Display		pMaker;
       void			*hndl;
@@ -17,6 +18,7 @@ int	main(int ac, char **av)
       ret = 0;
       while (my_graph->Window() == true && ret != -1)
 	{
+	  //	  tmp = game->gtSList();
 	  game->setSList(my_graph->Play(game->getSList(), game->getFList(), game->getSnakeI(), game->getFoodI()));
 	  ret = game->checkCollision(game->getSList(), game->getFList());
 	  if (ret == 1)
