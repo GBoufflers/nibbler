@@ -204,7 +204,7 @@ void			Display::setFood(std::list<IFood *> list)
     {
       sprite = new sf::Sprite();
       image = new sf::Image();
-      SpriteLocation = "/home/guillaume/Git/nibbler/sprite/boule.png";
+      SpriteLocation = "/home/guillaume/Git/nibbler/sprite/kiwi.png";
       if (!image->LoadFromFile(SpriteLocation))
 	std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
       sprite->SetImage(*image);
