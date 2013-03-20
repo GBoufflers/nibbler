@@ -39,7 +39,6 @@ public:
   std::list<ISnake *>		&Right(std::list<ISnake *> &list);
   std::list<ISnake *>		&onOriginalList(std::list<ISnake *> &list, char func);
   void				manageEvent();
-  void				displayCoord(std::list<ISnake *> &list);
   void				setNewCoord(std::list<ISnake *> &list);
 };
 

@@ -117,8 +117,21 @@ std::list<IFood *>	Game::updateFList(std::list<IFood *> list)
 
 void			Game::displayCoord()
 {
-  std::cout << "COORDONNEES DU SERPENT GAME" << std::endl;
   for (std::list<ISnake *>::iterator it = this->_sList.begin(); it != this->_sList.end(); ++it)
     std::cout << (*it)->getX() << "\t" << (*it)->getY() << std::endl;
   std::cout << std::endl << std::endl;
+}
+
+void			Game::analyseLevel()
+{
+  if (this->_sList.size() > 10 && this->_sList.size() < 15)
+    {
+      delete(this->_strategie);
+      this->_strategie = this->_stratFact->create(MEDIUM);
+    }
+  else if (this->_sList.size() >= 15)
+    {
+      delete(this->_strategie);
+      this->_strategie = this->_stratFact->create(HARD);
+    }
 }

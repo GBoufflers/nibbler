@@ -31,13 +31,6 @@ void			Display::FinishMove(sf::Sprite &newSprite, int x, int y)
   this->_SnakeSpriteList.push_front(newSprite);
 }
 
-void			Display::displayCoord(std::list<ISnake *> &list)
-{
-  for (std::list<ISnake *>::iterator it = list.begin(); it != list.end(); ++it)
-    std::cout << (*it)->getX() << "\t" << (*it)->getY() << std::endl;
-  std::cout << std::endl << std::endl;
-}
-
 std::list<ISnake *>	&Display::onOriginalList(std::list<ISnake *> &list, char func)
 {
   ISnake	*tmp;

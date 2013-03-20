@@ -24,6 +24,7 @@ int	main(int ac, char **av)
 	      game->setSList(game->updateSList(game->getSList()));
 	      game->setFList(game->updateFList(game->getFList()));
 	    }
+	  game->analyseLevel();
 	  usleep(game->getSpeed());
 	}
       dlclose(hndl);

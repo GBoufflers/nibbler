@@ -42,15 +42,6 @@ bool		Collision::checkSAndF(std::list<ISnake *> slist, std::list<IFood *> flist)
   return (false);
 }
 
-void		Collision::displayCoord(std::list<ISnake *> list)
-{
-  std::cout << "COORDONNEES DU SERPENT COLLISION" << std::endl;
-  for (std::list<ISnake *>::iterator it = list.begin(); it != list.end(); ++it)
-    std::cout << (*it)->getX() << "\t" << (*it)->getY() << std::endl;
-  std::cout << std::endl << std::endl;
-}
-
-
 bool		Collision::checkSAndW(std::list<ISnake *> list)
 {
   ISnake	*head;
@@ -59,4 +50,11 @@ bool		Collision::checkSAndW(std::list<ISnake *> list)
   if ((head->getX() > 0 && head->getX() < LWINDOW) && (head->getY() > 0 && head->getY() < HWINDOW))
     return (false);
   return (true);
+}
+
+void		Collision::displayCoord(std::list<ISnake *> list)
+{
+  for (std::list<ISnake *>::iterator it = list.begin(); it != list.end(); ++it)
+    std::cout << (*it)->getX() << "\t" << (*it)->getY() << std::endl;
+  std::cout << std::endl << std::endl;
 }

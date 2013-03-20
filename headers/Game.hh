@@ -48,6 +48,7 @@ public:
   void				setFList(std::list<IFood *> list);
   std::list<IFood *>		updateFList(std::list<IFood *> list);
   void				displayCoord();
+  void				analyseLevel();
 };
 
 #endif
