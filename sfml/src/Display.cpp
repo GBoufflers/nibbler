@@ -112,7 +112,7 @@ void			Display::addElem(int x, int y, std::string name)
 
   sprite = new sf::Sprite();
   image = new sf::Image();
-  SpriteLocation = "/home/guillaume/Git/nibbler/sprite/boule.png";
+  SpriteLocation = "/home/guillaume/Git/nibbler/sprite/boule2.png";
   if (!image->LoadFromFile(SpriteLocation))
     std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
   sprite->SetImage(*image);
@@ -151,7 +151,7 @@ void			Display::Dinit(std::list<ISnake *> sList, std::list<IFood *> fList)
 {
   this->_isInit = true;
   for (std::list<ISnake *>::const_iterator it = sList.begin(); it != sList.end(); ++it)
-    this->addElem((*it)->getX(), (*it)->getY(), "boule.png");
+    this->addElem((*it)->getX(), (*it)->getY(), "boule2.png");
 }
 
 bool			Display::Window() const
