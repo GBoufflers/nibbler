@@ -22,14 +22,14 @@ int	main(int ac, char **av)
 	  tmp = game->getSList();
 	  tmpf = game->getFList();
 	  my_graph->Play(tmp, tmpf);
-	  game->setSList(tmp);
-	  game->setFList(tmpf);
-	  ret = game->checkCollision(game->getSList(), game->getFList());
+	  ret = game->checkCollision(tmp, tmpf);
 	  if (ret == 1)
 	    {
-	      game->setSList(game->updateSList(game->getSList()));
-	      game->setFList(game->updateFList(game->getFList()));
+	      game->updateSList(tmp);
+	      game->updateFList(tmpf);
 	    }
+	  game->setSList(tmp);
+	  game->setFList(tmpf);
 	  game->analyseLevel();
 	  usleep(game->getSpeed());
 	}

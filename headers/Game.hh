@@ -42,11 +42,11 @@ public:
   std::list<ISnake *>		getSList() const;
   std::list<IFood *>		getFList() const;
   Collision			*getCollision() const;
-  int				checkCollision(std::list<ISnake *> slist, std::list<IFood *> flist) const;
-  std::list<ISnake *>		updateSList(std::list<ISnake *> list);
+  int				checkCollision(std::list<ISnake *> slist, std::list<IFood *> &flist);
+  void				updateSList(std::list<ISnake *> &list);
   void				setSList(std::list<ISnake *> list);
   void				setFList(std::list<IFood *> list);
-  std::list<IFood *>		updateFList(std::list<IFood *> list);
+  void				updateFList(std::list<IFood *> &list);
   void				displayCoord();
   void				analyseLevel();
 };
