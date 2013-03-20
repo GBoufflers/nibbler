@@ -17,17 +17,17 @@ Display::~Display()
   
 }
 
-void			Display::ProcessMove(sf::Sprite &newSprite, int *x, int *y)
+void			Display::ProcessMove(sf::Sprite *newSprite, int *x, int *y)
 {
   newSprite = this->_SnakeSpriteList.back();
   this->_SnakeSpriteList.pop_back();
-  (*x) = this->_SnakeSpriteList.front().GetPosition().x;
-  (*y) = this->_SnakeSpriteList.front().GetPosition().y;
+  (*x) = this->_SnakeSpriteList.front()->GetPosition().x;
+  (*y) = this->_SnakeSpriteList.front()->GetPosition().y;
 }
 
-void			Display::FinishMove(sf::Sprite &newSprite, int x, int y)
+void			Display::FinishMove(sf::Sprite *newSprite, int x, int y)
 {
-  newSprite.SetPosition(x, y);
+  newSprite->SetPosition(x, y);
   this->_SnakeSpriteList.push_front(newSprite);
 }
 
@@ -57,10 +57,11 @@ std::list<ISnake *>	&Display::onOriginalList(std::list<ISnake *> &list, char fun
 
 std::list<ISnake *>	&Display::Up(std::list<ISnake *> &list)
 {
-  sf::Sprite		newSprite;
+  sf::Sprite		*newSprite;
   int			x;
   int			y;
 
+  newSprite = new sf::Sprite;
   this->ProcessMove(newSprite, &x, &y);
   y -= 20;
   this->FinishMove(newSprite, x, y);
@@ -70,10 +71,11 @@ std::list<ISnake *>	&Display::Up(std::list<ISnake *> &list)
 
 std::list<ISnake *>	&Display::Down(std::list<ISnake *> &list)
 {
-  sf::Sprite		newSprite;
+  sf::Sprite		*newSprite;
   int			x;
   int			y;
 
+  newSprite = new sf::Sprite();
   this->ProcessMove(newSprite, &x, &y);
   y += 20;
   this->FinishMove(newSprite, x, y);
@@ -83,10 +85,11 @@ std::list<ISnake *>	&Display::Down(std::list<ISnake *> &list)
 
 std::list<ISnake *>	&Display::Left(std::list<ISnake *> &list)
 {
-  sf::Sprite		newSprite;
+  sf::Sprite		*newSprite;
   int			x;
   int			y;
 
+  newSprite = new sf::Sprite();
   this->ProcessMove(newSprite, &x, &y);
   x -= 20;
   this->FinishMove(newSprite, x, y);
@@ -96,10 +99,11 @@ std::list<ISnake *>	&Display::Left(std::list<ISnake *> &list)
 
 std::list<ISnake *>	&Display::Right(std::list<ISnake *> &list)
 {
-  sf::Sprite		newSprite;
+  sf::Sprite		*newSprite;
   int			x;
   int			y;
 
+  newSprite = new sf::Sprite();
   this->ProcessMove(newSprite, &x, &y);
   x += 20;
   this->FinishMove(newSprite, x, y);
@@ -110,23 +114,24 @@ std::list<ISnake *>	&Display::Right(std::list<ISnake *> &list)
 void			Display::addElem(int x, int y, std::string name)
 {
   std::string		SpriteLocation;
-  sf::Sprite		sprite;
+  sf::Sprite		*sprite;
   sf::Image		image;
 
-  SpriteLocation = "/home/guillaume/Git/nibbler/sprite/";
-  SpriteLocation += name;
+  sprite = new sf::Sprite();
+  SpriteLocation = "/home/guillaume/Git/nibbler/sprite/boule.png";
+  //  SpriteLocation += name;
   if (!image.LoadFromFile(SpriteLocation))
     std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
-  sprite.SetImage(image);
-  sprite.Resize(SIDE, SIDE);
-  sprite.SetPosition(x, y);
+  sprite->SetImage(image);
+  sprite->Resize(SIDE, SIDE);
+  sprite->SetPosition(x, y);
   this->_SnakeSpriteList.push_back(sprite);
 }
 
 void			Display::DisplayGame()
 {
-  for (std::list<sf::Sprite>::const_iterator it = this->_SnakeSpriteList.begin(); it != this->_SnakeSpriteList.end(); ++it)
-    this->_app.Draw(*it);
+  for (std::list<sf::Sprite *>::const_iterator it = this->_SnakeSpriteList.begin(); it != this->_SnakeSpriteList.end(); ++it)
+    this->_app.Draw(**it);
   for (std::list<sf::Sprite>::const_iterator it = this->_FoodSpriteList.begin(); it != this->_FoodSpriteList.end(); ++it)
     this->_app.Draw(*it);
   this->_app.Display();
@@ -202,23 +207,25 @@ void			Display::setFood(std::list<IFood *> list, IFood *food)
 void			Display::setNewCoord(std::list<ISnake *> &list)
 {
   std::list<ISnake *>::iterator it2 = list.begin();
-  for (std::list<sf::Sprite>::iterator it = this->_SnakeSpriteList.begin(); it != this->_SnakeSpriteList.end(); ++it, ++it2)
-    (*it).SetPosition((*it2)->getX(), (*it2)->getY());
+  for (std::list<sf::Sprite *>::iterator it = this->_SnakeSpriteList.begin(); it != this->_SnakeSpriteList.end(); ++it, ++it2)
+    (*it)->SetPosition((*it2)->getX(), (*it2)->getY());
 }
 
 std::list<ISnake *>	Display::Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake *s, IFood *f)
 {
   if (this->_isInit == false)
     this->Dinit(sList, fList);
-  if (sList.size() != this->_snakeSize)
+  /*
+    if (sList.size() != this->_snakeSize)
     {
-      this->addSnakeSprite(sList);
-      this->setFood(fList, f);
+    this->addSnakeSprite(sList);
+    this->setFood(fList, f);
     }
+  */
   this->manageEvent();
   sList = (this->*creation[this->_numFunc])(sList);
   this->setNewCoord(sList);
-  this->setFood(fList, f);
+  //  this->setFood(fList, f);
   this->DisplayGame();
   this->_app.Clear();
   return (sList);

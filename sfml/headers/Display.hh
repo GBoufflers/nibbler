@@ -16,7 +16,7 @@ private:
   sf::RenderWindow		_app;
   sf::Event			_event;
   bool				_isInit;
-  std::list<sf::Sprite>		_SnakeSpriteList;
+  std::list<sf::Sprite *>	_SnakeSpriteList;
   std::list<sf::Sprite>		_FoodSpriteList;
   int				_numFunc;
   int				_snakeSize;
@@ -29,8 +29,8 @@ public:
   void				Dinit(std::list<ISnake *> sList, std::list<IFood *> fList);
   void				setFood(std::list<IFood *> list, IFood *food);
   void				addSnakeSprite(std::list<ISnake *> sList);
-  void				ProcessMove(sf::Sprite &newSprite, int *x, int *y);
-  void				FinishMove(sf::Sprite &newSprite, int x, int y);
+  void				ProcessMove(sf::Sprite *newSprite, int *x, int *y);
+  void				FinishMove(sf::Sprite *newSprite, int x, int y);
   void				addElem(int x, int y, std::string name);
   void				DisplayGame();
   std::list<ISnake *>		&Up(std::list<ISnake *> &list);
