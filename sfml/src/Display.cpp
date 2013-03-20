@@ -121,7 +121,7 @@ void			Display::addElem(int x, int y, std::string name)
   this->_SnakeSpriteList.push_back(sprite);
 }
 
-std::list<ISnake *>	Display::Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake *s, IFood *f)
+void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> fList, ISnake *s, IFood *f)
 {
   if (this->_isInit == false)
     this->Dinit(sList, fList);
@@ -136,7 +136,7 @@ std::list<ISnake *>	Display::Play(std::list<ISnake *> sList, std::list<IFood *> 
   this->setFood(fList, f);
   this->DisplayGame();
   this->_app.Clear();
-  return (sList);
+  //  return (sList);
 }
 
 void			Display::DisplayGame()

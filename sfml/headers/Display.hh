@@ -25,7 +25,7 @@ public:
   Display();
   ~Display();
   virtual bool			Window() const;
-  virtual std::list<ISnake *>	Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake *s, IFood *f);
+  virtual void			Play(std::list<ISnake *> &sList, std::list<IFood *> fList, ISnake *s, IFood *f);
   void				Dinit(std::list<ISnake *> sList, std::list<IFood *> fList);
   void				setFood(std::list<IFood *> list, IFood *food);
   void				addSnakeSprite(std::list<ISnake *> sList);
