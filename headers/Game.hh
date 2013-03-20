@@ -47,6 +47,7 @@ public:
   void				setSList(std::list<ISnake *> list);
   void				setFList(std::list<IFood *> list);
   std::list<IFood *>		updateFList(std::list<IFood *> list);
+  void				displayCoord();
 };
 
 #endif

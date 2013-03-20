@@ -12,6 +12,20 @@ Collision::~Collision()
 
 bool		Collision::checkSAndS(std::list<ISnake *> list)
 {
+  ISnake	*tmp;
+
+  if (list.size() != 4)
+    {
+      tmp = list.front();
+      for (std::list<ISnake *>::iterator it = list.begin(); it != list.end(); ++it)
+	{
+	  if (it != list.begin())
+	    {
+	      if ((tmp->getX() == (*it)->getX()) && (tmp->getY() == (*it)->getY()))
+		return (true);
+	    }
+	}
+    }
   return (false);
 }
 
@@ -27,6 +41,15 @@ bool		Collision::checkSAndF(std::list<ISnake *> slist, std::list<IFood *> flist)
       return (true);
   return (false);
 }
+
+void		Collision::displayCoord(std::list<ISnake *> list)
+{
+  std::cout << "COORDONNEES DU SERPENT COLLISION" << std::endl;
+  for (std::list<ISnake *>::iterator it = list.begin(); it != list.end(); ++it)
+    std::cout << (*it)->getX() << "\t" << (*it)->getY() << std::endl;
+  std::cout << std::endl << std::endl;
+}
+
 
 bool		Collision::checkSAndW(std::list<ISnake *> list)
 {

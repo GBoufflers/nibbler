@@ -97,9 +97,9 @@ std::list<ISnake *>	Game::updateSList(std::list<ISnake *> list)
 {
   ISnake	*back;
 
-  back = list.back();
-  back->setX(back->getX() - SIDE);
-  back->setY(back->getY());
+  back = new Snake();
+  back->setX(list.back()->getX() - SIDE);
+  back->setY(list.back()->getY());
   list.push_back(back);
   return (list);
 }
@@ -113,4 +113,12 @@ std::list<IFood *>	Game::updateFList(std::list<IFood *> list)
 {
   list = this->_food->addElem(list);
   return (list);
+}
+
+void			Game::displayCoord()
+{
+  std::cout << "COORDONNEES DU SERPENT GAME" << std::endl;
+  for (std::list<ISnake *>::iterator it = this->_sList.begin(); it != this->_sList.end(); ++it)
+    std::cout << (*it)->getX() << "\t" << (*it)->getY() << std::endl;
+  std::cout << std::endl << std::endl;
 }
