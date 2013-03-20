@@ -7,7 +7,6 @@ Game::Game(int len, int width)
 
 Game::~Game()
 {
-
 }
 
 void			Game::Init(int len, int width)

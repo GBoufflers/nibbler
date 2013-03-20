@@ -6,6 +6,7 @@ int	main(int ac, char **av)
     {
       Game			*game = new Game(atoi(av[1]), atoi(av[2]));
       std::list<ISnake *>	tmp;
+      std::list<IFood *>	tmpf;
       int			ret;
       maker_Display		pMaker;
       void			*hndl;
@@ -19,8 +20,10 @@ int	main(int ac, char **av)
       while (my_graph->Window() == true && ret != -1)
 	{
 	  tmp = game->getSList();
-	  my_graph->Play(tmp, game->getFList(), game->getSnakeI(), game->getFoodI());
+	  tmpf = game->getFList();
+	  my_graph->Play(tmp, tmpf);
 	  game->setSList(tmp);
+	  game->setFList(tmpf);
 	  ret = game->checkCollision(game->getSList(), game->getFList());
 	  if (ret == 1)
 	    {
