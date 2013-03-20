@@ -4,6 +4,7 @@ Strategie::Easy::Easy()
 {
   this->_type = EASY;
   this->_speed = 70000;
+  this->_nbFood = 3;
 }
 
 Strategie::Easy::~Easy()
@@ -32,6 +33,7 @@ Strategie::Medium::Medium()
 {
   this->_type = MEDIUM;
   this->_speed = 55000;
+  this->_nbFood = 2;
 }
 
 Strategie::Medium::~Medium()
@@ -60,6 +62,7 @@ Strategie::Hard::Hard()
 {
   this->_type = EASY;
   this->_speed = 45000;
+  this->_nbFood = 1;
 }
 
 Strategie::Hard::~Hard()

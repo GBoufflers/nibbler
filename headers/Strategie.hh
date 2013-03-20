@@ -10,6 +10,7 @@ namespace		Strategie
   private:
     IStrategieType	_type;
     int			_speed;
+    int			_nbFood;
   public:
     virtual IStrategieType		getType() const;
     virtual int		getSpeed() const;
@@ -23,6 +24,7 @@ namespace		Strategie
   private:
     IStrategieType	_type;
     int			_speed;
+    int			_nbFood;
   public:
     virtual IStrategieType		getType() const;
     virtual int		getSpeed() const;
@@ -36,6 +38,7 @@ namespace		Strategie
   private:
     IStrategieType	_type;
     int			_speed;
+    int			_nbFood;
   public:
     virtual IStrategieType		getType() const;
     virtual int		getSpeed() const;
