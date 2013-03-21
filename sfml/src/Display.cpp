@@ -12,7 +12,7 @@ Display::Display() :	_app(sf::VideoMode(LWINDOW, HWINDOW, PIX), "nibbler")
   this->creation[3] = &Display::Right;
   this->_backgroundSprite = new sf::Sprite();
   this->_backgroundImage = new sf::Image();
-  if (!this->_backgroundImage->LoadFromFile("/home/guillaume/Git/nibbler/sprite/galaxy.png"))
+  if (!this->_backgroundImage->LoadFromFile("/home/guillaume/Git/nibbler/sprite/galaxy2.jpg"))
     std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
   this->_backgroundSprite->SetImage(*this->_backgroundImage);
   this->_backgroundSprite->Resize(LWINDOW, HWINDOW);
