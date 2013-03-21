@@ -68,6 +68,5 @@ std::list<IFood *>		Food::addElem(std::list<IFood *> list)
     y = rand() % HWINDOW;
   member->setY(y);
   list.push_front(member);
-  std::cout << list.size() << std::endl;
   return (list);
 }
