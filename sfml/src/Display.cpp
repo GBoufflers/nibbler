@@ -121,30 +121,29 @@ void			Display::addElem(int x, int y, std::string name)
   this->_SnakeSpriteList.push_back(sprite);
 }
 
-void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> fList, ISnake *s, IFood *f)
+void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList)
 {
   if (this->_isInit == false)
     this->Dinit(sList, fList);
   if (sList.size() != this->_snakeSize)
     {
       this->addSnakeSprite(sList);
-      this->setFood(fList, f);
+      this->setFood(fList);
     }
   this->manageEvent();
   (this->*creation[this->_numFunc])(sList);
   this->setNewCoord(sList);
-  this->setFood(fList, f);
+  this->setFood(fList);
   this->DisplayGame();
   this->_app.Clear();
-  //  return (sList);
 }
 
 void			Display::DisplayGame()
 {
   for (std::list<sf::Sprite *>::const_iterator it = this->_SnakeSpriteList.begin(); it != this->_SnakeSpriteList.end(); ++it)
     this->_app.Draw(**it);
-  for (std::list<sf::Sprite>::const_iterator it = this->_FoodSpriteList.begin(); it != this->_FoodSpriteList.end(); ++it)
-    this->_app.Draw(*it);
+  for (std::list<sf::Sprite *>::const_iterator it = this->_FoodSpriteList.begin(); it != this->_FoodSpriteList.end(); ++it)
+    this->_app.Draw(**it);
   this->_app.Display();
 }
 
@@ -190,28 +189,28 @@ void			Display::addSnakeSprite(std::list<ISnake *> sList)
   this->_snakeSize += 1;
 }
 
-void			Display::setFood(std::list<IFood *> list, IFood *food)
+void			Display::setFood(std::list<IFood *> list)
 {
   std::string		SpriteLocation;
-  sf::Sprite		sprite;
-  sf::Image		image;
+  sf::Sprite		*sprite;
+  sf::Image		*image;
 
   if (this->_FoodSpriteList.size() != 0)
     {
-      food = list.front();
       sprite = this->_FoodSpriteList.front();
       this->_FoodSpriteList.pop_front();
     }
   else
     {
-      SpriteLocation = "/home/guillaume/Git/nibbler/sprite/boule.png";
-      if (!image.LoadFromFile(SpriteLocation))
+      sprite = new sf::Sprite();
+      image = new sf::Image();
+      SpriteLocation = "/home/guillaume/Git/nibbler/sprite/kiwi.png";
+      if (!image->LoadFromFile(SpriteLocation))
 	std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
-      sprite.SetImage(image);
-      sprite.Resize(SIDE, SIDE);
-      food = list.front();
+      sprite->SetImage(*image);
+      sprite->Resize(SIDE, SIDE);
     }
-  sprite.SetPosition(food->getX(), food->getY());
+  sprite->SetPosition(list.front()->getX(), list.front()->getY());
   this->_FoodSpriteList.push_back(sprite);
 }
 

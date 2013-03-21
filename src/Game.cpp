@@ -7,7 +7,6 @@ Game::Game(int len, int width)
 
 Game::~Game()
 {
-
 }
 
 void			Game::Init(int len, int width)
@@ -76,7 +75,7 @@ Collision		*Game::getCollision() const
   return (this->_collision);
 }
 
-int			Game::checkCollision(std::list<ISnake *> slist, std::list<IFood *> flist) const
+int			Game::checkCollision(std::list<ISnake *> slist, std::list<IFood *> &flist)
 {
   if (this->_collision->checkSAndF(slist, flist) == true)
     return (1);
@@ -93,7 +92,7 @@ void			Game::setSList(std::list<ISnake *> list)
   this->_sList = list;
 }
 
-std::list<ISnake *>	Game::updateSList(std::list<ISnake *> list)
+void			Game::updateSList(std::list<ISnake *> &list)
 {
   ISnake	*back;
 
@@ -101,7 +100,6 @@ std::list<ISnake *>	Game::updateSList(std::list<ISnake *> list)
   back->setX(list.back()->getX() - SIDE);
   back->setY(list.back()->getY());
   list.push_back(back);
-  return (list);
 }
 
 void			Game::setFList(std::list<IFood *> list)
@@ -109,10 +107,9 @@ void			Game::setFList(std::list<IFood *> list)
   this->_fList = list;
 }
 
-std::list<IFood *>	Game::updateFList(std::list<IFood *> list)
+void			Game::updateFList(std::list<IFood *> &list)
 {
   list = this->_food->addElem(list);
-  return (list);
 }
 
 void			Game::displayCoord()

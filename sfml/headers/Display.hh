@@ -17,7 +17,7 @@ private:
   sf::Event			_event;
   bool				_isInit;
   std::list<sf::Sprite *>	_SnakeSpriteList;
-  std::list<sf::Sprite>		_FoodSpriteList;
+  std::list<sf::Sprite *>		_FoodSpriteList;
   int				_numFunc;
   int				_snakeSize;
   void				(Display::*creation[4])(std::list<ISnake *> &);
@@ -25,9 +25,9 @@ public:
   Display();
   ~Display();
   virtual bool			Window() const;
-  virtual void			Play(std::list<ISnake *> &sList, std::list<IFood *> fList, ISnake *s, IFood *f);
+  virtual void			Play(std::list<ISnake *> &sList, std::list<IFood *> &fList);
   void				Dinit(std::list<ISnake *> sList, std::list<IFood *> fList);
-  void				setFood(std::list<IFood *> list, IFood *food);
+  void				setFood(std::list<IFood *> list);
   void				addSnakeSprite(std::list<ISnake *> sList);
   void				addElem(int x, int y, std::string name);
   void				DisplayGame();
