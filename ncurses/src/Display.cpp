@@ -3,19 +3,18 @@
 
 Display::Display()
 {
-  WINDOW *win;
-
   initscr();
-  win = initscr();
-  wresize(win, 33, 42);
+  this->_win = initscr();
+  wresize(this->_win, 33, 42);
   nodelay(stdscr, true);
   keypad(stdscr, true);
   noecho();
   curs_set(0);
-  getmaxyx(stdscr, this->_maxheight, this->_maxwidth);
+  this->_maxheight = 33;
+  this->_maxwidth = 42;
+  //  getmaxyx(stdscr, this->_maxheight, this->_maxwidth);
   this->_partchar = 'x';
   this->_direction = 'l';
-  this->drawWall();
 }
 
 void    Display::drawWall() const
@@ -59,7 +58,8 @@ void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList)
   int   tmp = getch();
   ISnake	*s;
   
-  dispFood(fList);
+  this->drawWall();
+  this->dispFood(fList);
   switch (tmp)
     {
     case KEY_LEFT:
@@ -80,6 +80,10 @@ void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList)
       break;
     case KEY_BACKSPACE:
       this->_direction = 'q';
+      break;
+    case 27:
+      endwin();
+      exit(EXIT_SUCCESS);
       break;
     }
   move((sList.back()->getY())/20, (sList.back()->getX())/20);
@@ -116,17 +120,21 @@ void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList)
   refresh();
 }
 
-void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList)
+void	Display::displayScore(int score)
 {
-  movesnake(sList, fList);
-  /*  move(this->_maxheight-2, 0);
-  printw("x:%d\ty:%d", sList.front()->getX(), sList.front()->getY());
-  move(this->_maxheight-1, 0);
-  printw("width:%d\theight:%d", this->_maxwidth, this->_maxheight);*/
+  move(this->_maxheight-2, 0);
+  printw("Score: %d", score);
+}
+
+void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, int score)
+{
+  this->movesnake(sList, fList);
+  this->displayScore(score);
 }
 
 Display::~Display()
 {
+  curs_set(1);
   nodelay(stdscr, false);
   getch();
   endwin();

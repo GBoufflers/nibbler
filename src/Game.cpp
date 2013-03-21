@@ -15,6 +15,7 @@ void			Game::Init(int len, int width)
   srand(time(NULL));
   this->_len = len;
   this->_width = width;
+  this->_score = 0;
   this->_snake = new Snake();
   this->_collision = new Collision();
   this->_food = new Food();
@@ -138,4 +139,14 @@ void			Game::analyseLevel()
       delete(this->_strategie);
       this->_strategie = this->_stratFact->create(HARD);
     }
+}
+
+int			Game::getScore() const
+{
+  return (this->_score);
+}
+
+void			Game::setScore()
+{
+  this->_score += this->_strategie->getPts();
 }
