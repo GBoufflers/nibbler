@@ -218,7 +218,7 @@ void			Display::see(std::list<ISnake *> &sList, std::list<IFood *> &fList) const
   SDL_GL_SwapBuffers();
 }
 
-void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList)
+void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, int score)
 {
   this->see(sList, fList);
   this->event(sList);
