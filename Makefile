@@ -19,7 +19,7 @@ $(NAME): $(OBJ)
 
 	g++ -shared -lsfml-graphics -lsfml-window -lsfml-system -o lib_nibbler_sfml.so ./sfml/src/Display.cpp ./sfml/src/Sound.cpp -fPIC
 	g++ -shared -lGL -lGLU -lSDL -o lib_nibbler_opengl.so opengl/src/Display.cpp  -fPIC
-##	g++ -shared -lncurses -o lib_nibbler_ncurses.so ./ncurses/src/Display.cpp -fPIC
+	g++ -shared -lncurses -o lib_nibbler_ncurses.so ./ncurses/src/Display.cpp -fPIC
 
 clean:
 	$(RM) $(OBJ)
