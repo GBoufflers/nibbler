@@ -1,4 +1,5 @@
 #include	"../sfml/headers/Display.hh"
+#include	"../ncurses/headers/Display.hh"
 
 int	main(int ac, char **av)
 {
