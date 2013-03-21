@@ -15,7 +15,7 @@ private:
 public: 
   Food();
   virtual ~Food();
-  virtual std::list<IFood *>		addElem(std::list<IFood *> list);
+  virtual void				addElem(std::list<IFood *> &list);
   virtual IFoodType			getType() const;
   virtual int				getX() const;
   virtual int				getY() const;
@@ -23,7 +23,6 @@ public:
   virtual void				setType(IFoodType type);
   virtual void				setX(int x);
   virtual void				setY(int y);
-  virtual std::list<IFood *>		DeleteElem(std::list<IFood *> food);
 };
 
 #endif

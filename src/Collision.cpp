@@ -39,7 +39,7 @@ bool		Collision::checkSAndF(std::list<ISnake *> &slist, std::list<IFood *> &flis
       if ((*it)->getX() >= head->getX() && (*it)->getX() <= head->getX())
 	if ((*it)->getY() >= head->getY() && (*it)->getY() <= head->getY())
 	  {
-	    flist.pop_front();
+	    flist.erase(it);
 	    return (true);
 	  }
     }

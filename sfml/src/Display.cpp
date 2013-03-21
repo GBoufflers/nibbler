@@ -127,31 +127,88 @@ void			Display::addElem(int x, int y, std::string name)
   this->_SnakeSpriteList.push_back(sprite);
 }
 
+bool			Display::checkSpritePresent(sf::Sprite *sprite, std::list<IFood *> list)
+{
+  for (std::list<IFood *>::const_iterator it = list.begin(); it != list.end(); ++it)
+    {
+      if (sprite->GetPosition().x == (*it)->getX() && sprite->GetPosition().y == (*it)->getY())
+	return (true);
+    }
+  return (false);
+}
+
+void			Display::getNewCoord(std::list<IFood *> list, int *x, int *y)
+{
+  std::list<IFood *>::iterator it = list.begin();
+  std::list<sf::Sprite *>::iterator it2;
+  bool		isHere;
+
+  while (it != list.end())
+    {
+      isHere = false;
+      it2 = this->_FoodSpriteList.begin();
+      while (it2 != this->_FoodSpriteList.end())
+	{
+	  if (((*it2)->GetPosition().x == (*it)->getX()) && ((*it2)->GetPosition().y == (*it)->getY()))
+	    isHere = true;	  
+	  it2++;
+	}
+      if (isHere == false)
+	{
+	  (*x) = (*it)->getX();
+	  (*y) = (*it)->getY();
+	  break;
+	}
+      it++;
+    }
+}
+
 void			Display::setFood(std::list<IFood *> list)
 {
-  /*
-    std::string		SpriteLocation;
-    sf::Sprite		*sprite;
-    sf::Image		*image;
+  std::string		SpriteLocation;
+  sf::Sprite		*sprite;
+  sf::Image		*image;
+  bool			isHere;
+  int			x;
+  int			y;
 
-    if (this->_FoodSpriteList.size() != 0)
+  if (this->_FoodSpriteList.size() == 0)
     {
-    sprite = this->_FoodSpriteList.front();
-    this->_FoodSpriteList.pop_front();
+      for (std::list<IFood *>::const_iterator it = list.begin(); it != list.end(); ++it)
+	{
+	  sprite = new sf::Sprite();
+	  image = new sf::Image();
+	  SpriteLocation = "/home/guillaume/Git/nibbler/sprite/bananes.png";
+	  if (!image->LoadFromFile(SpriteLocation))
+	    std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
+	  sprite->SetImage(*image);
+	  sprite->Resize(SIDE, SIDE);
+	  sprite->SetPosition((*it)->getX(), (*it)->getY());
+	  this->_FoodSpriteList.push_back(sprite);
+	}
     }
-    else
+  else
     {
-    sprite = new sf::Sprite();
-    image = new sf::Image();
-    SpriteLocation = "/home/guillaume/Git/nibbler/sprite/bananes.png";
-    if (!image->LoadFromFile(SpriteLocation))
-    std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
-    sprite->SetImage(*image);
-    sprite->Resize(SIDE, SIDE);
+      std::list<sf::Sprite *>::iterator it = this->_FoodSpriteList.begin();
+      std::list<IFood *>::iterator it2;
+      while (it != this->_FoodSpriteList.end())
+	{
+	  it2 = list.begin();
+	  isHere = false;
+	  while (it2 != list.end())
+	    {
+	      if (((*it)->GetPosition().x == (*it2)->getX()) && ((*it)->GetPosition().y == (*it2)->getY()))
+		isHere = true;
+	      it2++;
+	    }
+	  if (isHere == false)
+	    {	      
+	      this->getNewCoord(list, &x, &y);
+	      (*it)->SetPosition(x, y);
+	    }
+	  it++;
+	}
     }
-    sprite->SetPosition(list.front()->getX(), list.front()->getY());
-    this->_FoodSpriteList.push_back(sprite);
-  */
 }
 
 void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList)
@@ -212,13 +269,13 @@ void			Display::manageEvent()
     }
 }
 
-void			Display::addSnakeSprite(std::list<ISnake *> sList)
-{
-  ISnake	*back;
-  back = sList.back();
-  this->addElem(back->getX(), back->getY(), "boule.png");
-  this->_snakeSize += 1;
-}
+  void			Display::addSnakeSprite(std::list<ISnake *> sList)
+  {
+    ISnake	*back;
+    back = sList.back();
+    this->addElem(back->getX(), back->getY(), "boule.png");
+    this->_snakeSize += 1;
+  }
 
 void			Display::setNewCoord(std::list<ISnake *> &list)
 {

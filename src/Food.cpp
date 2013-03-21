@@ -46,13 +46,7 @@ void				Food::setY(int y)
   this->_y = y;
 }
 
-std::list<IFood *>		Food::DeleteElem(std::list<IFood *> food)
-{
-  food.pop_back();
-  return (food);
-}
-
-std::list<IFood *>		Food::addElem(std::list<IFood *> list)
+void				Food::addElem(std::list<IFood *> &list)
 {
   IFood		*member;
   int		x;
@@ -68,5 +62,4 @@ std::list<IFood *>		Food::addElem(std::list<IFood *> list)
     y = rand() % HWINDOW;
   member->setY(y);
   list.push_front(member);
-  return (list);
 }
