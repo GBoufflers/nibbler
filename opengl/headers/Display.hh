@@ -25,6 +25,7 @@ public:
   void			see(std::list<ISnake *> sList, std::list<IFood *> fList);
   void			makeSnake(std::list<ISnake *> sList);
   void			makeCoord(std::list<ISnake *> sList);
+  void			makeFood(std::list<IFood *> fList);
 };
 
 typedef Display	*(*maker_Display)();

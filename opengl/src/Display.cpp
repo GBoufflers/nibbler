@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Thu Mar 21 10:42:17 2013 florian dell-aiera
+// Last update Thu Mar 21 11:40:39 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -15,7 +15,7 @@ Display::Display()
 {
   SDL_Init(SDL_INIT_VIDEO);
   SDL_WM_SetCaption("SDL GL Application", NULL);
-  SDL_SetVideoMode(800, 600, 32, SDL_OPENGL);
+  SDL_SetVideoMode(810, 600, 32, SDL_OPENGL);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluOrtho2D(0, 800,0,600);
@@ -126,7 +126,6 @@ void			Display::makeCarre(double x, double y, int r, int v, int b)
   glVertex2d(-x/2, y/2);
   glVertex2d(x/2, y/2);
   glVertex2d(x/2, -y/2);
-
 }
 
 void			Display::makeSnake(std::list<ISnake *> sList)
@@ -149,11 +148,23 @@ void			Display::makeSnake(std::list<ISnake *> sList)
   	  glLoadIdentity();
   	  glTranslatef((*it)->getX(), (*it)->getY(), 0);
   	  glBegin(GL_QUADS);
-  	  this->makeCarre(20, 20, 255, 255, 255);
+  	  this->makeCarre(20, 20, 0, 255, 0);
   	  glEnd();
   	}
       this->_cpt++;
     }
+}
+
+void			Display::makeFood(std::list<IFood *> fList)
+{
+  std::list<IFood *>::iterator it = fList.begin();
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+  glTranslatef((*it)->getX(), (*it)->getY(), 0);
+  glBegin(GL_QUADS);
+  this->makeCarre(20, 20, 0, 0, 255);
+  glEnd();
 }
 
 void			Display::see(std::list<ISnake *> sList, std::list<IFood *> fList)
@@ -162,6 +173,7 @@ void			Display::see(std::list<ISnake *> sList, std::list<IFood *> fList)
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
   this->makeSnake(sList);
+  this->makeFood(fList);
   glFlush();
   SDL_GL_SwapBuffers();
 }
