@@ -42,6 +42,6 @@ public:
   void				setNewCoord(std::list<ISnake *> &list);
 };
 
-  typedef Display *(*maker_Display)();
+typedef Display *(*maker_Display)();
 
 #endif
