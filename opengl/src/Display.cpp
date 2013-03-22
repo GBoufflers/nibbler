@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Fri Mar 22 16:36:49 2013 florian dell-aiera
+// Last update Fri Mar 22 16:53:39 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -196,12 +196,18 @@ void			Display::makeFood(std::list<IFood *> &fList) const
 
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  // if (((*it)->getX()) - 10 >= 10 && ((*it)->getY() - 10) >= 10)
-  //   glTranslatef((*it)->getX() - 10, (*it)->getY() - 10, 0);
-  glTranslatef((*it)->getX(), (*it)->getY(), 0);
-  glBegin(GL_QUADS);
-  this->makeCarre(10, 10, 0, 0, 255);
-  glEnd();
+  if (fList.size() == 1)
+    {
+      glTranslatef((*it)->getX(), (*it)->getY(), 0);
+      glBegin(GL_QUADS);
+      this->makeCarre(10, 10, 0, 0, 255);
+      glEnd();
+      it++;
+    }
+  else
+    {
+      
+    }
 }
 
 void			Display::see(std::list<ISnake *> &sList, std::list<IFood *> &fList) const
