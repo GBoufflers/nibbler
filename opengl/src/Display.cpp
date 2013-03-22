@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Fri Mar 22 15:30:32 2013 florian dell-aiera
+// Last update Fri Mar 22 16:36:49 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -19,7 +19,7 @@ Display::Display()
       exit(0);
     }
   SDL_WM_SetCaption("Le nibbler neggaz", NULL);
-  SDL_SetVideoMode(800 - 5, 600 - 5, 32, SDL_OPENGL);
+  SDL_SetVideoMode(800, 600, 32, SDL_OPENGL);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluOrtho2D(0, 800,0,600);
@@ -32,6 +32,7 @@ Display::Display()
   this->move_right[2] = &Display::turnOneRight; 
   this->move_right[3] = &Display::turnTwoRight;
   this->_angle = 0;
+  this->_space = 0;
 }
 
 Display::~Display()
@@ -44,7 +45,7 @@ bool	Display::Window() const
   return (true);
 }
 
-void	Display::makeCoord(std::list<ISnake *>&sList)
+void	Display::makeCoord(std::list<ISnake *>&sList) const
 {
   int	cpt = sList.size();
   std::list<ISnake *>::reverse_iterator it = sList.rbegin();
@@ -61,43 +62,43 @@ void	Display::makeCoord(std::list<ISnake *>&sList)
     }
 }
 
-void			Display::avance(std::list<ISnake *>&sList)
+void			Display::avance(std::list<ISnake *>&sList) const
 {
   this->makeCoord(sList);
   sList.front()->setX((sList.front()->getX()) - 20);
 }
 
-void			Display::turnNineLeft(std::list<ISnake *>&sList)
+void			Display::turnNineLeft(std::list<ISnake *>&sList) const
 {
   this->makeCoord(sList);
   sList.front()->setY((sList.front()->getY()) - 20);
 }
 
-void			Display::turnOneLeft(std::list<ISnake *>&sList)
+void			Display::turnOneLeft(std::list<ISnake *>&sList) const
 {
   this->makeCoord(sList);
   sList.front()->setX((sList.front()->getX()) + 20);
 }
 
-void			Display::turnTwoLeft(std::list<ISnake *>&sList)
+void			Display::turnTwoLeft(std::list<ISnake *>&sList) const
 {
   this->makeCoord(sList);
   sList.front()->setY((sList.front()->getY()) + 20);
 }
 
-void			Display::turnNineRight(std::list<ISnake *>&sList)
+void			Display::turnNineRight(std::list<ISnake *>&sList) const
 {
   this->makeCoord(sList);
   sList.front()->setY((sList.front()->getY()) + 20);
 }
 
-void			Display::turnOneRight(std::list<ISnake *>&sList)
+void			Display::turnOneRight(std::list<ISnake *>&sList) const
 {
   this->makeCoord(sList);
   sList.front()->setX((sList.front()->getX()) + 20);
 }
 
-void			Display::turnTwoRight(std::list<ISnake *>&sList)
+void			Display::turnTwoRight(std::list<ISnake *>&sList) const
 {
   this->makeCoord(sList);
   sList.front()->setY((sList.front()->getY()) - 20);
@@ -133,6 +134,15 @@ void			Display::event(std::list<ISnake *>&sList)
 		this->_angle = 0;
   	      break;
   	    }
+	  break;
+  	// case SDL_KEYUP:
+  	//   switch (event.key.keysym.sym)
+  	//     {
+	//     case SDLK_SPACE:
+	//       this->_space = 0;
+	//       break;
+	//     }
+	//   break;
   	}
     }
   if (this->_angle <= 0)
@@ -161,7 +171,7 @@ void			Display::makeSnake(std::list<ISnake *> &sList) const
   	  glMatrixMode(GL_MODELVIEW);
   	  glLoadIdentity();
 	  glTranslatef((*it)->getX(), (*it)->getY(), 0);
-	  //	  glTranslatef((*it)->getX() - 10, (*it)->getY() - 10, 0);
+	  //glTranslatef((*it)->getX() - 10, (*it)->getY() - 10, 0);
   	  glBegin(GL_QUADS);
   	  this->makeCarre(10, 10, 255, 0, 0);
   	  glEnd();

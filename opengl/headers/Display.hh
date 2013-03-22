@@ -15,8 +15,9 @@ class		Display : public ILib
 {
 private:
   int		_angle;
-  void		(Display::*move_left[4])(std::list<ISnake *> &);
-  void		(Display::*move_right[4])(std::list<ISnake *> &);
+  int		_space;
+  void		(Display::*move_left[4])(std::list<ISnake *> &) const;
+  void		(Display::*move_right[4])(std::list<ISnake *> &) const;
 public:
   Display();
   ~Display();
@@ -26,15 +27,15 @@ public:
   void			makeCarre(double x, double y, int r, int v, int b) const;
   void			see(std::list<ISnake *> &sList, std::list<IFood *> &fList) const;
   void			makeSnake(std::list<ISnake *> &sList) const;
-  void			makeCoord(std::list<ISnake *> &sList);
+  void			makeCoord(std::list<ISnake *> &sList) const;
   void			makeFood(std::list<IFood *> &fList) const;
-  void			avance(std::list<ISnake *> &sList);
-  void			turnNineLeft(std::list<ISnake *> &sList);
-  void			turnOneLeft(std::list<ISnake *> &sList);
-  void			turnTwoLeft(std::list<ISnake *> &sList);
-  void			turnNineRight(std::list<ISnake *> &sList);
-  void			turnOneRight(std::list<ISnake *> &sList);
-  void			turnTwoRight(std::list<ISnake *> &sList);
+  void			avance(std::list<ISnake *> &sList) const;
+  void			turnNineLeft(std::list<ISnake *> &sList) const;
+  void			turnOneLeft(std::list<ISnake *> &sList) const;
+  void			turnTwoLeft(std::list<ISnake *> &sList) const;
+  void			turnNineRight(std::list<ISnake *> &sList) const;
+  void			turnOneRight(std::list<ISnake *> &sList) const;
+  void			turnTwoRight(std::list<ISnake *> &sList) const;
 };
 
 typedef Display	*(*maker_Display)();

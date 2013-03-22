@@ -127,16 +127,39 @@ void			Display::addElem(int x, int y, std::string name)
   this->_SnakeSpriteList.push_back(sprite);
 }
 
+void			Display::setFood(std::list<IFood *> list)
+{
+  /*
+    std::string		SpriteLocation;
+    sf::Sprite		*sprite;
+    sf::Image		*image;
+
+    if (this->_FoodSpriteList.size() != 0)
+    {
+    sprite = this->_FoodSpriteList.front();
+    this->_FoodSpriteList.pop_front();
+    }
+    else
+    {
+    sprite = new sf::Sprite();
+    image = new sf::Image();
+    SpriteLocation = "/home/guillaume/Git/nibbler/sprite/bananes.png";
+    if (!image->LoadFromFile(SpriteLocation))
+    std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
+    sprite->SetImage(*image);
+    sprite->Resize(SIDE, SIDE);
+    }
+    sprite->SetPosition(list.front()->getX(), list.front()->getY());
+    this->_FoodSpriteList.push_back(sprite);
+  */
+}
+
 void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList)
 {
-  std::cout << fList.size() << std::endl;
   if (this->_isInit == false)
     this->Dinit(sList, fList);
   if (sList.size() != this->_snakeSize)
-    {
-      this->addSnakeSprite(sList);
-      this->setFood(fList);
-    }
+    this->addSnakeSprite(sList);
   this->manageEvent();
   (this->*creation[this->_numFunc])(sList);
   this->setNewCoord(sList);
@@ -195,31 +218,6 @@ void			Display::addSnakeSprite(std::list<ISnake *> sList)
   back = sList.back();
   this->addElem(back->getX(), back->getY(), "boule.png");
   this->_snakeSize += 1;
-}
-
-void			Display::setFood(std::list<IFood *> list)
-{
-  std::string		SpriteLocation;
-  sf::Sprite		*sprite;
-  sf::Image		*image;
-
-  if (this->_FoodSpriteList.size() != 0)
-    {
-      sprite = this->_FoodSpriteList.front();
-      this->_FoodSpriteList.pop_front();
-    }
-  else
-    {
-      sprite = new sf::Sprite();
-      image = new sf::Image();
-      SpriteLocation = "/home/guillaume/Git/nibbler/sprite/bananes.png";
-      if (!image->LoadFromFile(SpriteLocation))
-	std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
-      sprite->SetImage(*image);
-      sprite->Resize(SIDE, SIDE);
-    }
-  sprite->SetPosition(list.front()->getX(), list.front()->getY());
-  this->_FoodSpriteList.push_back(sprite);
 }
 
 void			Display::setNewCoord(std::list<ISnake *> &list)
