@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Thu Mar 21 11:40:39 2013 florian dell-aiera
+// Last update Fri Mar 22 10:35:02 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -13,9 +13,13 @@
 
 Display::Display()
 {
-  SDL_Init(SDL_INIT_VIDEO);
-  SDL_WM_SetCaption("SDL GL Application", NULL);
-  SDL_SetVideoMode(810, 600, 32, SDL_OPENGL);
+  if (SDL_Init(SDL_INIT_VIDEO) == -1)
+    {
+      std::cerr << "Problème avec la variable display" << std::endl;
+      exit(0);
+    }
+  SDL_WM_SetCaption("Le nibbler neggaz", NULL);
+  SDL_SetVideoMode(800, 600, 32, SDL_OPENGL);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluOrtho2D(0, 800,0,600);
@@ -31,7 +35,7 @@ bool	Display::Window() const
   return (true);
 }
 
-void	Display::makeCoord(std::list<ISnake *>sList)
+void	Display::makeCoord(std::list<ISnake *>&sList)
 {
   int	cpt = sList.size();
   std::list<ISnake *>::reverse_iterator it = sList.rbegin();
@@ -48,20 +52,24 @@ void	Display::makeCoord(std::list<ISnake *>sList)
     }
 }
 
-std::list<ISnake *>	Display::event(std::list<ISnake *>sList)
+std::list<ISnake *>	Display::event(std::list<ISnake *>&sList)
 {
   SDL_Event event;
 
+  atexit(SDL_Quit);
   while (SDL_PollEvent(&event))
     { 
       switch(event.type)
   	{
   	case SDL_QUIT:
-  	  exit(0);
+	  exit(0);
   	  break;
   	case SDL_KEYDOWN:
   	  switch (event.key.keysym.sym)
   	    {
+	    case SDLK_ESCAPE:
+	      exit(0);
+	      break;
   	    case SDLK_LEFT:
   	      this->_angle -= 90;
   	      if (this->_angle == (-360))
@@ -119,71 +127,78 @@ std::list<ISnake *>	Display::event(std::list<ISnake *>sList)
     }
 }
 
-void			Display::makeCarre(double x, double y, int r, int v, int b)
+void			Display::makeCarre(double x, double y, int r, int v, int b) const
 {
   glColor3ub(r, v, b);
-  glVertex2d(-x/2, -y/2);
-  glVertex2d(-x/2, y/2);
-  glVertex2d(x/2, y/2);
-  glVertex2d(x/2, -y/2);
+  glVertex2d(-x, -y);
+  glVertex2d(-x, y);
+  glVertex2d(x, y);
+  glVertex2d(x, -y);
 }
 
-void			Display::makeSnake(std::list<ISnake *> sList)
+void			Display::makeSnake(std::list<ISnake *> &sList) const
 {
-  this->_cpt = 0;
+  int			i = 0;
+
   for (std::list<ISnake *>::const_iterator it = sList.begin(); it != sList.end(); it++)
     {
-      if (this->_cpt == 0)
+      if (i  == 0)
   	{
   	  glMatrixMode(GL_MODELVIEW);
   	  glLoadIdentity();
-  	  glTranslatef((*it)->getX(), (*it)->getY(), 0);
+	  glTranslatef((*it)->getX(), (*it)->getY(), 0);
+	  //	  glTranslatef((*it)->getX() - 10, (*it)->getY() - 10, 0);
   	  glBegin(GL_QUADS);
-  	  this->makeCarre(20, 20, 255, 0, 0);
+  	  this->makeCarre(10, 10, 255, 0, 0);
   	  glEnd();
   	}
       else
   	{
   	  glMatrixMode(GL_MODELVIEW);
   	  glLoadIdentity();
-  	  glTranslatef((*it)->getX(), (*it)->getY(), 0);
+	  glTranslatef((*it)->getX(), (*it)->getY(), 0);
+	  //glTranslatef((*it)->getX() - 10, (*it)->getY() - 10, 0);
   	  glBegin(GL_QUADS);
-  	  this->makeCarre(20, 20, 0, 255, 0);
+  	  this->makeCarre(10, 10, 0, 255, 0);
   	  glEnd();
   	}
-      this->_cpt++;
+      i++;
     }
 }
 
-void			Display::makeFood(std::list<IFood *> fList)
+void			Display::makeFood(std::list<IFood *> &fList)
 {
   std::list<IFood *>::iterator it = fList.begin();
 
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
+  // if (((*it)->getX()) - 10 >= 10 && ((*it)->getY() - 10) >= 10)
+  //   glTranslatef((*it)->getX() - 10, (*it)->getY() - 10, 0);
   glTranslatef((*it)->getX(), (*it)->getY(), 0);
   glBegin(GL_QUADS);
-  this->makeCarre(20, 20, 0, 0, 255);
+  this->makeCarre(10, 10, 0, 0, 255);
   glEnd();
 }
 
-void			Display::see(std::list<ISnake *> sList, std::list<IFood *> fList)
+void			Display::see(std::list<ISnake *> &sList, std::list<IFood *> &fList)
 {
   glClear(GL_COLOR_BUFFER_BIT);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
+  glBegin(GL_QUADS);
+  this->makeCarre(800 , 600, 255, 255, 255);
+  glEnd();
   this->makeSnake(sList);
   this->makeFood(fList);
   glFlush();
   SDL_GL_SwapBuffers();
 }
 
-std::list<ISnake *>	Display::Play(std::list<ISnake *> sList, std::list<IFood *> fList, ISnake *s, IFood *f)
+void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList)
 {
   this->see(sList, fList);
   sList = this->event(sList);
   this->see(sList, fList);
-  return (sList);
 }
 
 extern "C"
