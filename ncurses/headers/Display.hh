@@ -17,16 +17,16 @@ private:
   int				_maxheight;
   int				_maxwidth;
   char				_partchar;
-
+  WINDOW			*_win;
 public:
   Display();
   ~Display();
   virtual bool			Window() const;  
-  virtual void			Play(std::list<ISnake *> &sList, std::list<IFood *> &fList);
+  virtual void			Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, int score);
   void				drawWall() const;
   void				dispFood(std::list<IFood *> list) const;
   void				displayOver();
-  void				displayPoints();
+  void				displayScore(int score);
   void				movesnake(std::list<ISnake *> &list, std::list<IFood *> &fList);
   void				start();
 };

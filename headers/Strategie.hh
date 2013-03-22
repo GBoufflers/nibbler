@@ -11,10 +11,13 @@ namespace		Strategie
     IStrategieType	_type;
     int			_speed;
     unsigned int	_nbFood;
+    int			_pts;
+    
   public:
     virtual IStrategieType		getType() const;
     virtual int		getSpeed() const;
     virtual void	setSpeed(int speed);
+    virtual int		getPts() const;
     virtual unsigned int		getNbFood() const ;
     Easy();
     virtual ~Easy();
@@ -26,10 +29,13 @@ namespace		Strategie
     IStrategieType	_type;
     int			_speed;
     unsigned int	_nbFood;
+    int			_pts;
+
   public:
     virtual IStrategieType		getType() const;
     virtual int		getSpeed() const;
     virtual void	setSpeed(int speed);
+    virtual int		getPts() const;
     virtual unsigned int		getNbFood() const ;
     Medium();
     virtual ~Medium();
@@ -41,10 +47,13 @@ namespace		Strategie
     IStrategieType	_type;
     int			_speed;
     unsigned int	_nbFood;
+    int			_pts;
+
   public:
     virtual IStrategieType		getType() const;
     virtual int		getSpeed() const;
     virtual void	setSpeed(int speed);
+    virtual int		getPts() const;
     virtual unsigned int		getNbFood() const;
     Hard();
     virtual ~Hard();
