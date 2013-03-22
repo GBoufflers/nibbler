@@ -1,10 +1,6 @@
-<<<<<<< HEAD
+//#include	"../opengl/headers/Display.hh"
 //#include	"../sfml/headers/Display.hh"
-#include	"../opengl/headers/Display.hh"
-=======
-#include	"../sfml/headers/Display.hh"
 #include	"../ncurses/headers/Display.hh"
->>>>>>> e712da655b39f5936d5a90bd7a9ee1d775104f67
 
 int	main(int ac, char **av)
 {
@@ -27,10 +23,11 @@ int	main(int ac, char **av)
 	{
 	  tmp = game->getSList();
 	  tmpf = game->getFList();
-	  my_graph->Play(tmp, tmpf);
+	  my_graph->Play(tmp, tmpf, game->getScore());
 	  ret = game->checkCollision(tmp, tmpf);
 	  if (ret == 1)
 	    {
+	      game->setScore();
 	      game->updateSList(tmp);
 	      game->updateFList(tmpf);
 	    }
@@ -40,8 +37,10 @@ int	main(int ac, char **av)
 	  usleep(game->getSpeed());
 	}
       dlclose(hndl);
+      exit(EXIT_SUCCESS);
     }
   else
     std::cout << "Usage : ./nibbler LEN WIDTH LIB" << std::endl;
+
   return (0);
 }

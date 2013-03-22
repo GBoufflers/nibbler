@@ -28,6 +28,7 @@ private:
   Collision			*_collision;
   int				_len;
   int				_width;
+  int				_score;
 public:
   Game(int len, int width);
   ~Game();
@@ -39,6 +40,8 @@ public:
   int				getWidth() const;
   void				setLen(int len);
   void				setWidth(int width);
+  void				setScore();
+  int				getScore() const;
   std::list<ISnake *>		getSList() const;
   std::list<IFood *>		getFList() const;
   Collision			*getCollision() const;

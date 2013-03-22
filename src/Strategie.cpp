@@ -5,6 +5,7 @@ Strategie::Easy::Easy()
   this->_type = EASY;
   this->_speed = 70000;
   this->_nbFood = 3;
+  this->_pts = 10;
 }
 
 Strategie::Easy::~Easy()
@@ -27,6 +28,11 @@ void	Strategie::Easy::setSpeed(int speed)
   this->_speed = speed;
 }
 
+int	Strategie::Easy::getPts() const
+{
+  return (_pts);
+}
+
 unsigned int	Strategie::Easy::getNbFood() const
 {
   return (this->_nbFood);
@@ -39,6 +45,7 @@ Strategie::Medium::Medium()
   this->_type = MEDIUM;
   this->_speed = 55000;
   this->_nbFood = 2;
+  this->_pts = 20;
 }
 
 Strategie::Medium::~Medium()
@@ -66,13 +73,19 @@ unsigned int	Strategie::Medium::getNbFood() const
   return (this->_nbFood);
 }
 
+int	Strategie::Medium::getPts() const
+{
+  return (_pts);
+}
+
 /******************************/
 
 Strategie::Hard::Hard()
 {
-  this->_type = EASY;
+  this->_type = HARD;
   this->_speed = 45000;
   this->_nbFood = 1;
+  this->_pts = 30;
 }
 
 Strategie::Hard::~Hard()
@@ -98,4 +111,9 @@ void	Strategie::Hard::setSpeed(int speed)
 unsigned int	Strategie::Hard::getNbFood() const
 {
   return (this->_nbFood);
+}
+
+int	Strategie::Hard::getPts() const
+{
+  return (_pts);
 }
