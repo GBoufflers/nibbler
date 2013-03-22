@@ -9,10 +9,10 @@ class		Collision
 public:
   Collision();
   ~Collision();
-  bool		checkSAndS(std::list<ISnake *>);
-  bool		checkSAndF(std::list<ISnake *> &, std::list<IFood *> &);
-  bool		checkSAndW(std::list<ISnake *>);
-  void		displayCoord(std::list<ISnake *> list);
+  bool		checkSAndS(const std::list<ISnake *> &) const;
+  bool		checkSAndF(const std::list<ISnake *> &, std::list<IFood *> &);
+  bool		checkSAndW(const std::list<ISnake *> &) const;
+  void		displayCoord(const std::list<ISnake *> &list) const;
 };
 
 #endif

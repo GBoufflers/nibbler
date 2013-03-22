@@ -18,7 +18,6 @@ public:
   virtual void				addElem(std::list<IFood *> &list) = 0;
   virtual IFoodType			getType() const = 0;
   virtual void				setType(IFoodType type) = 0;
-  virtual int				foodSize(std::list<IFood *> list) const = 0;
   virtual int				getX() const = 0;
   virtual int				getY() const = 0;
   virtual void				setX(int x) = 0;

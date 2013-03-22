@@ -19,7 +19,6 @@ public:
   virtual IFoodType			getType() const;
   virtual int				getX() const;
   virtual int				getY() const;
-  virtual int				foodSize(std::list<IFood *> list) const;
   virtual void				setType(IFoodType type);
   virtual void				setX(int x);
   virtual void				setY(int y);

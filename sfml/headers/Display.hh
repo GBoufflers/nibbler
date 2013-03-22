@@ -22,6 +22,10 @@ private:
   std::list<sf::Sprite *>	_FoodSpriteList;
   int				_numFunc;
   int				_snakeSize;
+  bool				_isUp;
+  bool				_isDown;
+  bool				_isRight;
+  bool				_isLeft;
   void				(Display::*creation[4])(std::list<ISnake *> &);
 public:
   Display();

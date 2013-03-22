@@ -24,10 +24,6 @@ int				Food::getY() const
 {
   return (this->_y);
 }
-int				Food::foodSize(std::list<IFood *> list) const
-{
-  return (list.size());
-}
 
 /****************/
 

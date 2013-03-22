@@ -6,6 +6,10 @@ Display::Display() :	_app(sf::VideoMode(LWINDOW, HWINDOW, PIX), "nibbler")
   this->_isInit = false;
   this->_numFunc = 3;
   this->_snakeSize = 4;
+  this->_isUp = false;
+  this->_isDown = false;
+  this->_isRight = true;
+  this->_isLeft = false;
   this->creation[0] = &Display::Up;
   this->creation[1] = &Display::Down;
   this->creation[2] = &Display::Left;
@@ -52,14 +56,22 @@ void	Display::Up(std::list<ISnake *> &list)
   int			x;
   int			y;
 
-  newSprite = this->_SnakeSpriteList.back();
-  this->_SnakeSpriteList.pop_back();
-  x = this->_SnakeSpriteList.front()->GetPosition().x;
-  y = this->_SnakeSpriteList.front()->GetPosition().y;
-  y -= 20;
-  newSprite->SetPosition(x, y);
-  this->_SnakeSpriteList.push_front(newSprite);
-  this->onOriginalList(list, 1);
+  if (this->_isDown == false)
+    {
+      this->_isUp = true;
+      this->_isRight = false;
+      this->_isLeft = false;      
+      newSprite = this->_SnakeSpriteList.back();
+      this->_SnakeSpriteList.pop_back();
+      x = this->_SnakeSpriteList.front()->GetPosition().x;
+      y = this->_SnakeSpriteList.front()->GetPosition().y;
+      y -= 20;
+      newSprite->SetPosition(x, y);
+      this->_SnakeSpriteList.push_front(newSprite);
+      this->onOriginalList(list, 1);
+    }
+  else
+    this->_numFunc = 1;
 }
 
 void	Display::Down(std::list<ISnake *> &list)
@@ -68,14 +80,22 @@ void	Display::Down(std::list<ISnake *> &list)
   int			x;
   int			y;
 
-  newSprite = this->_SnakeSpriteList.back();
-  this->_SnakeSpriteList.pop_back();
-  x = this->_SnakeSpriteList.front()->GetPosition().x;
-  y = this->_SnakeSpriteList.front()->GetPosition().y;
-  y += 20;
-  newSprite->SetPosition(x, y);
-  this->_SnakeSpriteList.push_front(newSprite);
-  this->onOriginalList(list, 2);
+  if (this->_isUp == false)
+    {
+      this->_isDown = true;
+      this->_isRight = false;
+      this->_isLeft = false;
+      newSprite = this->_SnakeSpriteList.back();
+      this->_SnakeSpriteList.pop_back();
+      x = this->_SnakeSpriteList.front()->GetPosition().x;
+      y = this->_SnakeSpriteList.front()->GetPosition().y;
+      y += 20;
+      newSprite->SetPosition(x, y);
+      this->_SnakeSpriteList.push_front(newSprite);
+      this->onOriginalList(list, 2);
+    }
+  else
+    this->_numFunc = 0;
 }
 
 void	Display::Left(std::list<ISnake *> &list)
@@ -84,14 +104,22 @@ void	Display::Left(std::list<ISnake *> &list)
   int			x;
   int			y;
 
-  newSprite = this->_SnakeSpriteList.back();
-  this->_SnakeSpriteList.pop_back();
-  x = this->_SnakeSpriteList.front()->GetPosition().x;
-  y = this->_SnakeSpriteList.front()->GetPosition().y;
-  x -= 20;
-  newSprite->SetPosition(x, y);
-  this->_SnakeSpriteList.push_front(newSprite);
-  this->onOriginalList(list, 3);
+  if (this->_isRight == false)
+    {
+      this->_isDown = false;
+      this->_isUp = false;
+      this->_isLeft = true;
+      newSprite = this->_SnakeSpriteList.back();
+      this->_SnakeSpriteList.pop_back();
+      x = this->_SnakeSpriteList.front()->GetPosition().x;
+      y = this->_SnakeSpriteList.front()->GetPosition().y;
+      x -= 20;
+      newSprite->SetPosition(x, y);
+      this->_SnakeSpriteList.push_front(newSprite);
+      this->onOriginalList(list, 3);
+    }
+  else
+    this->_numFunc = 3;
 }
 
 void	Display::Right(std::list<ISnake *> &list)
@@ -100,14 +128,22 @@ void	Display::Right(std::list<ISnake *> &list)
   int			x;
   int			y;
 
-  newSprite = this->_SnakeSpriteList.back();
-  this->_SnakeSpriteList.pop_back();
-  x = this->_SnakeSpriteList.front()->GetPosition().x;
-  y = this->_SnakeSpriteList.front()->GetPosition().y;
-  x += 20;
-  newSprite->SetPosition(x, y);
-  this->_SnakeSpriteList.push_front(newSprite);
-  this->onOriginalList(list, 4);
+  if (this->_isLeft == false)
+    {
+      this->_isDown = false;
+      this->_isUp = false;
+      this->_isRight = true;
+      newSprite = this->_SnakeSpriteList.back();
+      this->_SnakeSpriteList.pop_back();
+      x = this->_SnakeSpriteList.front()->GetPosition().x;
+      y = this->_SnakeSpriteList.front()->GetPosition().y;
+      x += 20;
+      newSprite->SetPosition(x, y);
+      this->_SnakeSpriteList.push_front(newSprite);
+      this->onOriginalList(list, 4);
+    }
+  else
+    this->_numFunc = 2;
 }
 
 void			Display::addElem(int x, int y, std::string name)
@@ -178,7 +214,7 @@ void			Display::setFood(std::list<IFood *> list)
 	{
 	  sprite = new sf::Sprite();
 	  image = new sf::Image();
-	  SpriteLocation = "/home/guillaume/Git/nibbler/sprite/bananes.png";
+	  SpriteLocation = "/home/guillaume/Git/nibbler/sprite/planeteQuiDeglingue.jpg";
 	  if (!image->LoadFromFile(SpriteLocation))
 	    std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
 	  sprite->SetImage(*image);
@@ -269,13 +305,13 @@ void			Display::manageEvent()
     }
 }
 
-  void			Display::addSnakeSprite(std::list<ISnake *> sList)
-  {
-    ISnake	*back;
-    back = sList.back();
-    this->addElem(back->getX(), back->getY(), "boule.png");
-    this->_snakeSize += 1;
-  }
+void			Display::addSnakeSprite(std::list<ISnake *> sList)
+{
+  ISnake	*back;
+  back = sList.back();
+  this->addElem(back->getX(), back->getY(), "boule.png");
+  this->_snakeSize += 1;
+}
 
 void			Display::setNewCoord(std::list<ISnake *> &list)
 {
