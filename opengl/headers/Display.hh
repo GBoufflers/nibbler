@@ -13,18 +13,28 @@
 
 class		Display : public ILib
 {
-  GLfloat	_angle;
+private:
+  int		_angle;
+  void		(Display::*move_left[4])(std::list<ISnake *> &);
+  void		(Display::*move_right[4])(std::list<ISnake *> &);
 public:
   Display();
   ~Display();
   virtual bool	Window() const;
   virtual void	Play(std::list<ISnake *> &sList, std::list<IFood *> &fList);
-  std::list<ISnake*>	event(std::list<ISnake *> &sList);
+  void			event(std::list<ISnake *> &sList);
   void			makeCarre(double x, double y, int r, int v, int b) const;
-  void			see(std::list<ISnake *> &sList, std::list<IFood *> &fList);
+  void			see(std::list<ISnake *> &sList, std::list<IFood *> &fList) const;
   void			makeSnake(std::list<ISnake *> &sList) const;
   void			makeCoord(std::list<ISnake *> &sList);
-  void			makeFood(std::list<IFood *> &fList);
+  void			makeFood(std::list<IFood *> &fList) const;
+  void			avance(std::list<ISnake *> &sList);
+  void			turnNineLeft(std::list<ISnake *> &sList);
+  void			turnOneLeft(std::list<ISnake *> &sList);
+  void			turnTwoLeft(std::list<ISnake *> &sList);
+  void			turnNineRight(std::list<ISnake *> &sList);
+  void			turnOneRight(std::list<ISnake *> &sList);
+  void			turnTwoRight(std::list<ISnake *> &sList);
 };
 
 typedef Display	*(*maker_Display)();
