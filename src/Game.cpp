@@ -8,6 +8,7 @@ Game::Game(int len, int width)
 
 Game::~Game()
 {
+
 }
 
 void			Game::Init(const int len, const int width)
@@ -25,11 +26,11 @@ void			Game::Init(const int len, const int width)
   this->_snake->addElem(this->_sList, BODY, 380, 300);
   this->_snake->addElem(this->_sList, BODY, 360, 300);
   this->_snake->addElem(this->_sList, TAIL, 340, 300);
-  this->_food->addElem(this->_fList);
+  this->_food->addElem(this->_fList, this->_sList);
   sleep(1);
-  this->_food->addElem(this->_fList);
+  this->_food->addElem(this->_fList, this->_sList);
   sleep(1);
-  this->_food->addElem(this->_fList);
+  this->_food->addElem(this->_fList, this->_sList);
 }
 
 int			Game::getSpeed() const
@@ -109,7 +110,7 @@ void			Game::updateSList(std::list<ISnake *> &list)
   list.push_back(back);
 }
 
-void			Game::setFList(std::list<IFood *> list)
+void			Game::setFList(std::list<IFood *> &list)
 {
   this->_fList = list;
 }
@@ -117,7 +118,7 @@ void			Game::setFList(std::list<IFood *> list)
 void			Game::updateFList(std::list<IFood *> &list)
 {
   while (this->_strategie->getNbFood() > list.size())
-    this->_food->addElem(list);
+    this->_food->addElem(list, this->_sList);
 }
 
 void			Game::displayCoord() const

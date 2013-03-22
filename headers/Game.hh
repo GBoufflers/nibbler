@@ -48,7 +48,7 @@ public:
   int				checkCollision(std::list<ISnake *> &slist, std::list<IFood *> &flist) const;
   void				updateSList(std::list<ISnake *> &list);
   void				setSList(const std::list<ISnake *> &list);
-  void				setFList(std::list<IFood *> list);
+  void				setFList(std::list<IFood *> &list);
   void				updateFList(std::list<IFood *> &list);
   void				displayCoord() const;
   void				analyseLevel();
