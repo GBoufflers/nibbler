@@ -35,10 +35,8 @@ int	main(int ac, char **av)
 	  usleep(game->getSpeed());
 	}
       dlclose(hndl);
-      exit(EXIT_SUCCESS);
     }
   else
     std::cout << "Usage : ./nibbler LEN WIDTH LIB" << std::endl;
-
   return (0);
 }
