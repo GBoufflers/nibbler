@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Fri Mar 22 16:53:39 2013 florian dell-aiera
+// Last update Fri Mar 22 17:08:52 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -192,21 +192,16 @@ void			Display::makeSnake(std::list<ISnake *> &sList) const
 
 void			Display::makeFood(std::list<IFood *> &fList) const
 {
-  std::list<IFood *>::iterator it = fList.begin();
-
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
-  if (fList.size() == 1)
-    {
+  // std::list<IFood *>::iterator it = fList.begin();
+  // int				i = 0;
+  for ( std::list<IFood *>::const_iterator it = fList.begin(); it != fList.end(); ++it)
+    {      
+      glMatrixMode(GL_MODELVIEW);
+      glLoadIdentity();
       glTranslatef((*it)->getX(), (*it)->getY(), 0);
       glBegin(GL_QUADS);
-      this->makeCarre(10, 10, 0, 0, 255);
+      this->makeCarre(10,10, 0, 0, 255);
       glEnd();
-      it++;
-    }
-  else
-    {
-      
     }
 }
 
