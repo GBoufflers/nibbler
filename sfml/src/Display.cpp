@@ -10,6 +10,12 @@ Display::Display() :	_app(sf::VideoMode(LWINDOW, HWINDOW, PIX), "nibbler")
   this->creation[1] = &Display::Down;
   this->creation[2] = &Display::Left;
   this->creation[3] = &Display::Right;
+  this->_backgroundSprite = new sf::Sprite();
+  this->_backgroundImage = new sf::Image();
+  if (!this->_backgroundImage->LoadFromFile("/home/guillaume/Git/nibbler/sprite/pelouse.jpg"))
+    std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
+  this->_backgroundSprite->SetImage(*this->_backgroundImage);
+  this->_backgroundSprite->Resize(LWINDOW, HWINDOW);
 }
 
 Display::~Display()
@@ -140,6 +146,7 @@ void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList
 
 void			Display::DisplayGame()
 {
+  this->_app.Draw(*this->_backgroundSprite);
   for (std::list<sf::Sprite *>::const_iterator it = this->_SnakeSpriteList.begin(); it != this->_SnakeSpriteList.end(); ++it)
     this->_app.Draw(**it);
   for (std::list<sf::Sprite *>::const_iterator it = this->_FoodSpriteList.begin(); it != this->_FoodSpriteList.end(); ++it)
@@ -204,7 +211,7 @@ void			Display::setFood(std::list<IFood *> list)
     {
       sprite = new sf::Sprite();
       image = new sf::Image();
-      SpriteLocation = "/home/guillaume/Git/nibbler/sprite/kiwi.png";
+      SpriteLocation = "/home/guillaume/Git/nibbler/sprite/bananes.png";
       if (!image->LoadFromFile(SpriteLocation))
 	std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
       sprite->SetImage(*image);

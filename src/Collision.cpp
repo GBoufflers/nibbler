@@ -32,27 +32,17 @@ bool		Collision::checkSAndS(std::list<ISnake *> list)
 bool		Collision::checkSAndF(std::list<ISnake *> &slist, std::list<IFood *> &flist)
 {
   ISnake	*head;
-  IFood		*food;
 
   head = slist.front();
-  food = flist.front();
-  /*  for (std::list<IFood *>::iterator it = flist.begin(); it != flist.end(); ++it)
-      {*/
-  /*
-    if ((*it)->getX() >= head->getX() && (*it)->getX() <= head->getX())
-    if ((*it)->getY() >= head->getY() && (*it)->getY() <= head->getY())
+  for (std::list<IFood *>::iterator it = flist.begin(); it != flist.end(); ++it)
     {
-    flist.pop_front();
-    return (true);
+      if ((*it)->getX() >= head->getX() && (*it)->getX() <= head->getX())
+	if ((*it)->getY() >= head->getY() && (*it)->getY() <= head->getY())
+	  {
+	    flist.pop_front();
+	    return (true);
+	  }
     }
-  */
-  if (food->getX() >= head->getX() && food->getX() <= head->getX())
-    if (food->getY() >= head->getY() && food->getY() <= head->getY())
-      {
-	flist.pop_front();
-	return (true);
-      }
-  //    }
   return (false);
 }
 

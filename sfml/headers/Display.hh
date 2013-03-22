@@ -16,8 +16,10 @@ private:
   sf::RenderWindow		_app;
   sf::Event			_event;
   bool				_isInit;
+  sf::Image			*_backgroundImage;
+  sf::Sprite			*_backgroundSprite;
   std::list<sf::Sprite *>	_SnakeSpriteList;
-  std::list<sf::Sprite *>		_FoodSpriteList;
+  std::list<sf::Sprite *>	_FoodSpriteList;
   int				_numFunc;
   int				_snakeSize;
   void				(Display::*creation[4])(std::list<ISnake *> &);
