@@ -10,6 +10,7 @@
 #include	"Collision.hh"
 #include	"Strategie.hh"
 #include	"StratFact.hh"
+#include	"GameException.hh"
 
 const int	SIDE     = 20;
 const int	LWINDOW  = 800;

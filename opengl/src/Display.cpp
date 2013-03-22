@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Fri Mar 22 17:08:52 2013 florian dell-aiera
+// Last update Sat Mar 23 17:12:30 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -13,16 +13,6 @@
 
 Display::Display()
 {
-  if (SDL_Init(SDL_INIT_VIDEO) == -1)
-    {
-      std::cerr << "Problème avec la variable display" << std::endl;
-      exit(0);
-    }
-  SDL_WM_SetCaption("Le nibbler neggaz", NULL);
-  SDL_SetVideoMode(800, 600, 32, SDL_OPENGL);
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  gluOrtho2D(0, 800,0,600);
   this->move_left[0] = &Display::avance; 
   this->move_left[1] = &Display::turnNineLeft;
   this->move_left[2] = &Display::turnOneLeft; 
@@ -38,6 +28,18 @@ Display::Display()
 Display::~Display()
 {
 
+}
+
+bool	Display::Init()
+{
+  if (SDL_Init(SDL_INIT_VIDEO) == -1)
+    return (false);
+  SDL_WM_SetCaption("Le nibbler neggaz", NULL);
+  SDL_SetVideoMode(800, 600, 32, SDL_OPENGL);
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  gluOrtho2D(0, 800,0, 600);
+  return (true);
 }
 
 bool	Display::Window() const
@@ -133,16 +135,21 @@ void			Display::event(std::list<ISnake *>&sList)
 	      if (this->_angle == (360))
 		this->_angle = 0;
   	      break;
+	    case SDLK_SPACE:
+	      {
+		this->_space = 20;
+		break;
+	      }
   	    }
 	  break;
-  	// case SDL_KEYUP:
-  	//   switch (event.key.keysym.sym)
-  	//     {
-	//     case SDLK_SPACE:
-	//       this->_space = 0;
-	//       break;
-	//     }
-	//   break;
+  	case SDL_KEYUP:
+  	  switch (event.key.keysym.sym)
+  	    {
+	    case SDLK_SPACE:
+	      this->_space = 0;
+	      break;
+	    }
+	  break;
   	}
     }
   if (this->_angle <= 0)
@@ -171,7 +178,6 @@ void			Display::makeSnake(std::list<ISnake *> &sList) const
   	  glMatrixMode(GL_MODELVIEW);
   	  glLoadIdentity();
 	  glTranslatef((*it)->getX(), (*it)->getY(), 0);
-	  //glTranslatef((*it)->getX() - 10, (*it)->getY() - 10, 0);
   	  glBegin(GL_QUADS);
   	  this->makeCarre(10, 10, 255, 0, 0);
   	  glEnd();
@@ -181,7 +187,6 @@ void			Display::makeSnake(std::list<ISnake *> &sList) const
   	  glMatrixMode(GL_MODELVIEW);
   	  glLoadIdentity();
 	  glTranslatef((*it)->getX(), (*it)->getY(), 0);
-	  //glTranslatef((*it)->getX() - 10, (*it)->getY() - 10, 0);
   	  glBegin(GL_QUADS);
   	  this->makeCarre(10, 10, 0, 255, 0);
   	  glEnd();
@@ -192,8 +197,6 @@ void			Display::makeSnake(std::list<ISnake *> &sList) const
 
 void			Display::makeFood(std::list<IFood *> &fList) const
 {
-  // std::list<IFood *>::iterator it = fList.begin();
-  // int				i = 0;
   for ( std::list<IFood *>::const_iterator it = fList.begin(); it != fList.end(); ++it)
     {      
       glMatrixMode(GL_MODELVIEW);

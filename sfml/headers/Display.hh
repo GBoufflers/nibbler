@@ -33,6 +33,7 @@ public:
   ~Display();
   virtual bool			Window() const;
   virtual void			Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, int score);
+  virtual bool			Init();
   void				Dinit(std::list<ISnake *> &sList, std::list<IFood *> &fList);
   void				setFood(std::list<IFood *> &list);
   void				addSnakeSprite(std::list<ISnake *> &sList);

@@ -11,6 +11,7 @@ OBJ=	src/main.o\
 	src/Game.o\
 	src/Strategie.o\
 	src/StratFact.o\
+	src/GameException.o
 
 all:	$(NAME)
 
