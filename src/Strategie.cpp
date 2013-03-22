@@ -27,6 +27,11 @@ void	Strategie::Easy::setSpeed(int speed)
   this->_speed = speed;
 }
 
+unsigned int	Strategie::Easy::getNbFood() const
+{
+  return (this->_nbFood);
+}
+
 /******************************/
 
 Strategie::Medium::Medium()
@@ -56,6 +61,11 @@ void	Strategie::Medium::setSpeed(int speed)
   this->_speed = speed;
 }
 
+unsigned int	Strategie::Medium::getNbFood() const
+{
+  return (this->_nbFood);
+}
+
 /******************************/
 
 Strategie::Hard::Hard()
@@ -83,4 +93,9 @@ int	Strategie::Hard::getSpeed() const
 void	Strategie::Hard::setSpeed(int speed)
 {
   this->_speed = speed;
+}
+
+unsigned int	Strategie::Hard::getNbFood() const
+{
+  return (this->_nbFood);
 }

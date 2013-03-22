@@ -129,6 +129,7 @@ void			Display::addElem(int x, int y, std::string name)
 
 void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList)
 {
+  std::cout << fList.size() << std::endl;
   if (this->_isInit == false)
     this->Dinit(sList, fList);
   if (sList.size() != this->_snakeSize)
@@ -146,7 +147,7 @@ void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList
 
 void			Display::DisplayGame()
 {
-  this->_app.Draw(*this->_backgroundSprite);
+  //  this->_app.Draw(*this->_backgroundSprite);
   for (std::list<sf::Sprite *>::const_iterator it = this->_SnakeSpriteList.begin(); it != this->_SnakeSpriteList.end(); ++it)
     this->_app.Draw(**it);
   for (std::list<sf::Sprite *>::const_iterator it = this->_FoodSpriteList.begin(); it != this->_FoodSpriteList.end(); ++it)

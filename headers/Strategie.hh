@@ -10,11 +10,12 @@ namespace		Strategie
   private:
     IStrategieType	_type;
     int			_speed;
-    int			_nbFood;
+    unsigned int	_nbFood;
   public:
     virtual IStrategieType		getType() const;
     virtual int		getSpeed() const;
     virtual void	setSpeed(int speed);
+    virtual unsigned int		getNbFood() const ;
     Easy();
     virtual ~Easy();
   };
@@ -24,11 +25,12 @@ namespace		Strategie
   private:
     IStrategieType	_type;
     int			_speed;
-    int			_nbFood;
+    unsigned int	_nbFood;
   public:
     virtual IStrategieType		getType() const;
     virtual int		getSpeed() const;
     virtual void	setSpeed(int speed);
+    virtual unsigned int		getNbFood() const ;
     Medium();
     virtual ~Medium();
   };
@@ -38,11 +40,12 @@ namespace		Strategie
   private:
     IStrategieType	_type;
     int			_speed;
-    int			_nbFood;
+    unsigned int	_nbFood;
   public:
     virtual IStrategieType		getType() const;
     virtual int		getSpeed() const;
     virtual void	setSpeed(int speed);
+    virtual unsigned int		getNbFood() const;
     Hard();
     virtual ~Hard();
   };

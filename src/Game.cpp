@@ -23,6 +23,8 @@ void			Game::Init(int len, int width)
   this->_sList = this->_snake->addElem(this->_sList, BODY, 360, 300);
   this->_sList = this->_snake->addElem(this->_sList, TAIL, 340, 300);
   this->_fList = this->_food->addElem(this->_fList);
+  this->_fList = this->_food->addElem(this->_fList);
+  this->_fList = this->_food->addElem(this->_fList);
 }
 
 int			Game::getSpeed() const
@@ -109,7 +111,8 @@ void			Game::setFList(std::list<IFood *> list)
 
 void			Game::updateFList(std::list<IFood *> &list)
 {
-  list = this->_food->addElem(list);
+  while (this->_strategie->getNbFood() > list.size())
+    list = this->_food->addElem(list);
 }
 
 void			Game::displayCoord()
