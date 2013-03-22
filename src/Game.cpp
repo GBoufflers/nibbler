@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include		"../headers/Game.hh"
 
 Game::Game(int len, int width)
@@ -11,6 +12,7 @@ Game::~Game()
 
 void			Game::Init(int len, int width)
 {
+  srand(time(NULL));
   this->_len = len;
   this->_width = width;
   this->_score = 0;
@@ -23,9 +25,11 @@ void			Game::Init(int len, int width)
   this->_sList = this->_snake->addElem(this->_sList, BODY, 380, 300);
   this->_sList = this->_snake->addElem(this->_sList, BODY, 360, 300);
   this->_sList = this->_snake->addElem(this->_sList, TAIL, 340, 300);
-  this->_fList = this->_food->addElem(this->_fList);
-  this->_fList = this->_food->addElem(this->_fList);
-  this->_fList = this->_food->addElem(this->_fList);
+  this->_food->addElem(this->_fList);
+  sleep(1);
+  this->_food->addElem(this->_fList);
+  sleep(1);
+  this->_food->addElem(this->_fList);
 }
 
 int			Game::getSpeed() const
@@ -112,15 +116,15 @@ void			Game::setFList(std::list<IFood *> list)
 
 void			Game::updateFList(std::list<IFood *> &list)
 {
+  std::cout << list.size() << std::endl;;
   while (this->_strategie->getNbFood() > list.size())
-    list = this->_food->addElem(list);
+    this->_food->addElem(list);
 }
 
 void			Game::displayCoord()
 {
   for (std::list<ISnake *>::iterator it = this->_sList.begin(); it != this->_sList.end(); ++it)
     std::cout << (*it)->getX() << "\t" << (*it)->getY() << std::endl;
-  std::cout << std::endl << std::endl;
 }
 
 void			Game::analyseLevel()

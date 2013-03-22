@@ -40,8 +40,10 @@ public:
   void				onOriginalList(std::list<ISnake *> &list, char func);
   void				manageEvent();
   void				setNewCoord(std::list<ISnake *> &list);
+  bool				checkSpritePresent(sf::Sprite *sprite, std::list<IFood *> list);
+  void				getNewCoord(std::list<IFood *> list, int *x, int *y);
 };
 
-  typedef Display *(*maker_Display)();
+typedef Display *(*maker_Display)();
 
 #endif
