@@ -4,7 +4,7 @@ Strategie::Easy::Easy()
 {
   this->_type = EASY;
   this->_speed = 70000;
-  this->_nbFood = 3;
+  this->_nbFood = 4;
   this->_pts = 10;
 }
 

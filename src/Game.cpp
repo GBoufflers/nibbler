@@ -8,9 +8,10 @@ Game::Game(int len, int width)
 
 Game::~Game()
 {
+
 }
 
-void			Game::Init(int len, int width)
+void			Game::Init(const int len, const int width)
 {
   srand(time(NULL));
   this->_len = len;
@@ -21,15 +22,15 @@ void			Game::Init(int len, int width)
   this->_food = new Food();
   this->_stratFact = new StratFact();
   this->_strategie = this->_stratFact->create(EASY);
-  this->_sList = this->_snake->addElem(this->_sList, HEAD, 400, 300);
-  this->_sList = this->_snake->addElem(this->_sList, BODY, 380, 300);
-  this->_sList = this->_snake->addElem(this->_sList, BODY, 360, 300);
-  this->_sList = this->_snake->addElem(this->_sList, TAIL, 340, 300);
-  this->_food->addElem(this->_fList);
+  this->_snake->addElem(this->_sList, HEAD, 400, 300);
+  this->_snake->addElem(this->_sList, BODY, 380, 300);
+  this->_snake->addElem(this->_sList, BODY, 360, 300);
+  this->_snake->addElem(this->_sList, TAIL, 340, 300);
+  this->_food->addElem(this->_fList, this->_sList);
   sleep(1);
-  this->_food->addElem(this->_fList);
+  this->_food->addElem(this->_fList, this->_sList);
   sleep(1);
-  this->_food->addElem(this->_fList);
+  this->_food->addElem(this->_fList, this->_sList);
 }
 
 int			Game::getSpeed() const
@@ -57,12 +58,12 @@ int			Game::getWidth() const
   return (this->_width);
 }
 
-void			Game::setLen(int len)
+void			Game::setLen(const int len)
 {
   this->_len = len;
 }
 
-void			Game::setWidth(int width)
+void			Game::setWidth(const int width)
 {
   this->_width = width;
 }
@@ -82,7 +83,7 @@ Collision		*Game::getCollision() const
   return (this->_collision);
 }
 
-int			Game::checkCollision(std::list<ISnake *> slist, std::list<IFood *> &flist)
+int			Game::checkCollision(std::list<ISnake *> &slist, std::list<IFood *> &flist) const
 {
   if (this->_collision->checkSAndF(slist, flist) == true)
     return (1);
@@ -94,7 +95,7 @@ int			Game::checkCollision(std::list<ISnake *> slist, std::list<IFood *> &flist)
 }
 
 
-void			Game::setSList(std::list<ISnake *> list)
+void			Game::setSList(const std::list<ISnake *> &list)
 {
   this->_sList = list;
 }
@@ -109,21 +110,20 @@ void			Game::updateSList(std::list<ISnake *> &list)
   list.push_back(back);
 }
 
-void			Game::setFList(std::list<IFood *> list)
+void			Game::setFList(std::list<IFood *> &list)
 {
   this->_fList = list;
 }
 
 void			Game::updateFList(std::list<IFood *> &list)
 {
-  std::cout << list.size() << std::endl;;
   while (this->_strategie->getNbFood() > list.size())
-    this->_food->addElem(list);
+    this->_food->addElem(list, this->_sList);
 }
 
-void			Game::displayCoord()
+void			Game::displayCoord() const
 {
-  for (std::list<ISnake *>::iterator it = this->_sList.begin(); it != this->_sList.end(); ++it)
+  for (std::list<ISnake *>::const_iterator it = this->_sList.begin(); it != this->_sList.end(); ++it)
     std::cout << (*it)->getX() << "\t" << (*it)->getY() << std::endl;
 }
 
