@@ -19,7 +19,7 @@ int	main(int ac, char **av)
       if (mkr == NULL)
 	{
 	  dlclose(hndl);
-	  return (0);
+	  return (0); // pareil
 	}
       pMaker = (maker_Display)mkr;
       Display *my_graph = pMaker();
