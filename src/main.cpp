@@ -27,6 +27,8 @@ int	main(int ac, char **av)
 	  pMaker = (maker_Display)mkr;
 	  Display *my_graph = pMaker();
 	  ret = 0;
+	  if (my_graph->Init() == false)
+	    throw GameException("Error on creation of Window");
 	  while (my_graph->Window() == true && ret != -1)
 	    {
 	      tmp = game->getSList();

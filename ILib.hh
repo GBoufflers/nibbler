@@ -8,6 +8,7 @@ class		ILib
 public:
   virtual bool	Window() const = 0;
   virtual void	Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, int score) = 0;
+  virtual bool	Init() const = 0;
   virtual ~ILib(){};
 };
 

@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Sat Mar 23 15:45:41 2013 florian dell-aiera
+// Last update Sat Mar 23 15:56:08 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -13,15 +13,6 @@
 
 Display::Display()
 {
-  if (SDL_Init(SDL_INIT_VIDEO) == -1)
-    {
-      exit (0);
-    }
-  SDL_WM_SetCaption("Le nibbler neggaz", NULL);
-  SDL_SetVideoMode(800, 600, 32, SDL_OPENGL);
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  gluOrtho2D(0, 800,0,600);
   this->move_left[0] = &Display::avance; 
   this->move_left[1] = &Display::turnNineLeft;
   this->move_left[2] = &Display::turnOneLeft; 
@@ -37,6 +28,18 @@ Display::Display()
 Display::~Display()
 {
 
+}
+
+bool	Display::Init() const
+{
+  if (SDL_Init(SDL_INIT_VIDEO) == -1)
+    return (false);
+  SDL_WM_SetCaption("Le nibbler neggaz", NULL);
+  SDL_SetVideoMode(800, 600, 32, SDL_OPENGL);
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  gluOrtho2D(0, 800,0,600);
+  return (true);
 }
 
 bool	Display::Window() const

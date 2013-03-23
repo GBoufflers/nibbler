@@ -1,7 +1,7 @@
 #include	"../headers/Display.hh"
 #include	"../../headers/Game.hh"
 
-Display::Display() :	_app(sf::VideoMode(LWINDOW, HWINDOW, PIX), "nibbler")
+Display::Display()
 {
   this->_isInit = false;
   this->_numFunc = 3;
@@ -35,6 +35,12 @@ Display::Display() :	_app(sf::VideoMode(LWINDOW, HWINDOW, PIX), "nibbler")
 Display::~Display()
 {
   
+}
+
+bool			Display::Init() const
+{
+  _app(sf::VideoMode(LWINDOW, HWINDOW, PIX), "nibbler");
+  return (true);
 }
 
 void			Display::onOriginalList(std::list<ISnake *> &list, char func)
