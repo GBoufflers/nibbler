@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Sat Mar 23 15:56:08 2013 florian dell-aiera
+// Last update Sat Mar 23 16:13:38 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -30,7 +30,7 @@ Display::~Display()
 
 }
 
-bool	Display::Init() const
+bool	Display::Init()
 {
   if (SDL_Init(SDL_INIT_VIDEO) == -1)
     return (false);

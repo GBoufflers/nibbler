@@ -37,7 +37,7 @@ Display::~Display()
   
 }
 
-bool			Display::Init() const
+bool			Display::Init()
 {
   _app(sf::VideoMode(LWINDOW, HWINDOW, PIX), "nibbler");
   return (true);
