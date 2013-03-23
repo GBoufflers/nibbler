@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Sat Mar 23 13:30:36 2013 florian dell-aiera
+// Last update Sat Mar 23 15:45:41 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -15,8 +15,7 @@ Display::Display()
 {
   if (SDL_Init(SDL_INIT_VIDEO) == -1)
     {
-      std::cerr << "Problème avec la variable display" << std::endl;
-      exit(0);
+      exit (0);
     }
   SDL_WM_SetCaption("Le nibbler neggaz", NULL);
   SDL_SetVideoMode(800, 600, 32, SDL_OPENGL);
