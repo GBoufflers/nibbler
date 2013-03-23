@@ -28,8 +28,9 @@ public:
   virtual void			Finish();
   void				drawWall() const;
   void				dispFood(std::list<IFood *> list) const;
+  void				dispHole(std::list<IHole *> list) const;
   void                          dispScore(int score) const;
-  void				movesnake(std::list<ISnake *> &list, std::list<IFood *> &fList);
+  void				movesnake(std::list<ISnake *> &list, std::list<IFood *> &fList, std::list<IHole *> &hList);
 };
 
 typedef Display *(*maker_Display)();

@@ -27,10 +27,11 @@ public:
   virtual void		Finish();
   void			event(std::list<ISnake *> &sList);
   void			makeCarre(double x, double y, int r, int v, int b) const;
-  void			see(std::list<ISnake *> &sList, std::list<IFood *> &fList);
+  void			see(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hList);
   void			makeSnake(std::list<ISnake *> &sList);
   void			makeCoord(std::list<ISnake *> &sList) const;
   void			makeFood(std::list<IFood *> &fList) const;
+  void			makeBlackHole(std::list<IHole *> &hList) const;
   void			avance(std::list<ISnake *> &sList) const;
   void			turnNineLeft(std::list<ISnake *> &sList) const;
   void			turnOneLeft(std::list<ISnake *> &sList) const;

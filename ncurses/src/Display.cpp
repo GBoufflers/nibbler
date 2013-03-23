@@ -12,6 +12,7 @@ Display::Display()
 bool	Display::Init()
 {
   initscr();
+  start_color();
   nodelay(stdscr, true);
   keypad(stdscr, true);
   noecho();
@@ -52,17 +53,36 @@ bool	Display::Window() const
 
 void   		Display::dispFood(std::list<IFood *> list) const
 {
-  move(list.front()->getY()/SIDE, list.front()->getX()/SIDE);
-  addch('+');
+  for (std::list<IFood *>::const_iterator it = list.begin(); it != list.end(); it++)
+    {
+      move((*it)->getY()/SIDE, (*it)->getX()/SIDE);
+      init_pair(4, COLOR_YELLOW, COLOR_BLACK);
+      attron(COLOR_PAIR(4));
+      addch('+');
+      attroff(COLOR_PAIR(4));
+    }
 }
 
-void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList)
+void   		Display::dispHole(std::list<IHole *> list) const
+{
+  for (std::list<IHole *>::const_iterator it = list.begin(); it != list.end(); it++)
+    {
+      move((*it)->getY()/SIDE, (*it)->getX()/SIDE);
+      init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
+      attron(COLOR_PAIR(5));
+      addch('#');
+      attroff(COLOR_PAIR(5));
+    }
+}
+
+void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hList)
 {
   int   tmp = getch();
   ISnake	*s;
   
   this->drawWall();
   this->dispFood(fList);
+  this->dispHole(hList);
   switch (tmp)
     {
     case KEY_LEFT:
@@ -80,9 +100,6 @@ void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList)
     case KEY_RIGHT:
       if (this->_direction != 'l')
         this->_direction = 'r';
-      break;
-    case KEY_BACKSPACE:
-      this->_direction = 'q';
       break;
     case 27:
       endwin();
@@ -119,27 +136,36 @@ void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList)
       sList.push_front(s);
     }
   move((sList.front()->getY())/SIDE, (sList.front()->getX())/SIDE);
+  init_pair(3, COLOR_BLUE, COLOR_BLACK);
+  attron(COLOR_PAIR(3));
   addch(this->_partchar);
+  attroff(COLOR_PAIR(3));
   refresh();
 }
 
 void    Display::dispScore(int score) const
 {
   move(this->_maxheight-2, 0);
+  init_pair(2, COLOR_GREEN, COLOR_BLACK);
+  attron(COLOR_PAIR(2));
   printw("Score: %d", score);
+  attroff(COLOR_PAIR(2));  
   refresh();
 }
 
-void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist, int score)
+void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hList, int score)
 {
-  this->movesnake(sList, fList);
+  this->movesnake(sList, fList, hList);
   this->dispScore(score);
 }
 
 void	Display::Finish()
 {
   move(this->_maxheight/3, this->_maxwidth/3);
+  init_pair(1, COLOR_RED, COLOR_BLACK);
+  attron(COLOR_PAIR(1));
   printw("GAME OVER");
+  attroff(COLOR_PAIR(1));
   move(this->_maxheight/3+3, this->_maxwidth/4);
   printw("Appuyez sur une touche pour quitter");
   refresh();

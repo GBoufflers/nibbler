@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Sun Mar 24 17:37:23 2013 florian dell-aiera
+// Last update Sun Mar 24 18:35:27 2013 maxime sauvage
 //
 
 #include	"../headers/Display.hh"
@@ -50,7 +50,7 @@ bool	Display::Window() const
 
 void	Display::Finish()
 {
-
+  std::cout << "GAME OVER!!" << std::endl;
 }
 
 void	Display::makeCoord(std::list<ISnake *>&sList) const
@@ -202,7 +202,21 @@ void			Display::makeFood(std::list<IFood *> &fList) const
     }
 }
 
-void			Display::see(std::list<ISnake *> &sList, std::list<IFood *> &fList)
+void			Display::makeBlackHole(std::list<IHole *> &hList) const
+{
+  for (std::list<IHole *>::const_iterator it = hList.begin(); it != hList.end(); it++)
+    {
+      glMatrixMode(GL_MODELVIEW);
+      glLoadIdentity();
+      glTranslatef((*it)->getX() - 10, (*it)->getY() - 10, 0);
+      glBegin(GL_QUADS);
+      this->makeCarre(10,10, 0, 0, 0);
+      glEnd();
+      glFlush();
+    }
+}
+
+void			Display::see(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hList)
 {
   glClear(GL_COLOR_BUFFER_BIT);
   glMatrixMode(GL_MODELVIEW);
@@ -212,6 +226,7 @@ void			Display::see(std::list<ISnake *> &sList, std::list<IFood *> &fList)
   glEnd();
   this->makeSnake(sList);
   this->makeFood(fList);
+  this->makeBlackHole(hList);
   glFlush();
   SDL_GL_SwapBuffers();
 }
@@ -219,9 +234,9 @@ void			Display::see(std::list<ISnake *> &sList, std::list<IFood *> &fList)
 void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist, int score)
 {
   score = 0;
-  this->see(sList, fList);
+  this->see(sList, fList, hlist);
   this->event(sList);
-  this->see(sList, fList);
+  this->see(sList, fList, hlist);
 }
 
 extern "C"
