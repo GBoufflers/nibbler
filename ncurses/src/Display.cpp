@@ -60,11 +60,6 @@ void   		Display::dispFood(std::list<IFood *> list) const
   addch('+');
 }
 
-std::string	Display::userName() const
-{
-  return (this->_userName);
-}
-
 void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList)
 {
   int   tmp = getch();
@@ -132,18 +127,9 @@ void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList)
   refresh();
 }
 
-void	Display::displayScore(int score) const
-{
-  move(this->_maxheight-2, 0);
-  printw("Score: %d", score);
-  //  move(this->_maxheight-1, 0);
-  //printw("Name: %d", this->_userName);
-}
-
-void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, int score)
+void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList)
 {
   this->movesnake(sList, fList);
-  this->displayScore(score);
 }
 
 Display::~Display()

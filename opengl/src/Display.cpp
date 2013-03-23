@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Sat Mar 23 17:12:30 2013 florian dell-aiera
+// Last update Sun Mar 24 15:27:22 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -39,6 +39,7 @@ bool	Display::Init()
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluOrtho2D(0, 800,0, 600);
+  glEnable(GL_TEXTURE_2D);
   return (true);
 }
 
@@ -105,7 +106,6 @@ void			Display::turnTwoRight(std::list<ISnake *>&sList) const
   this->makeCoord(sList);
   sList.front()->setY((sList.front()->getY()) - 20);
 }
-
 
 void			Display::event(std::list<ISnake *>&sList)
 {
@@ -197,7 +197,7 @@ void			Display::makeSnake(std::list<ISnake *> &sList) const
 
 void			Display::makeFood(std::list<IFood *> &fList) const
 {
-  for ( std::list<IFood *>::const_iterator it = fList.begin(); it != fList.end(); ++it)
+  for ( std::list<IFood *>::const_iterator it = fList.begin(); it != fList.end(); it++)
     {      
       glMatrixMode(GL_MODELVIEW);
       glLoadIdentity();
@@ -205,6 +205,7 @@ void			Display::makeFood(std::list<IFood *> &fList) const
       glBegin(GL_QUADS);
       this->makeCarre(10,10, 0, 0, 255);
       glEnd();
+      glFlush();
     }
 }
 
@@ -222,7 +223,7 @@ void			Display::see(std::list<ISnake *> &sList, std::list<IFood *> &fList) const
   SDL_GL_SwapBuffers();
 }
 
-void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, int score)
+void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList)
 {
   this->see(sList, fList);
   this->event(sList);
