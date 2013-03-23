@@ -33,7 +33,7 @@ public:
   Display();
   ~Display();
   virtual bool			Window() const;
-  virtual void			Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist);
+  virtual void			Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist, int score);
   virtual bool			Init();
   void				Dinit(std::list<ISnake *> &sList, std::list<IFood *> &fList);
   void				setFood(std::list<IFood *> &list);
@@ -50,6 +50,7 @@ public:
   bool				checkSpritePresent(const sf::Sprite *sprite, const std::list<IFood *> &list) const;
   void				getNewCoord(const std::list<IFood *> &list, int *x, int *y);
   void				initHole(const std::list<IHole *> &hlist);
+  void				Finish();
 };
 
 typedef Display *(*maker_Display)();

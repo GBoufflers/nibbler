@@ -3,24 +3,20 @@
 
 Display::Display()
 {
-  this->_maxheight = 33;
-  this->_maxwidth = 42;
-  //  getmaxyx(stdscr, this->_maxheight, this->_maxwidth);
+  this->_maxheight = HWINDOW / SIDE + 3;
+  this->_maxwidth = LWINDOW / SIDE + 2;
   this->_partchar = 'x';
   this->_direction = 'l';
 }
 
 bool	Display::Init()
 {
-  /*std::cout << "Please enter your name: " << std::endl;
-    std::cin >> this->_userName;*/
   initscr();
-  this->_win = initscr();  
-  wresize(this->_win, 33, 42);
   nodelay(stdscr, true);
   keypad(stdscr, true);
   noecho();
   curs_set(0);
+  refresh();
   return (true);
 }
 
@@ -56,7 +52,7 @@ bool	Display::Window() const
 
 void   		Display::dispFood(std::list<IFood *> list) const
 {
-  move(list.front()->getY()/20, list.front()->getX()/20);
+  move(list.front()->getY()/SIDE, list.front()->getX()/SIDE);
   addch('+');
 }
 
@@ -93,51 +89,69 @@ void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList)
       exit(EXIT_SUCCESS);
       break;
     }
-  move((sList.back()->getY())/20, (sList.back()->getX())/20);
+  move((sList.back()->getY())/SIDE, (sList.back()->getX())/SIDE);
   addch(' ');
   refresh();
   s = sList.back();
   sList.pop_back();
   if (this->_direction == 'l')
     {
-      s->setX((sList.front()->getX())-20);
+      s->setX((sList.front()->getX())-SIDE);
       s->setY(sList.front()->getY());
       sList.push_front(s);
     }
   else if (this->_direction == 'r')
     {
-      s->setX((sList.front()->getX())+20);
+      s->setX((sList.front()->getX())+SIDE);
       s->setY(sList.front()->getY());
       sList.push_front(s);
     }
   else if (this->_direction == 'u')
     {
       s->setX(sList.front()->getX());
-      s->setY((sList.front()->getY())-20);
+      s->setY((sList.front()->getY())-SIDE);
       sList.push_front(s);
     }
   else if (this->_direction == 'd')
     {
       s->setX(sList.front()->getX());
-      s->setY((sList.front()->getY())+20);
+      s->setY((sList.front()->getY())+SIDE);
       sList.push_front(s);
     }
-  move((sList.front()->getY())/20, (sList.front()->getX())/20);
+  move((sList.front()->getY())/SIDE, (sList.front()->getX())/SIDE);
   addch(this->_partchar);
   refresh();
 }
 
-void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist)
+void    Display::dispScore(int score) const
+{
+  move(this->_maxheight-2, 0);
+  printw("Score: %d", score);
+  refresh();
+}
+
+void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist, int score)
 {
   this->movesnake(sList, fList);
+  this->dispScore(score);
+}
+
+void	Display::Finish()
+{
+  move(this->_maxheight/3, this->_maxwidth/3);
+  printw("GAME OVER");
+  move(this->_maxheight/3+3, this->_maxwidth/4);
+  printw("Appuyez sur une touche pour quitter");
+  refresh();
+  nodelay(stdscr, false);
+  keypad(stdscr, false);
+  getch();
+  endwin();
 }
 
 Display::~Display()
 {
-  curs_set(1);
-  nodelay(stdscr, false);
-  getch();
-  endwin();
+
 }
 
 extern "C"

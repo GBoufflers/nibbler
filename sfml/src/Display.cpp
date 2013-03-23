@@ -278,7 +278,7 @@ void		Display::initHole(const std::list<IHole *> &hlist)
     }
 }
 
-void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist)
+void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist, int score)
 {
   if (this->_isInit == false)
     {
@@ -354,6 +354,11 @@ void			Display::setNewCoord(std::list<ISnake *> &list)
   std::list<ISnake *>::iterator it2 = list.begin();
   for (std::list<sf::Sprite *>::iterator it = this->_SnakeSpriteList.begin(); it != this->_SnakeSpriteList.end(); ++it, ++it2)
     (*it)->SetPosition((*it2)->getX(), (*it2)->getY());
+}
+
+void			Display::Finish()
+{
+
 }
 
 extern "C"

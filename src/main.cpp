@@ -35,7 +35,7 @@ int	main(int ac, char **av)
 	      tmp = game->getSList();
 	      tmpf = game->getFList();
 	      tmph = game->getHole();
-	      my_graph->Play(tmp, tmpf, tmph);
+	      my_graph->Play(tmp, tmpf, tmph, game->getScore());
 	      ret = game->checkCollision(tmp, tmpf, tmph);
 	      if (ret == 1)
 		{
@@ -48,11 +48,12 @@ int	main(int ac, char **av)
 	      game->analyseLevel();
 	      usleep(game->getSpeed());
 	    }
+	  my_graph->Finish();
 	  dlclose(hndl);
 	}
       catch (const std::exception &e)
 	{
-	  std::cerr << e.what() << "\n";
+	  std::cerr << e.what() << std::endl;
 	}
     }
   else
