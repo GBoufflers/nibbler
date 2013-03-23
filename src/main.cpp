@@ -13,7 +13,14 @@ int	main(int ac, char **av)
       void			*mkr;
 
       hndl = dlopen(av[3], RTLD_LAZY);
+      if (hndl == NULL)
+	return(0);// lance une exception quand la classe sera faite
       mkr = dlsym(hndl, "make_display");
+      if (mkr == NULL)
+	{
+	  dlclose(hndl);
+	  return (0);
+	}
       pMaker = (maker_Display)mkr;
       Display *my_graph = pMaker();
       ret = 0;
