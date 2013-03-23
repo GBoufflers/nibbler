@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Sat Mar 23 16:13:38 2013 florian dell-aiera
+// Last update Sat Mar 23 17:12:30 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -38,7 +38,7 @@ bool	Display::Init()
   SDL_SetVideoMode(800, 600, 32, SDL_OPENGL);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluOrtho2D(0, 800,0,600);
+  gluOrtho2D(0, 800,0, 600);
   return (true);
 }
 
