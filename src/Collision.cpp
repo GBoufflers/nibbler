@@ -10,14 +10,14 @@ Collision::~Collision()
 
 }
 
-bool		Collision::checkSAndS(std::list<ISnake *> list)
+bool		Collision::checkSAndS(const std::list<ISnake *> &list) const
 {
   ISnake	*tmp;
 
   if (list.size() != 4)
     {
       tmp = list.front();
-      for (std::list<ISnake *>::iterator it = list.begin(); it != list.end(); ++it)
+      for (std::list<ISnake *>::const_iterator it = list.begin(); it != list.end(); ++it)
 	{
 	  if (it != list.begin())
 	    {
@@ -29,7 +29,7 @@ bool		Collision::checkSAndS(std::list<ISnake *> list)
   return (false);
 }
 
-bool		Collision::checkSAndF(std::list<ISnake *> &slist, std::list<IFood *> &flist)
+bool		Collision::checkSAndF(const std::list<ISnake *> &slist, std::list<IFood *> &flist)
 {
   ISnake	*head;
 
@@ -46,7 +46,7 @@ bool		Collision::checkSAndF(std::list<ISnake *> &slist, std::list<IFood *> &flis
   return (false);
 }
 
-bool		Collision::checkSAndW(std::list<ISnake *> list)
+bool		Collision::checkSAndW(const std::list<ISnake *> &list) const
 {
   ISnake	*head;
 
@@ -56,8 +56,8 @@ bool		Collision::checkSAndW(std::list<ISnake *> list)
   return (true);
 }
 
-void		Collision::displayCoord(std::list<ISnake *> list)
+void		Collision::displayCoord(const std::list<ISnake *> &list) const
 {
-  for (std::list<ISnake *>::iterator it = list.begin(); it != list.end(); ++it)
+  for (std::list<ISnake *>::const_iterator it = list.begin(); it != list.end(); ++it)
     std::cout << (*it)->getX() << "\t" << (*it)->getY() << std::endl;
 }

@@ -17,22 +17,22 @@ void	StratFact::initTab()
   this->creation[2] = &StratFact::newHard;
 }
 
-IStrategie	*StratFact::newEasy()
+IStrategie	*StratFact::newEasy() const
 {
   return (new Strategie::Easy());
 }
 
-IStrategie	*StratFact::newMedium()
+IStrategie	*StratFact::newMedium() const
 {
   return (new  Strategie::Medium);
 }
 
-IStrategie	*StratFact::newHard()
+IStrategie	*StratFact::newHard() const
 {
   return (new  Strategie::Hard);
 }
 
-IStrategie	*StratFact::create(IStrategieType type)
+IStrategie	*StratFact::create(IStrategieType type) const
 {
   if (type >= 0 && type <= 2)
     return ((this->*creation[type])());

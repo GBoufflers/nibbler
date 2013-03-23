@@ -8,15 +8,15 @@
 class		StratFact
 {
 private:
-  IStrategie	*newEasy();
-  IStrategie	*newMedium();
-  IStrategie	*newHard();
-  IStrategie	*(StratFact::*creation[3])();
+  IStrategie	*newEasy() const;
+  IStrategie	*newMedium() const;
+  IStrategie	*newHard() const;
+  IStrategie	*(StratFact::*creation[3])() const;
 public:
   StratFact();
   ~StratFact();
   void		initTab();
-  IStrategie	*create(IStrategieType type);
+  IStrategie	*create(IStrategieType type) const;
 };
 
 #endif

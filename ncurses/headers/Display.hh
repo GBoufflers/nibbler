@@ -26,6 +26,7 @@ public:
   ~Display();
   virtual bool			Window() const;  
   virtual void			Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, int score);
+  virtual bool			Init();
   void				drawWall() const;
   void				dispFood(std::list<IFood *> list) const;
   void				displayScore(int score) const;

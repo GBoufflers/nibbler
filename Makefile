@@ -11,6 +11,7 @@ OBJ=	src/main.o\
 	src/Game.o\
 	src/Strategie.o\
 	src/StratFact.o\
+	src/GameException.o
 
 all:	$(NAME)
 
@@ -26,8 +27,8 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
-##	rm -f lib_nibbler_sfml.so
+	rm -f lib_nibbler_sfml.so
 	rm -f lib_nibbler_ncurses.so
-##	rm -f lib_nibbler_opengl.so
+	rm -f lib_nibbler_opengl.so
 
 re:	fclean all

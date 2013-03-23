@@ -3,8 +3,17 @@
 
 Display::Display()
 {
-  std::cout << "Please enter your name: " << std::endl;
-  std::cin >> this->_userName;
+  this->_maxheight = 33;
+  this->_maxwidth = 42;
+  //  getmaxyx(stdscr, this->_maxheight, this->_maxwidth);
+  this->_partchar = 'x';
+  this->_direction = 'l';
+}
+
+bool	Display::Init()
+{
+  /*std::cout << "Please enter your name: " << std::endl;
+    std::cin >> this->_userName;*/
   initscr();
   this->_win = initscr();  
   wresize(this->_win, 33, 42);
@@ -12,11 +21,7 @@ Display::Display()
   keypad(stdscr, true);
   noecho();
   curs_set(0);
-  this->_maxheight = 33;
-  this->_maxwidth = 42;
-  //  getmaxyx(stdscr, this->_maxheight, this->_maxwidth);
-  this->_partchar = 'x';
-  this->_direction = 'l';
+  return (true);
 }
 
 void    Display::drawWall() const

@@ -46,7 +46,7 @@ int				Snake::getY() const
 
 /**********************************************/
 
-std::list<ISnake *>		Snake::addElem(std::list<ISnake *> list, ISnakeType type, int x, int y)
+void				Snake::addElem(std::list<ISnake *> &list, ISnakeType type, int x, int y)
 {
   ISnake	*member;
 
@@ -55,7 +55,6 @@ std::list<ISnake *>		Snake::addElem(std::list<ISnake *> list, ISnakeType type, i
   member->setX(x);
   member->setY(y);
   list.push_front(member);
-  return (list);
 }
 
 int				Snake::snakeSize(std::list<ISnake *> list) const
