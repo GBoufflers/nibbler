@@ -62,7 +62,7 @@ void		Collision::displayCoord(const std::list<ISnake *> &list) const
     std::cout << (*it)->getX() << "\t" << (*it)->getY() << std::endl;
 }
 
-bool		Collision::checkSAndH(const std::list<ISnake *> &slist, const std::list<IHole *> &hlist) const
+int		Collision::checkSAndH(const std::list<ISnake *> &slist, const std::list<IHole *> &hlist) const
 {
   ISnake	*head;
 
@@ -70,7 +70,12 @@ bool		Collision::checkSAndH(const std::list<ISnake *> &slist, const std::list<IH
   for (std::list<IHole *>::const_iterator it = hlist.begin(); it != hlist.end(); ++it)
     {
       if (((*it)->getX() == head->getX()) && ((*it)->getY() == head->getY()))
-	return (true);
+	{
+	  if ((*it)->getType() == ADDTAIL)
+	    return (1);
+	  else
+	    return (-1);
+	}
     }
-  return (false);
+  return (0);
 }

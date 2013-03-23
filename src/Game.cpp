@@ -13,7 +13,6 @@ Game::~Game()
 
 void			Game::Init(const int len, const int width)
 {
-  srand(time(NULL));
   this->_len = len;
   this->_width = width;
   this->_score = 0;
@@ -32,11 +31,11 @@ void			Game::Init(const int len, const int width)
   this->_food->addElem(this->_fList, this->_sList);
   sleep(1);
   this->_food->addElem(this->_fList, this->_sList);
-  this->_hole->addElem(this->_assList, 500, 200);
-  this->_hole->addElem(this->_assList, 300, 160);
-  this->_hole->addElem(this->_assList, 125, 650);
-  this->_hole->addElem(this->_assList, 400, 530);
-  this->_hole->addElem(this->_assList, 635, 50);
+  this->_hole->addElem(this->_assList, 500, 200, BLACKHOLE);
+  this->_hole->addElem(this->_assList, 300, 160, ADDTAIL);
+  this->_hole->addElem(this->_assList, 120, 640, BLACKHOLE);
+  this->_hole->addElem(this->_assList, 400, 540, ADDTAIL);
+  this->_hole->addElem(this->_assList, 640, 60, ADDTAIL);
 }
 
 int			Game::getSpeed() const
@@ -91,9 +90,14 @@ Collision		*Game::getCollision() const
 
 int			Game::checkCollision(std::list<ISnake *> &slist, std::list<IFood *> &flist, std::list<IHole *> &hlist) const
 {
+  int			ret;
+
   if (this->_collision->checkSAndF(slist, flist) == true)
     return (1);
-  if (this->_collision->checkSAndH(slist, hlist) == true)
+  ret = this->_collision->checkSAndH(slist, hlist);
+  if (ret == 1)
+    return (1);
+  if (ret == -1)
     return (-1);
   if (this->_collision->checkSAndS(slist) == true)
     return (-1);
@@ -116,6 +120,11 @@ void			Game::updateSList(std::list<ISnake *> &list) const
   back->setX(list.back()->getX() - SIDE);
   back->setY(list.back()->getY());
   list.push_back(back);
+}
+
+std::list<IHole *>	Game::getHole() const
+{
+  return (this->_assList);
 }
 
 void			Game::setFList(std::list<IFood *> &list)

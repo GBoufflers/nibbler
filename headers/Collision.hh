@@ -12,7 +12,7 @@ public:
   bool		checkSAndS(const std::list<ISnake *> &) const;
   bool		checkSAndF(const std::list<ISnake *> &, std::list<IFood *> &) const;
   bool		checkSAndW(const std::list<ISnake *> &) const;
-  bool		checkSAndH(const std::list<ISnake *> &, const std::list<IHole *> &) const;
+  int		checkSAndH(const std::list<ISnake *> &, const std::list<IHole *> &) const;
   void		displayCoord(const std::list<ISnake *> &list) const;
 };
 

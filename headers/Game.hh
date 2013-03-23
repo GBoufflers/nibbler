@@ -4,6 +4,7 @@
 #include	<iostream>
 #include	<list>
 #include	<dlfcn.h>
+#include	<sys/types.h>
 #include	<cstring>
 #include	"Hole.hh"
 #include	"Snake.hh"
@@ -14,8 +15,8 @@
 #include	"GameException.hh"
 
 const int	SIDE     = 20;
-const int	LWINDOW  = 1000;
-const int	HWINDOW  = 1000;
+const int	LWINDOW  = 800;
+const int	HWINDOW  = 600;
 const int	PIX	 = 32;
 
 class		Game
@@ -48,6 +49,7 @@ public:
   int				getScore() const;
   std::list<ISnake *>		getSList() const;
   std::list<IFood *>		getFList() const;
+  std::list<IHole *>		getHole() const;
   Collision			*getCollision() const;
   int				checkCollision(std::list<ISnake *> &slist, std::list<IFood *> &flist, std::list<IHole *> &hlist) const;
   void				updateSList(std::list<ISnake *> &list) const;

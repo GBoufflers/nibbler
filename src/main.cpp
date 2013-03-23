@@ -1,8 +1,7 @@
 #include	"../ncurses/headers/Display.hh"
 
-
 int	main(int ac, char **av)
-{
+{ 
   if (ac == 4)
     {
       try
@@ -16,6 +15,7 @@ int	main(int ac, char **av)
 	  void			*hndl;
 	  void			*mkr;
 	  
+	  srand(getpid());
 	  hndl = dlopen(av[3], RTLD_LAZY);
 	  if (hndl == NULL)
 	    throw GameException("Error load librairie");
@@ -34,6 +34,7 @@ int	main(int ac, char **av)
 	    {
 	      tmp = game->getSList();
 	      tmpf = game->getFList();
+	      tmph = game->getHole();
 	      my_graph->Play(tmp, tmpf, tmph);
 	      ret = game->checkCollision(tmp, tmpf, tmph);
 	      if (ret == 1)

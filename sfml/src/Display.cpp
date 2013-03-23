@@ -262,7 +262,20 @@ void			Display::setFood(std::list<IFood *> &list)
 
 void		Display::initHole(const std::list<IHole *> &hlist)
 {
-
+  sf::Sprite		*sprite;
+  sf::Image		*image;
+  
+  for (std::list<IHole *>::const_iterator it = hlist.begin(); it != hlist.end(); ++it)
+    {
+      sprite = new sf::Sprite();
+      image = new sf::Image();
+      if (!image->LoadFromFile("/home/guillaume/Git/nibbler/sprite/capsule.png"))
+	std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
+      sprite->SetImage(*image);
+      sprite->Resize(SIDE, SIDE);
+      sprite->SetPosition((*it)->getX(), (*it)->getY());
+      this->_HoleSpriteList.push_back(sprite);
+    }
 }
 
 void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist)
@@ -289,6 +302,8 @@ void			Display::DisplayGame()
     this->_app.Draw(**it);
   for (std::list<sf::Sprite *>::const_iterator it = this->_FoodSpriteList.begin(); it != this->_FoodSpriteList.end(); ++it)
     this->_app.Draw(**it);
+  for (std::list<sf::Sprite *>::const_iterator it = this->_HoleSpriteList.begin(); it != this->_HoleSpriteList.end(); ++it)
+    this->_app.Draw(**it);
   this->_app.Display();
 }
 
@@ -296,8 +311,7 @@ void			Display::Dinit(std::list<ISnake *> &sList, std::list<IFood *> &fList)
 {
   this->_isInit = true;
   for (std::list<ISnake *>::const_iterator it = sList.begin(); it != sList.end(); ++it)
-    this->addElem((*it)->getX(), (*it)->getY());
-  
+    this->addElem((*it)->getX(), (*it)->getY());  
 }
 
 bool			Display::Window() const

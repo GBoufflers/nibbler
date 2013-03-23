@@ -8,17 +8,20 @@ class	Hole : public IHole
 private:
   int		_x;
   int		_y;
-public
-:  Hole();
-  ~Hole();
+  HoleType	_type;
+public:
+  Hole();
+  virtual ~Hole();
   //
-  int	getX() const;
-  int	getY() const;
+  virtual int		getX() const;
+  virtual int		getY() const;
   //
-  void	setX(int x);
-  void	setY(int y);
+  virtual void		setX(int x);
+  virtual void		setY(int y);
   //
-  void	addElem(std::list<IHole *> &list, int x, int y);
+  virtual void		addElem(std::list<IHole *> &list, int x, int y, HoleType type);
+  virtual HoleType	getType() const;
+  virtual void		setType(HoleType type);
 };
 
 #endif
