@@ -3,6 +3,7 @@
 
 int	main(int ac, char **av)
 {
+  srand(time(NULL));
   if (ac == 4)
     {
       try

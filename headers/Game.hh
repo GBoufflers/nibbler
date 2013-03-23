@@ -5,6 +5,7 @@
 #include	<list>
 #include	<dlfcn.h>
 #include	<cstring>
+#include	"Hole.hh"
 #include	"Snake.hh"
 #include	"Food.hh"
 #include	"Collision.hh"
@@ -13,8 +14,8 @@
 #include	"GameException.hh"
 
 const int	SIDE     = 20;
-const int	LWINDOW  = 800;
-const int	HWINDOW  = 600;
+const int	LWINDOW  = 1000;
+const int	HWINDOW  = 1000;
 const int	PIX	 = 32;
 
 class		Game
@@ -22,8 +23,10 @@ class		Game
 private:
   std::list<ISnake *>		_sList;
   std::list<IFood *>		_fList;
+  std::list<IHole *>		_assList;
   ISnake			*_snake;
   IFood				*_food;
+  IHole				*_hole;
   StratFact			*_stratFact;
   IStrategie			*_strategie;
   Collision			*_collision;
