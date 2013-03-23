@@ -100,7 +100,7 @@ void			Game::setSList(const std::list<ISnake *> &list)
   this->_sList = list;
 }
 
-void			Game::updateSList(std::list<ISnake *> &list) const
+void			Game::updateSList(std::list<ISnake *> &list)
 {
   ISnake	*back;
 
