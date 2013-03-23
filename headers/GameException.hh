@@ -1,0 +1,25 @@
+//
+// GameException.hh for GameException in /home/dell-a_f//projets/nibbler/headers
+// 
+// Made by florian dell-aiera
+// Login   <dell-a_f@epitech.net>
+// 
+// Started on  Sat Mar 23 13:50:17 2013 florian dell-aiera
+// Last update Sat Mar 23 14:13:46 2013 florian dell-aiera
+//
+
+
+#ifndef	__GAMEEXCEPTION_HH__
+#define	__GAMEEXCEPTION_HH__
+
+class	GameException
+{
+protected:
+  std::string	_msg;
+public:
+  GameException();
+  virtual	~GameException() throw();
+  virtual const char * what() const throw()
+};
+
+#endif

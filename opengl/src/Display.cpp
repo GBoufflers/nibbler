@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Fri Mar 22 17:08:52 2013 florian dell-aiera
+// Last update Sat Mar 23 13:30:36 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -133,16 +133,21 @@ void			Display::event(std::list<ISnake *>&sList)
 	      if (this->_angle == (360))
 		this->_angle = 0;
   	      break;
+	    case SDLK_SPACE:
+	      {
+		this->_space = 20;
+		break;
+	      }
   	    }
 	  break;
-  	// case SDL_KEYUP:
-  	//   switch (event.key.keysym.sym)
-  	//     {
-	//     case SDLK_SPACE:
-	//       this->_space = 0;
-	//       break;
-	//     }
-	//   break;
+  	case SDL_KEYUP:
+  	  switch (event.key.keysym.sym)
+  	    {
+	    case SDLK_SPACE:
+	      this->_space = 0;
+	      break;
+	    }
+	  break;
   	}
     }
   if (this->_angle <= 0)
@@ -171,7 +176,6 @@ void			Display::makeSnake(std::list<ISnake *> &sList) const
   	  glMatrixMode(GL_MODELVIEW);
   	  glLoadIdentity();
 	  glTranslatef((*it)->getX(), (*it)->getY(), 0);
-	  //glTranslatef((*it)->getX() - 10, (*it)->getY() - 10, 0);
   	  glBegin(GL_QUADS);
   	  this->makeCarre(10, 10, 255, 0, 0);
   	  glEnd();
@@ -181,7 +185,6 @@ void			Display::makeSnake(std::list<ISnake *> &sList) const
   	  glMatrixMode(GL_MODELVIEW);
   	  glLoadIdentity();
 	  glTranslatef((*it)->getX(), (*it)->getY(), 0);
-	  //glTranslatef((*it)->getX() - 10, (*it)->getY() - 10, 0);
   	  glBegin(GL_QUADS);
   	  this->makeCarre(10, 10, 0, 255, 0);
   	  glEnd();
@@ -192,8 +195,6 @@ void			Display::makeSnake(std::list<ISnake *> &sList) const
 
 void			Display::makeFood(std::list<IFood *> &fList) const
 {
-  // std::list<IFood *>::iterator it = fList.begin();
-  // int				i = 0;
   for ( std::list<IFood *>::const_iterator it = fList.begin(); it != fList.end(); ++it)
     {      
       glMatrixMode(GL_MODELVIEW);
