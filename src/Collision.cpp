@@ -29,7 +29,7 @@ bool		Collision::checkSAndS(const std::list<ISnake *> &list) const
   return (false);
 }
 
-bool		Collision::checkSAndF(const std::list<ISnake *> &slist, std::list<IFood *> &flist)
+bool		Collision::checkSAndF(const std::list<ISnake *> &slist, std::list<IFood *> &flist) const
 {
   ISnake	*head;
 

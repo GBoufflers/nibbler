@@ -15,7 +15,7 @@ enum		ISnakeType
 class		ISnake
 {
 public:
-  virtual void						addElem(std::list<ISnake *> &list, ISnakeType type, int x, int y) = 0;
+  virtual void						addElem(std::list<ISnake *> &list, ISnakeType type, int x, int y) const = 0;
   virtual int						snakeSize(std::list<ISnake *> list) const = 0;
   /****************/
   virtual ISnakeType					getType() const = 0;

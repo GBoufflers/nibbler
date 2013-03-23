@@ -10,7 +10,7 @@ public:
   Collision();
   ~Collision();
   bool		checkSAndS(const std::list<ISnake *> &) const;
-  bool		checkSAndF(const std::list<ISnake *> &, std::list<IFood *> &);
+  bool		checkSAndF(const std::list<ISnake *> &, std::list<IFood *> &) const;
   bool		checkSAndW(const std::list<ISnake *> &) const;
   void		displayCoord(const std::list<ISnake *> &list) const;
 };

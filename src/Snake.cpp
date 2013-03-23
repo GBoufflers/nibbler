@@ -46,7 +46,7 @@ int				Snake::getY() const
 
 /**********************************************/
 
-void				Snake::addElem(std::list<ISnake *> &list, ISnakeType type, int x, int y)
+void				Snake::addElem(std::list<ISnake *> &list, ISnakeType type, int x, int y) const
 {
   ISnake	*member;
 

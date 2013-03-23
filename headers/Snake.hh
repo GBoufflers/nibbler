@@ -12,7 +12,7 @@ private:
 public: 
   Snake();
   virtual ~Snake();
-  virtual void				addElem(std::list<ISnake *> &list, ISnakeType type, int x, int y);
+  virtual void				addElem(std::list<ISnake *> &list, ISnakeType type, int x, int y)const;
   virtual int				snakeSize(std::list<ISnake *> list) const;
   /******************/
   virtual ISnakeType			getType() const;
