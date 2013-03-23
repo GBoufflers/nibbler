@@ -15,7 +15,7 @@ private:
 public: 
   Food();
   virtual ~Food();
-  virtual void				addElem(std::list<IFood *> &list, std::list<ISnake *> &slist);
+  virtual void				addElem(std::list<IFood *> &list, const std::list<ISnake *> &slist);
   virtual IFoodType			getType() const;
   virtual int				getX() const;
   virtual int				getY() const;

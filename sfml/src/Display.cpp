@@ -26,7 +26,7 @@ Display::Display() : _app(sf::VideoMode(LWINDOW, HWINDOW, PIX), "nibbler")
     this->_music->Play();
     }
   */
-  if (!this->_backgroundImage->LoadFromFile("/home/guillaume/Git/nibbler/sprite/galaxy2.jpg"))
+  if (!this->_backgroundImage->LoadFromFile("/home/guillaume/Git/nibbler/sprite/galaxy.jpg"))
     std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
   this->_backgroundSprite->SetImage(*this->_backgroundImage);
   this->_backgroundSprite->Resize(LWINDOW, HWINDOW);
@@ -38,8 +38,7 @@ Display::~Display()
 }
 
 bool			Display::Init()
-{
-  
+{  
   return (true);
 }
 
@@ -170,7 +169,7 @@ void			Display::addElem(int x, int y)
 
   sprite = new sf::Sprite();
   image = new sf::Image();
-  SpriteLocation = "/home/guillaume/Git/nibbler/sprite/boule.png";
+  SpriteLocation = "/home/guillaume/Git/nibbler/sprite/rocket.png";
   if (!image->LoadFromFile(SpriteLocation))
     std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
   sprite->SetImage(*image);
@@ -228,7 +227,7 @@ void			Display::setFood(std::list<IFood *> &list)
 	{
 	  sprite = new sf::Sprite();
 	  image = new sf::Image();
-	  SpriteLocation = "/home/guillaume/Git/nibbler/sprite/planeteQuiDeglingue.jpg";
+	  SpriteLocation = "/home/guillaume/Git/nibbler/sprite/sun.png";
 	  if (!image->LoadFromFile(SpriteLocation))
 	    std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
 	  sprite->SetImage(*image);

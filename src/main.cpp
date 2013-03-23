@@ -57,14 +57,3 @@ int	main(int ac, char **av)
     std::cout << "Usage : ./nibbler LEN WIDTH LIB" << std::endl;
   return (0);
 }
-      /*      dlclose(hndl);
-      std::ofstream	file("score.txt", std::ios::out | std::ios::app);
-      if (file)
-        {
-	  std::string	nom = "toto";//my_graph->userName();
-	  int		score = game->getScore();
-	  file << nom << " - " << score << std::endl;
-	  file.close();
-        }
-      else
-      std::cerr << "Unable to open : score.txt " << std::endl;*/
