@@ -22,20 +22,29 @@ void			Game::Init(const int len, const int width)
   this->_stratFact = new StratFact();
   this->_hole = new Hole();
   this->_strategie = this->_stratFact->create(EASY);
+  //
   this->_snake->addElem(this->_sList, HEAD, 400, 300);
   this->_snake->addElem(this->_sList, BODY, 380, 300);
   this->_snake->addElem(this->_sList, BODY, 360, 300);
   this->_snake->addElem(this->_sList, TAIL, 340, 300);
+  //
   this->_food->addElem(this->_fList, this->_sList);
   sleep(1);
   this->_food->addElem(this->_fList, this->_sList);
   sleep(1);
   this->_food->addElem(this->_fList, this->_sList);
+  //
   this->_hole->addElem(this->_assList, 500, 200, BLACKHOLE);
-  this->_hole->addElem(this->_assList, 300, 160, ADDTAIL);
+  this->_hole->addElem(this->_assList, 300, 160, BLACKHOLE);
   this->_hole->addElem(this->_assList, 120, 640, BLACKHOLE);
-  this->_hole->addElem(this->_assList, 400, 540, ADDTAIL);
-  this->_hole->addElem(this->_assList, 640, 60, ADDTAIL);
+  this->_hole->addElem(this->_assList, 400, 540, BLACKHOLE);
+  this->_hole->addElem(this->_assList, 640, 60, BLACKHOLE);
+
+  this->_hole->addElem(this->_assList, 400, 240, BLACKHOLE);
+  this->_hole->addElem(this->_assList, 320, 280, BLACKHOLE);
+  this->_hole->addElem(this->_assList, 10, 400, BLACKHOLE);
+  this->_hole->addElem(this->_assList, 180, 340, BLACKHOLE);
+  this->_hole->addElem(this->_assList, 420, 680, BLACKHOLE);
 }
 
 int			Game::getSpeed() const

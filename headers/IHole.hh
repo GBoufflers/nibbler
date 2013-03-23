@@ -3,7 +3,6 @@
 
 enum		HoleType
   {
-    ADDTAIL,
     BLACKHOLE
   };
 

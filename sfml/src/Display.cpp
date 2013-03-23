@@ -16,20 +16,14 @@ Display::Display() : _app(sf::VideoMode(LWINDOW, HWINDOW, PIX), "nibbler")
   this->creation[3] = &Display::Right;
   this->_backgroundSprite = new sf::Sprite();
   this->_backgroundImage = new sf::Image();
-  /*
-    this->_music = new sf::Music();
-    if (!this->_music->OpenFromFile("/home/guillaume/Git/nibbler/sounds/murloc.mp3"))
+  this->_music = new sf::Music();
+  if (!this->_music->OpenFromFile("/home/guillaume/Git/nibbler/sounds/murloc.ogg"))
     std::cout << "Impossible de loader le fichier" << std::endl;
-    else
+  else
     {
-    this->_music->SetLoop(true);
-    this->_music->Play();
+      this->_music->Play();
+      this->_music->SetVolume(50.0);
     }
-  */
-  if (!this->_backgroundImage->LoadFromFile("/home/guillaume/Git/nibbler/sprite/galaxy.jpg"))
-    std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
-  this->_backgroundSprite->SetImage(*this->_backgroundImage);
-  this->_backgroundSprite->Resize(LWINDOW, HWINDOW);
 }
 
 Display::~Display()
@@ -169,7 +163,7 @@ void			Display::addElem(int x, int y)
 
   sprite = new sf::Sprite();
   image = new sf::Image();
-  SpriteLocation = "/home/guillaume/Git/nibbler/sprite/rocket.png";
+  SpriteLocation = "/home/guillaume/Git/nibbler/sprite/sun.png";
   if (!image->LoadFromFile(SpriteLocation))
     std::cout<<"Erreur durant le chargement de l'image"<< std::endl;
   sprite->SetImage(*image);
@@ -289,7 +283,7 @@ void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList
     this->addSnakeSprite(sList);
   this->manageEvent();
   (this->*creation[this->_numFunc])(sList);
-  this->setNewCoord(sList);
+  this->setNewCoord(sList, hlist);
   this->setFood(fList);
   this->DisplayGame();
   this->_app.Clear();
@@ -297,7 +291,7 @@ void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList
 
 void			Display::DisplayGame()
 {
-  this->_app.Draw(*this->_backgroundSprite);
+  //  this->_app.Draw(*this->_backgroundSprite);
   for (std::list<sf::Sprite *>::const_iterator it = this->_SnakeSpriteList.begin(); it != this->_SnakeSpriteList.end(); ++it)
     this->_app.Draw(**it);
   for (std::list<sf::Sprite *>::const_iterator it = this->_FoodSpriteList.begin(); it != this->_FoodSpriteList.end(); ++it)
@@ -349,16 +343,22 @@ void			Display::addSnakeSprite(std::list<ISnake *> &sList)
   this->_snakeSize += 1;
 }
 
-void			Display::setNewCoord(std::list<ISnake *> &list)
+void			Display::setNewCoord(std::list<ISnake *> &list, std::list<IHole *> &hlist)
 {
-  std::list<ISnake *>::iterator it2 = list.begin();
+  std::list<ISnake *>::iterator it2;
+  std::list<IHole *>::iterator it3;
+
+  it2 = list.begin();
   for (std::list<sf::Sprite *>::iterator it = this->_SnakeSpriteList.begin(); it != this->_SnakeSpriteList.end(); ++it, ++it2)
     (*it)->SetPosition((*it2)->getX(), (*it2)->getY());
+  it3 = hlist.begin();
+  for (std::list<sf::Sprite *>::iterator it = this->_HoleSpriteList.begin(); it != this->_HoleSpriteList.end(); ++it, ++it3)
+    (*it)->SetPosition((*it3)->getX(), (*it3)->getY());
 }
 
 void			Display::Finish()
 {
-
+  delete(this->_music);
 }
 
 extern "C"

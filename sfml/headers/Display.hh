@@ -46,7 +46,7 @@ public:
   void				Right(std::list<ISnake *> &list);
   void				onOriginalList(std::list<ISnake *> &list, char func);
   void				manageEvent();
-  void				setNewCoord(std::list<ISnake *> &list);
+  void				setNewCoord(std::list<ISnake *> &list, std::list<IHole *> &hlist);
   bool				checkSpritePresent(const sf::Sprite *sprite, const std::list<IFood *> &list) const;
   void				getNewCoord(const std::list<IFood *> &list, int *x, int *y);
   void				initHole(const std::list<IHole *> &hlist);
