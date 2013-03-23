@@ -127,7 +127,7 @@ void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList)
   refresh();
 }
 
-void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList)
+void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist)
 {
   this->movesnake(sList, fList);
 }

@@ -34,7 +34,7 @@ int	main(int ac, char **av)
 	    {
 	      tmp = game->getSList();
 	      tmpf = game->getFList();
-	      my_graph->Play(tmp, tmpf);
+	      my_graph->Play(tmp, tmpf, tmph);
 	      ret = game->checkCollision(tmp, tmpf, tmph);
 	      if (ret == 1)
 		{

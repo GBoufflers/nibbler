@@ -260,7 +260,7 @@ void			Display::setFood(std::list<IFood *> &list)
     }
 }
 
-void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList)
+void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist)
 {
   if (this->_isInit == false)
     this->Dinit(sList, fList);
@@ -289,6 +289,7 @@ void			Display::Dinit(std::list<ISnake *> &sList, std::list<IFood *> &fList)
   this->_isInit = true;
   for (std::list<ISnake *>::const_iterator it = sList.begin(); it != sList.end(); ++it)
     this->addElem((*it)->getX(), (*it)->getY());
+  
 }
 
 bool			Display::Window() const

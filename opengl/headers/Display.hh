@@ -22,7 +22,7 @@ public:
   Display();
   ~Display();
   virtual bool	Window() const;
-  virtual void	Play(std::list<ISnake *> &sList, std::list<IFood *> &fList);
+  virtual void	Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist);
   virtual bool	Init();
   void			event(std::list<ISnake *> &sList);
   void			makeCarre(double x, double y, int r, int v, int b) const;
