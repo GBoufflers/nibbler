@@ -13,6 +13,7 @@ Game::~Game()
 
 void			Game::Init(const int len, const int width)
 {
+  srand(time(NULL));
   this->_len = len;
   this->_width = width;
   this->_score = 0;
