@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Sun Mar 24 15:27:22 2013 florian dell-aiera
+// Last update Sun Mar 24 15:53:28 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -35,11 +35,10 @@ bool	Display::Init()
   if (SDL_Init(SDL_INIT_VIDEO) == -1)
     return (false);
   SDL_WM_SetCaption("Le nibbler neggaz", NULL);
-  SDL_SetVideoMode(800, 600, 32, SDL_OPENGL);
+  SDL_SetVideoMode(LWINDOW, HWINDOW, 32, SDL_OPENGL);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluOrtho2D(0, 800,0, 600);
-  glEnable(GL_TEXTURE_2D);
+  gluOrtho2D(0, LWINDOW,0, HWINDOW);
   return (true);
 }
 
@@ -215,7 +214,7 @@ void			Display::see(std::list<ISnake *> &sList, std::list<IFood *> &fList) const
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
   glBegin(GL_QUADS);
-  this->makeCarre(800 , 600, 255, 255, 255);
+  this->makeCarre(LWINDOW , HWINDOW, 255, 255, 255);
   glEnd();
   this->makeSnake(sList);
   this->makeFood(fList);

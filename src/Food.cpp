@@ -52,13 +52,14 @@ void			Food::addElem(std::list<IFood *> &list, const std::list<ISnake *> &slist)
   x = rand() % LWINDOW;
   while (x % SIDE != 0)
     x = rand() % LWINDOW;
-  if (x < 20)
+  //  x = LWINDOW - 21;
+  if (x < 20 || x > LWINDOW - 20)
     x = 20;
   member->setX(x);
   y = rand() % HWINDOW;
   while (y % SIDE != 0)
     y = rand() % HWINDOW;
-  if (y < 20)
+  if (y < 20 || y > HWINDOW - 20)
     y = 20;
   member->setY(y);
   list.push_front(member);
