@@ -3,8 +3,10 @@
 
 Display::Display()
 {
+  std::cout << "Please enter your name: " << std::endl;
+  std::cin >> this->_userName;
   initscr();
-  this->_win = initscr();
+  this->_win = initscr();  
   wresize(this->_win, 33, 42);
   nodelay(stdscr, true);
   keypad(stdscr, true);
@@ -51,6 +53,11 @@ void   		Display::dispFood(std::list<IFood *> list) const
 {
   move(list.front()->getY()/20, list.front()->getX()/20);
   addch('+');
+}
+
+std::string	Display::userName() const
+{
+  return (this->_userName);
 }
 
 void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList)
@@ -120,10 +127,12 @@ void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList)
   refresh();
 }
 
-void	Display::displayScore(int score)
+void	Display::displayScore(int score) const
 {
   move(this->_maxheight-2, 0);
   printw("Score: %d", score);
+  //  move(this->_maxheight-1, 0);
+  //printw("Name: %d", this->_userName);
 }
 
 void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, int score)

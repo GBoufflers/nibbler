@@ -7,6 +7,7 @@
 #include	<ncurses.h>
 #include	<unistd.h>
 #include	<iostream>
+#include	<fstream>
 #include	"../../headers/Game.hh"
 #include	"../../ILib.hh"
 
@@ -18,6 +19,8 @@ private:
   int				_maxwidth;
   char				_partchar;
   WINDOW			*_win;
+  std::string			_userName;
+
 public:
   Display();
   ~Display();
@@ -25,10 +28,9 @@ public:
   virtual void			Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, int score);
   void				drawWall() const;
   void				dispFood(std::list<IFood *> list) const;
-  void				displayOver();
-  void				displayScore(int score);
+  void				displayScore(int score) const;
+  std::string			userName() const;
   void				movesnake(std::list<ISnake *> &list, std::list<IFood *> &fList);
-  void				start();
 };
 
 typedef Display *(*maker_Display)();
