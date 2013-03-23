@@ -260,10 +260,18 @@ void			Display::setFood(std::list<IFood *> &list)
     }
 }
 
+void		Display::initHole(const std::list<IHole *> &hlist)
+{
+
+}
+
 void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist)
 {
   if (this->_isInit == false)
-    this->Dinit(sList, fList);
+    {
+      this->Dinit(sList, fList);
+      this->initHole(hlist);
+    }
   if (sList.size() != this->_snakeSize)
     this->addSnakeSprite(sList);
   this->manageEvent();

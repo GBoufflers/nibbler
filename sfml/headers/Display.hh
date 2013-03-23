@@ -20,6 +20,7 @@ private:
   sf::Sprite			*_backgroundSprite;
   std::list<sf::Sprite *>	_SnakeSpriteList;
   std::list<sf::Sprite *>	_FoodSpriteList;
+  std::list<sf::Sprite *>	_HoleSpriteList;
   sf::Music			*_music;
   int				_numFunc;
   int				_snakeSize;
@@ -48,6 +49,7 @@ public:
   void				setNewCoord(std::list<ISnake *> &list);
   bool				checkSpritePresent(const sf::Sprite *sprite, const std::list<IFood *> &list) const;
   void				getNewCoord(const std::list<IFood *> &list, int *x, int *y);
+  void				initHole(const std::list<IHole *> &hlist);
 };
 
 typedef Display *(*maker_Display)();
