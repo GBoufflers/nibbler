@@ -17,6 +17,8 @@ public
   //
   void	setX(int x);
   void	setY(int y);
+  //
+  void	addElem(std::list<IHole *> &list, int x, int y);
 };
 
 #endif

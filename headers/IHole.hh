@@ -10,6 +10,8 @@ public:
   //
   virtual void	setX(int x) = 0;
   virtual void	setY(int y) = 0;
+  //
+  virtual void	addElem(std::list<IHole *> &list, int x, int y) = 0;
 };
 
 #endif
