@@ -18,7 +18,6 @@ private:
   int				_maxheight;
   int				_maxwidth;
   char				_partchar;
-  WINDOW			*_win;
 
 public:
   Display();
@@ -26,6 +25,7 @@ public:
   virtual bool			Window() const;  
   virtual void			Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist, int score);
   virtual bool			Init();
+  virtual void			Finish();
   void				drawWall() const;
   void				dispFood(std::list<IFood *> list) const;
   void                          dispScore(int score) const;

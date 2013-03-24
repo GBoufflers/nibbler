@@ -12,12 +12,11 @@ Display::Display()
 bool	Display::Init()
 {
   initscr();
-  this->_win = initscr();  
-  wresize(this->_win, this->_maxheight, this->_maxwidth);
   nodelay(stdscr, true);
   keypad(stdscr, true);
   noecho();
   curs_set(0);
+  refresh();
   return (true);
 }
 
@@ -128,6 +127,7 @@ void    Display::dispScore(int score) const
 {
   move(this->_maxheight-2, 0);
   printw("Score: %d", score);
+  refresh();
 }
 
 void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist, int score)
@@ -136,12 +136,22 @@ void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::l
   this->dispScore(score);
 }
 
-Display::~Display()
+void	Display::Finish()
 {
-  curs_set(1);
+  move(this->_maxheight/3, this->_maxwidth/3);
+  printw("GAME OVER");
+  move(this->_maxheight/3+3, this->_maxwidth/4);
+  printw("Appuyez sur une touche pour quitter");
+  refresh();
   nodelay(stdscr, false);
+  keypad(stdscr, false);
   getch();
   endwin();
+}
+
+Display::~Display()
+{
+
 }
 
 extern "C"

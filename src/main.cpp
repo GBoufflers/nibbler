@@ -46,6 +46,7 @@ int	main(int ac, char **av)
 	      game->analyseLevel();
 	      usleep(game->getSpeed());
 	    }
+	  my_graph->Finish();
 	  dlclose(hndl);
 	}
       catch (const std::exception &e)
