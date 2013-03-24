@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Sun Mar 24 17:22:22 2013 florian dell-aiera
+// Last update Sun Mar 24 17:37:23 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -46,6 +46,11 @@ bool	Display::Init()
 bool	Display::Window() const
 {
   return (true);
+}
+
+void	Display::Finish()
+{
+
 }
 
 void	Display::makeCoord(std::list<ISnake *>&sList) const
@@ -164,7 +169,7 @@ void			Display::makeSnake(std::list<ISnake *> &sList)
   	{
   	  glMatrixMode(GL_MODELVIEW);
   	  glLoadIdentity();
-	  glTranslatef((*it)->getX(), (*it)->getY(), 0);
+	  glTranslatef((*it)->getX() - 10, (*it)->getY() - 10, 0);
   	  glBegin(GL_QUADS);
   	  this->makeCarre(10, 10, 255, 0, 0);
   	  glEnd();
@@ -174,7 +179,7 @@ void			Display::makeSnake(std::list<ISnake *> &sList)
 	  this->_color = rand() % 255;
   	  glMatrixMode(GL_MODELVIEW);
   	  glLoadIdentity();
-	  glTranslatef((*it)->getX(), (*it)->getY(), 0);
+	  glTranslatef((*it)->getX() - 10, (*it)->getY() - 10, 0);
   	  glBegin(GL_QUADS);
   	  this->makeCarre(10, 10, 0, this->_color, 0);
   	  glEnd();
@@ -189,7 +194,7 @@ void			Display::makeFood(std::list<IFood *> &fList) const
     {
       glMatrixMode(GL_MODELVIEW);
       glLoadIdentity();
-      glTranslatef((*it)->getX(), (*it)->getY(), 0);
+      glTranslatef((*it)->getX() - 10, (*it)->getY() - 10, 0);
       glBegin(GL_QUADS);
       this->makeCarre(10,10, 0, 0, this->_color);
       glEnd();
