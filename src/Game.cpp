@@ -13,7 +13,6 @@ Game::~Game()
 
 void			Game::Init(const int len, const int width)
 {
-  srand(time(NULL));
   this->_len = len;
   this->_width = width;
   this->_score = 0;
@@ -21,6 +20,7 @@ void			Game::Init(const int len, const int width)
   this->_collision = new Collision();
   this->_food = new Food();
   this->_stratFact = new StratFact();
+  this->_hole = new Hole();
   this->_strategie = this->_stratFact->create(EASY);
   this->_snake->addElem(this->_sList, HEAD, 400, 300);
   this->_snake->addElem(this->_sList, BODY, 380, 300);
@@ -87,6 +87,10 @@ int			Game::checkCollision(std::list<ISnake *> &slist, std::list<IFood *> &flist
 {
   if (this->_collision->checkSAndF(slist, flist) == true)
     return (1);
+  /*
+    if (this->_collision->checkSAndH() == true)
+    return (-1);
+  */
   if (this->_collision->checkSAndS(slist) == true)
     return (-1);
   if (this->_collision->checkSAndW(slist) == true)
