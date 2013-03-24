@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Sun Mar 24 17:14:52 2013 florian dell-aiera
+// Last update Sun Mar 24 17:22:22 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -211,8 +211,9 @@ void			Display::see(std::list<ISnake *> &sList, std::list<IFood *> &fList)
   SDL_GL_SwapBuffers();
 }
 
-void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist)
+void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist, int score)
 {
+  score = 0;
   this->see(sList, fList);
   this->event(sList);
   this->see(sList, fList);
