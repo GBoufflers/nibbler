@@ -261,7 +261,7 @@ void			Display::setFood(std::list<IFood *> &list)
     }
 }
 
-void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, int score)
+void	       	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList)
 {
   if (this->_isInit == false)
     this->Dinit(sList, fList);
