@@ -19,16 +19,16 @@ private:
   int				_maxwidth;
   char				_partchar;
   WINDOW			*_win;
-  std::string			_userName;
 
 public:
   Display();
   ~Display();
   virtual bool			Window() const;  
-  virtual void			Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist);
+  virtual void			Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist, int score);
   virtual bool			Init();
   void				drawWall() const;
   void				dispFood(std::list<IFood *> list) const;
+  void                          dispScore(int score) const;
   void				movesnake(std::list<ISnake *> &list, std::list<IFood *> &fList);
 };
 

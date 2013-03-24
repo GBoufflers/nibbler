@@ -1,6 +1,5 @@
 #include	"../ncurses/headers/Display.hh"
 
-
 int	main(int ac, char **av)
 {
   if (ac == 4)
@@ -34,7 +33,7 @@ int	main(int ac, char **av)
 	    {
 	      tmp = game->getSList();
 	      tmpf = game->getFList();
-	      my_graph->Play(tmp, tmpf, tmph);
+	      my_graph->Play(tmp, tmpf, tmph, game->getScore());
 	      ret = game->checkCollision(tmp, tmpf, tmph);
 	      if (ret == 1)
 		{
@@ -51,7 +50,7 @@ int	main(int ac, char **av)
 	}
       catch (const std::exception &e)
 	{
-	  std::cerr << e.what() << "\n";
+	  std::cerr << e.what() << std::endl;
 	}
     }
   else
