@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Sun Mar 24 15:53:28 2013 florian dell-aiera
+// Last update Sun Mar 24 17:14:52 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -22,7 +22,7 @@ Display::Display()
   this->move_right[2] = &Display::turnOneRight; 
   this->move_right[3] = &Display::turnTwoRight;
   this->_angle = 0;
-  this->_space = 0;
+  this->_color = 0;
 }
 
 Display::~Display()
@@ -35,7 +35,8 @@ bool	Display::Init()
   if (SDL_Init(SDL_INIT_VIDEO) == -1)
     return (false);
   SDL_WM_SetCaption("Le nibbler neggaz", NULL);
-  SDL_SetVideoMode(LWINDOW, HWINDOW, 32, SDL_OPENGL);
+  if (SDL_SetVideoMode(LWINDOW, HWINDOW, 32, SDL_OPENGL) == NULL)
+    return (false);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluOrtho2D(0, LWINDOW,0, HWINDOW);
@@ -134,20 +135,7 @@ void			Display::event(std::list<ISnake *>&sList)
 	      if (this->_angle == (360))
 		this->_angle = 0;
   	      break;
-	    case SDLK_SPACE:
-	      {
-		this->_space = 20;
-		break;
-	      }
   	    }
-	  break;
-  	case SDL_KEYUP:
-  	  switch (event.key.keysym.sym)
-  	    {
-	    case SDLK_SPACE:
-	      this->_space = 0;
-	      break;
-	    }
 	  break;
   	}
     }
@@ -166,7 +154,7 @@ void			Display::makeCarre(double x, double y, int r, int v, int b) const
   glVertex2d(x, -y);
 }
 
-void			Display::makeSnake(std::list<ISnake *> &sList) const
+void			Display::makeSnake(std::list<ISnake *> &sList)
 {
   int			i = 0;
 
@@ -183,11 +171,12 @@ void			Display::makeSnake(std::list<ISnake *> &sList) const
   	}
       else
   	{
+	  this->_color = rand() % 255;
   	  glMatrixMode(GL_MODELVIEW);
   	  glLoadIdentity();
 	  glTranslatef((*it)->getX(), (*it)->getY(), 0);
   	  glBegin(GL_QUADS);
-  	  this->makeCarre(10, 10, 0, 255, 0);
+  	  this->makeCarre(10, 10, 0, this->_color, 0);
   	  glEnd();
   	}
       i++;
@@ -197,24 +186,24 @@ void			Display::makeSnake(std::list<ISnake *> &sList) const
 void			Display::makeFood(std::list<IFood *> &fList) const
 {
   for ( std::list<IFood *>::const_iterator it = fList.begin(); it != fList.end(); it++)
-    {      
+    {
       glMatrixMode(GL_MODELVIEW);
       glLoadIdentity();
       glTranslatef((*it)->getX(), (*it)->getY(), 0);
       glBegin(GL_QUADS);
-      this->makeCarre(10,10, 0, 0, 255);
+      this->makeCarre(10,10, 0, 0, this->_color);
       glEnd();
       glFlush();
     }
 }
 
-void			Display::see(std::list<ISnake *> &sList, std::list<IFood *> &fList) const
+void			Display::see(std::list<ISnake *> &sList, std::list<IFood *> &fList)
 {
   glClear(GL_COLOR_BUFFER_BIT);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
   glBegin(GL_QUADS);
-  this->makeCarre(LWINDOW , HWINDOW, 255, 255, 255);
+  this->makeCarre(LWINDOW , HWINDOW, 240, 240, 240);
   glEnd();
   this->makeSnake(sList);
   this->makeFood(fList);
