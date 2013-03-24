@@ -3,7 +3,6 @@
 
 int	main(int ac, char **av)
 {
-  srand(time(NULL));
   if (ac == 4)
     {
       try
@@ -11,6 +10,7 @@ int	main(int ac, char **av)
 	  Game			*game = new Game(atoi(av[1]), atoi(av[2]));
 	  std::list<ISnake *>	tmp;
 	  std::list<IFood *>	tmpf;
+	  std::list<IHole *>	tmph;
 	  int			ret;
 	  maker_Display		pMaker;
 	  void			*hndl;
@@ -35,7 +35,7 @@ int	main(int ac, char **av)
 	      tmp = game->getSList();
 	      tmpf = game->getFList();
 	      my_graph->Play(tmp, tmpf);
-	      ret = game->checkCollision(tmp, tmpf);
+	      ret = game->checkCollision(tmp, tmpf, tmph);
 	      if (ret == 1)
 		{
 		  game->setScore();

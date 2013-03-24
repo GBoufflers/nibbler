@@ -13,6 +13,7 @@ Game::~Game()
 
 void			Game::Init(const int len, const int width)
 {
+  srand(time(NULL));
   this->_len = len;
   this->_width = width;
   this->_score = 0;
@@ -31,6 +32,11 @@ void			Game::Init(const int len, const int width)
   this->_food->addElem(this->_fList, this->_sList);
   sleep(1);
   this->_food->addElem(this->_fList, this->_sList);
+  this->_hole->addElem(this->_assList, 500, 200);
+  this->_hole->addElem(this->_assList, 300, 160);
+  this->_hole->addElem(this->_assList, 125, 650);
+  this->_hole->addElem(this->_assList, 400, 530);
+  this->_hole->addElem(this->_assList, 635, 50);
 }
 
 int			Game::getSpeed() const
@@ -83,14 +89,12 @@ Collision		*Game::getCollision() const
   return (this->_collision);
 }
 
-int			Game::checkCollision(std::list<ISnake *> &slist, std::list<IFood *> &flist) const
+int			Game::checkCollision(std::list<ISnake *> &slist, std::list<IFood *> &flist, std::list<IHole *> &hlist) const
 {
   if (this->_collision->checkSAndF(slist, flist) == true)
     return (1);
-  /*
-    if (this->_collision->checkSAndH() == true)
+  if (this->_collision->checkSAndH(slist, hlist) == true)
     return (-1);
-  */
   if (this->_collision->checkSAndS(slist) == true)
     return (-1);
   if (this->_collision->checkSAndW(slist) == true)

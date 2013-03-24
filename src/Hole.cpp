@@ -29,3 +29,12 @@ void	Hole::setY(int y)
 {
   this->_y = y;
 }
+
+void	Hole::addElem(std::list<IHole *> &list, int x, int y)
+{
+  IHole	*member;
+
+  member = new Hole();
+  member->setX(x);
+  member->setY(y);
+}
