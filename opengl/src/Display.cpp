@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Sun Mar 24 14:52:09 2013 florian dell-aiera
+// Last update Sun Mar 24 15:27:22 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -39,6 +39,7 @@ bool	Display::Init()
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluOrtho2D(0, 800,0, 600);
+  glEnable(GL_TEXTURE_2D);
   return (true);
 }
 
@@ -222,7 +223,7 @@ void			Display::see(std::list<ISnake *> &sList, std::list<IFood *> &fList) const
   SDL_GL_SwapBuffers();
 }
 
-void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, int score)
+void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList)
 {
   this->see(sList, fList);
   this->event(sList);

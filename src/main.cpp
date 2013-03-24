@@ -33,7 +33,7 @@ int	main(int ac, char **av)
 	    {
 	      tmp = game->getSList();
 	      tmpf = game->getFList();
-	      my_graph->Play(tmp, tmpf, game->getScore());
+	      my_graph->Play(tmp, tmpf);
 	      ret = game->checkCollision(tmp, tmpf);
 	      if (ret == 1)
 		{

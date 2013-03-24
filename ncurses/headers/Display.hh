@@ -25,12 +25,10 @@ public:
   Display();
   ~Display();
   virtual bool			Window() const;  
-  virtual void			Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, int score);
+  virtual void			Play(std::list<ISnake *> &sList, std::list<IFood *> &fList);
   virtual bool			Init();
   void				drawWall() const;
   void				dispFood(std::list<IFood *> list) const;
-  void				displayScore(int score) const;
-  std::string			userName() const;
   void				movesnake(std::list<ISnake *> &list, std::list<IFood *> &fList);
 };
 
