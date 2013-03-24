@@ -101,9 +101,6 @@ void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList, 
       if (this->_direction != 'l')
         this->_direction = 'r';
       break;
-    case KEY_BACKSPACE:
-      this->_direction = 'q';
-      break;
     case 27:
       endwin();
       exit(EXIT_SUCCESS);
@@ -151,9 +148,8 @@ void    Display::dispScore(int score) const
   move(this->_maxheight-2, 0);
   init_pair(2, COLOR_GREEN, COLOR_BLACK);
   attron(COLOR_PAIR(2));
-  printw("Score: ");
-  attroff(COLOR_PAIR(2));
-  printw("%d", score);
+  printw("Score: %d", score);
+  attroff(COLOR_PAIR(2));  
   refresh();
 }
 
