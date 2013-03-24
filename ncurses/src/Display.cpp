@@ -68,7 +68,7 @@ void   		Display::dispHole(std::list<IHole *> list) const
   for (std::list<IHole *>::const_iterator it = list.begin(); it != list.end(); it++)
     {
       move((*it)->getY()/SIDE, (*it)->getX()/SIDE);
-      init_pair(5, COLOR_GREEN, COLOR_BLACK);
+      init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
       attron(COLOR_PAIR(5));
       addch('#');
       attroff(COLOR_PAIR(5));
