@@ -12,6 +12,7 @@ Display::Display()
 bool	Display::Init()
 {
   initscr();
+  start_color();
   nodelay(stdscr, true);
   keypad(stdscr, true);
   noecho();
@@ -53,7 +54,10 @@ bool	Display::Window() const
 void   		Display::dispFood(std::list<IFood *> list) const
 {
   move(list.front()->getY()/SIDE, list.front()->getX()/SIDE);
+  init_pair(4, COLOR_YELLOW, COLOR_BLACK);
+  attron(COLOR_PAIR(4));
   addch('+');
+  attroff(COLOR_PAIR(4));
 }
 
 void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList)
@@ -119,14 +123,21 @@ void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList)
       sList.push_front(s);
     }
   move((sList.front()->getY())/SIDE, (sList.front()->getX())/SIDE);
+  init_pair(3, COLOR_BLUE, COLOR_BLACK);
+  attron(COLOR_PAIR(3));
   addch(this->_partchar);
+  attroff(COLOR_PAIR(3));
   refresh();
 }
 
 void    Display::dispScore(int score) const
 {
   move(this->_maxheight-2, 0);
-  printw("Score: %d", score);
+  init_pair(2, COLOR_GREEN, COLOR_BLACK);
+  attron(COLOR_PAIR(2));
+  printw("Score: ");
+  attroff(COLOR_PAIR(2));
+  printw("%d", score);
   refresh();
 }
 
@@ -139,7 +150,10 @@ void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::l
 void	Display::Finish()
 {
   move(this->_maxheight/3, this->_maxwidth/3);
+  init_pair(1, COLOR_RED, COLOR_BLACK);
+  attron(COLOR_PAIR(1));
   printw("GAME OVER");
+  attroff(COLOR_PAIR(1));
   move(this->_maxheight/3+3, this->_maxwidth/4);
   printw("Appuyez sur une touche pour quitter");
   refresh();
