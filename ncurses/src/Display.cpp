@@ -53,20 +53,36 @@ bool	Display::Window() const
 
 void   		Display::dispFood(std::list<IFood *> list) const
 {
-  move(list.front()->getY()/SIDE, list.front()->getX()/SIDE);
-  init_pair(4, COLOR_YELLOW, COLOR_BLACK);
-  attron(COLOR_PAIR(4));
-  addch('+');
-  attroff(COLOR_PAIR(4));
+  for (std::list<IFood *>::const_iterator it = list.begin(); it != list.end(); it++)
+    {
+      move((*it)->getY()/SIDE, (*it)->getX()/SIDE);
+      init_pair(4, COLOR_YELLOW, COLOR_BLACK);
+      attron(COLOR_PAIR(4));
+      addch('+');
+      attroff(COLOR_PAIR(4));
+    }
 }
 
-void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList)
+void   		Display::dispHole(std::list<IHole *> list) const
+{
+  for (std::list<IHole *>::const_iterator it = list.begin(); it != list.end(); it++)
+    {
+      move((*it)->getY()/SIDE, (*it)->getX()/SIDE);
+      init_pair(5, COLOR_GREEN, COLOR_BLACK);
+      attron(COLOR_PAIR(5));
+      addch('#');
+      attroff(COLOR_PAIR(5));
+    }
+}
+
+void		Display::movesnake(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hList)
 {
   int   tmp = getch();
   ISnake	*s;
   
   this->drawWall();
   this->dispFood(fList);
+  this->dispHole(hList);
   switch (tmp)
     {
     case KEY_LEFT:
@@ -141,9 +157,9 @@ void    Display::dispScore(int score) const
   refresh();
 }
 
-void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hlist, int score)
+void	Display::Play(std::list<ISnake *> &sList, std::list<IFood *> &fList, std::list<IHole *> &hList, int score)
 {
-  this->movesnake(sList, fList);
+  this->movesnake(sList, fList, hList);
   this->dispScore(score);
 }
 
