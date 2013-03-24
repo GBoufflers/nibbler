@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Tue Mar 19 16:48:46 2013 florian dell-aiera
-// Last update Sat Mar 23 17:12:30 2013 florian dell-aiera
+// Last update Sun Mar 24 14:52:09 2013 florian dell-aiera
 //
 
 #include	"../headers/Display.hh"
@@ -106,7 +106,6 @@ void			Display::turnTwoRight(std::list<ISnake *>&sList) const
   sList.front()->setY((sList.front()->getY()) - 20);
 }
 
-
 void			Display::event(std::list<ISnake *>&sList)
 {
   SDL_Event event;
@@ -197,7 +196,7 @@ void			Display::makeSnake(std::list<ISnake *> &sList) const
 
 void			Display::makeFood(std::list<IFood *> &fList) const
 {
-  for ( std::list<IFood *>::const_iterator it = fList.begin(); it != fList.end(); ++it)
+  for ( std::list<IFood *>::const_iterator it = fList.begin(); it != fList.end(); it++)
     {      
       glMatrixMode(GL_MODELVIEW);
       glLoadIdentity();
@@ -205,6 +204,7 @@ void			Display::makeFood(std::list<IFood *> &fList) const
       glBegin(GL_QUADS);
       this->makeCarre(10,10, 0, 0, 255);
       glEnd();
+      glFlush();
     }
 }
 
